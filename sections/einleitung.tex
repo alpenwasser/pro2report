@@ -1,22 +1,36 @@
-Das  Projekt besch\"aftigt  sich mit  den Problemen  der Regelungstechnik. Der
-Auftrag beinhaltet ein Tool, welches aus  den eingegebenen Ks, Tg und Tu einen
-PI- und ein PID-Regler dimensioniert wird.
+Im Rahmen dieses Projektes soll ein  Tool entwickelt werden, welches einen PI-  % Ausgangslage
+respektive einen PID-Regler mittels der von Prof. Jakob Zellweger entwickelten
+Phasengangmethode                                                               % TODO: referenz script Zellweger
+dimensioniert. Zum Vergleich  soll der entsprechende Regler  ebenfalls mittels
+verschiedenen  Faustformeln ausgelegt  werden. Die  Phasengangmethode ist  ein
+graphisches Werkzeug,  das normalerweise  mit Stift und  Papier durchgef\"uhrt
+wird. Folglicherweise  ist seine  Ausf\"uhrung zeitaufw\"andig,  speziell wenn
+verschiedene  Szenarien  mit unterschiedlichen  Parameterwerten  durchgespielt
+werden sollen. Ein Tool zur Automatisierung  dieses Prozesses ist bisher nicht
+verf\"ugbar; unsere Software soll diese Marktl\"ucke f\"ullen.
 
-Das  Tool soll  benutzerfreundlich, das  heisst auch  f\"ur einen  unge\"ubten
-Regelungstechniker geeignet sein. Das  \"Uberschwingen der Schrittantwort soll
-gew\"ahlt  werden  k\"onnen. Der  geschlossene   Regelkreis  soll  mit  seinem
-dynamischen Verhalten dargestellt/visualisiert und berechnet werden.
+Das Tool soll ausgehend von drei Parametern aus der Schrittantwort der Strecke  % Anforderungen
+($K_s$ Verst\"arkung, $T_g$: Anstiegszeit, $T_u$: Verz\"ogerungszeit)           % TODO CHECK
+mittels  der  Phasengangmethode  m\"oglichst ideale  Regelparameter  berechnen
+sowie  die Schrittantwort  des darauf  basierenden geschlossenen  Regelkreises
+graphisch  darstellen. Die  Benutzeroberfl\"ache  der Software  soll  intuitiv
+sein,   sodass   sich  auch   mit   dem   Thema  nicht   eingehend   vertraute
+Regelungstechniker einfach zurechtfinden.
 
-F\"ur die  Berechung wird  neben den  Faustformeln auch  die Phasengangmethode
-angewendet.   Die  Phasengangmethode  ist ein  graphisches  Werkzeug,  welches
-normalerweise mit Bleistift, Papier und Lineal durchgef\"uhrt wird. Unser Ziel
-ist  es,  dass  diese  Methode  durch  Implementierung  in  Java  eine  ebenso
-brauchbare L\"osung liefert.
+Die  erforderlichen   Algorithmen  wurden  eigenst\"andig  zuerst   in  Matlab % Umsetzung. TODO: mehr/anderer Inhalt?
+als  Prototypen   implementiert  und   anschliessend  vollst\"andig   in  Java
+konvertiert. Auch die  graphische Benutzeroberfl\"ache baut ganz  auf Java. Um
+optimale  Wartbarkeit,  \"Ubersichtlichkeit  und Modularit\"at  des  Codes  zu
+gew\"ahrleisten,  ist  die  Software  gem\"ass  Model-View-Controllern-Pattern
+aufgebaut.
 
-Nach  der Berechung  in  Matlab  wurde klar,  dass  die  Berechnung durch  die
+Nach  der Berechung  in  Matlab  wurde klar,  dass  die  Berechnung durch  die % Ergebnisse
 hohe Rechenleistung  sehr schnell  durchgef\"uhrt werden  kann und  somit eine
 Dimensionierung des geschlossenen Regelkreises anhand dieser Methode von Herrn
 Zellweger m\"oglich ist.
 
-Das Tool  ist in zwei  Bereiche aufgeteilt: Die  graphische Seite und  die der
-Ein- und Ausgabe der Zahlen.
+Das  Projekt gliederte  sich prim\"ar  in  zwei Teile. In  einer ersten  Phase % Aufbau des Berichts.
+wurden  die  theoretischen  Grundlagen erarbeitet,  darauf  aufbauend  bestand
+die  zweite  Phase  vor  allem   aus  der  Implementierung  der  Software. Der
+vorliegende Bericht entspricht in seinem  Aufbau diesem Verlauf und beschreibt
+haupts\"achlich die erarbeitete Theorie und die entwickelte Software.

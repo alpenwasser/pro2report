@@ -1,15 +1,16 @@
-Im Rahmen dieses Projektes soll ein  Tool entwickelt werden, welches einen PI-  % Ausgangslage
+% Ausgangslage
+Im Rahmen des Projektes soll ein  Tool entwickelt werden, welches einen PI-  
 respektive einen PID-Regler mittels der von Prof. Jakob Zellweger entwickelten
 Phasengangmethode  \todo{referenz script Zellweger}                                                             
 dimensioniert. Zum Vergleich  soll der entsprechende Regler  ebenfalls mittels
-verschiedenen  Faustformeln ausgelegt  werden. Die  Phasengangmethode ist  ein
-graphisches Werkzeug,  das normalerweise  mit Stift und  Papier durchgef\"uhrt
-wird. Folglicherweise  ist seine  Ausf\"uhrung zeitaufw\"andig,  speziell wenn
-verschiedene  Szenarien  mit unterschiedlichen  Parameterwerten  durchgespielt
-werden sollen. Ein Tool zur Automatisierung  dieses Prozesses ist bisher nicht
-verf\"ugbar; unsere Software soll diese Marktl\"ucke f\"ullen.
+verschiedenen  Faustformeln berechnet  werden. 
 
-Das Tool soll ausgehend von drei Parametern aus der Schrittantwort der Strecke  % Anforderungen
+ % Anforderungen
+Die  Phasengangmethode ist  eine
+graphische Methode, die bis anhin mit Stift und Papier durchgef\"uhrt
+wurde. Folglich  ist die  Ausf\"uhrung zeitaufw\"andig,  speziell wenn
+Schrittantworten mit unterschiedlichen  Parameterwerten  durchgespielt
+werden sollen. Das Tool soll ausgehend von drei Parametern aus der Schrittantwort der Strecke 
 (Verst\"arkung  $K_s$, Anstiegszeit  $T_g$, Verz\"ogerungszeit  $T_u$) mittels
 der Phasengangmethode  m\"oglichst ideale  Regelparameter berechnen  sowie die
 Schrittantwort  des darauf  basierenden  geschlossenen Regelkreises  graphisch
@@ -17,20 +18,21 @@ darstellen. Die Benutzeroberfl\"ache  der Software soll intuitiv  sein, sodass
 sich auch mit  dem Thema nicht eingehend  vertraute Regelungstechniker einfach
 zurechtfinden.
 
-Die  erforderlichen   Algorithmen  wurden  eigenst\"andig  zuerst   in  Matlab % Umsetzung.  
+ % Umsetzung
+Die  erforderlichen   Algorithmen  wurden   zuerst   in  Matlab 
 als  Prototypen   implementiert  und   anschliessend  vollst\"andig   in  Java\todo{mehr/anderer Inhalt?}
-konvertiert. Auch die  graphische Benutzeroberfl\"ache baut ganz  auf Java. Um
+konvertiert. Die  graphische Benutzeroberfl\"ache baut ganz  auf Java. Um
 optimale  Wartbarkeit,  \"Ubersichtlichkeit  und Modularit\"at  des  Codes  zu
 gew\"ahrleisten,  ist  die  Software  gem\"ass  Model-View-Controllern-Pattern
 aufgebaut.
 
-Nach  der Berechung  in  Matlab  wurde klar,  dass  die  Berechnung durch  die % Ergebnisse
+ % Ergebnisse
+Nach  der Implementierung in  Matlab  wurde klar,  dass  die  Berechnung durch  die
 hohe Rechenleistung  sehr schnell  durchgef\"uhrt werden  kann und  somit eine
 Dimensionierung des geschlossenen Regelkreises anhand dieser Methode von Herrn
 Zellweger m\"oglich ist.
 
-Das  Projekt gliederte  sich prim\"ar  in  zwei Teile. In  einer ersten  Phase % Aufbau des Berichts.
-wurden  die  theoretischen  Grundlagen erarbeitet,  darauf  aufbauend  bestand
-die  zweite  Phase  vor  allem   aus  der  Implementierung  der  Software. Der
-vorliegende Bericht entspricht in seinem  Aufbau diesem Verlauf und beschreibt
-die erarbeitete Theorie und die entwickelte Software.
+% Aufbau des Berichts
+Der  Bericht gliederte  sich  in  zwei Teile: Der ersten  Teil erläutert
+ die  theoretischen  Grundlagen und  darauf  aufbauend stellt
+der zweite  Teil   der Aufbau  der  Software dar.

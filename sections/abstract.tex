@@ -1,21 +1,15 @@
-\todo{Vermutlich zu knapp G fragen}
-Die Aufgabe eines geschlossenen Regelkreises  ist es der Fehler zwischen Soll-
-und Ist-Wert m\"oglichst klein zu  halten. Um dies zu gew\"ahrleisten wird der
-Regler dimensioniert. Die Aufgabe des Tools ist, der PI und den PID-T1 richtig
-zu dimensionieren.
-
-Die  Anforderung  an  die  Eingabe   sind  die  numerischen  Werte  von  einer
-vorliegenden  und  ausgemessenen  Schrittantwort. Das Ziel  der  Ausgabe  sind
-sowohl die  numerischen Regelwerte der Phasengangmethode  und der Faustformeln
-sowie die Plots der Schrittantworten.
-
-Die    Berechungen   wurden    in   Matlab    durchgef\"uhrt   und    in   das
-Model-View-Controller-Plattern \"ubertragen. Als Basis  dient die Klasse Calc,
-welche die Grundrechenfunktionen von Matlab beinhaltet.
-
-Ein   benutzerfreundliches   Tool   um   in   der   Praxis   die   Reglerwerte
-einzustellen. Das Neue an  dieser L\"osung ist, dass  die Phasengangmethode in
-ein Berechungstool integriert ist.
-
-Das     Tool    ist     in     der    Regeldimensionierung     einsetzbar. Das
-Verbesserungspotential liegt in der Optimierung der Rechengeschwindigkeit.
+% Problemstellung (Welches Problem wurde gelöst? Welche Aufgabe war zu erfüllen? In welchem Gebiet wurde es gelöst?)
+Im Gebiet der Regelungstechnik ist das Dimensionieren von Regler eine zentrale Aufgabe, da mit der korrekten Einstellung der Regler stabil und die Differenz zwischen Ist und Soll-Wert möglichst klein ist.\\
+Die Phasengangmethode ist eine ursprünglich eine graphische Berechnungsart, welche anhand der Schrittantwort die Reglerwerte berechnet. Die Aufgabe der Implementierung dieser Methode in Java war die Hauptaufgabe.\\
+\\
+%Ziel/Anforderungen (Was soll unter welchen Bedingungen/Berücksichtigungen erreicht werden?)
+Die Ziel dieses Projektes war, ein  benutzerfreundliches Softwaretool, das heisst auch für ein ungeübter Regelungstechniker benutzen kann,  zu entwickeln, welches anhand der Phasengangmethode die Dimensionierung eines PI und PID Reglers durchführt. Die Ausgabe des   Tools soll anhand der Eingabe der Schrittantwortwerte die numerische wie auch die graphische Lösung ausgeben.\\
+\\
+%Methodik: (Wie wurde das Problem angegangen?)
+Die Phasengangmethode und die als Vergleich angewendete Faustformeln wurden in Matlab geschrieben und mit Referenzdaten getestet. Die Implementierung in Java war ein zweistufiger Prozess, in welchem zuerst die matlabtypischen Berechungsfunktionen ausprogrammiert  und im zweiten Schritt die Regeldimensionierung implementiert wurden.\\
+\\
+%Hauptresultate
+Das Softwaretool besitzt eine graphische Benutzeroberfläche, über welche auf der linken Seite die Werte der Schrittantwort eingelesen und die numerserischen Lösungen des Reglers ausgegeben  und über die rechte Seite die graphischen Lösungen dargestellt werden.\\
+\\
+%Konklusion (Schlussfolgerung; Was ist das Zentrale an der Lösung? Was ist das Neue an der Lösung?
+Das Zentrale an der Lösung ist die Berechungungseschwindigkeit mit welcher das Tool arbeitet. Dies ermöglicht eine "Echtzeit" Dimensionierung des Reglers. Das Neue an dieser Lösung ist das Einbinden der Phasengangmethode in ein Reglerdimensionierungstool.

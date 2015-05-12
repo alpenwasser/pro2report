@@ -1,0 +1,68 @@
+Die    Formeln   in    Tabelle   \ref{tab:bode_regler_konform}    dienen   zur
+Umrechnung  zwischen der  bodekonformen  Darstellung  und der  reglerkonformen
+Darstellung. N\"ahere  Informationen  zu den  verschiedenen  Darstellungsarten
+k\"onnen der Quelle \cite{regelungstechnik:zellweger} entnommen werden.
+\todo{Allenfalls noch  ein paar kurze  S\"atze zum Sinn  dieser \"Ubung? Sonst
+wird nirgends  darauf wirklich  Bezug genommen, Abschnitt  ist ein  wenig ohne
+Kontext in der Landschaft.}
+
+\begin{longtable}{l|ll}
+    \toprule
+
+    %\multicolumn{3}{l}{\large{\textsc{auftragsanalyse und hintergrundinformationen}}} \\
+    %\multicolumn{2}{l}{pi}
+
+    &
+    bodekonform $\rightarrow$ reglerkonform
+    &
+    reglerkonform $\rightarrow$ bodekonform
+    \\
+
+    \midrule
+
+    \endhead
+    \endfoot
+    \endlastfoot
+
+    % content here ---------------------------------------------------------- %
+
+    PI
+    &
+    $T_n = T_{nk} $ %reglerkonform
+    &
+    $K_{rk} = K_r $ %bodekonform
+    \\
+
+    \midrule
+
+    PID
+    &
+    $T_n = T_{nk}+T_{vk}-T_p$
+    &
+    $T_{nk}=0.5 \cdot (T_n+T_p) \cdot (1+\epsilon)$
+    \\
+
+    &
+    $T_v=\frac{T_{nk} \cdot T_{vk}}{T_{nk}+T_{vk}-T_p}-T_p$
+    &
+    $T_{vk}=0.5 \cdot (T_n+t_p) \cdot (1-\epsilon)$
+    \\
+
+    &
+    %$k_r=k_{rk} \cdot \frac{1+t_{vk}}{t_{nk}}$
+    $K_r=K_{rk} \cdot (1 + \frac{T_{vk}-T_p}{T_{nk}})$
+    &
+    $K_{rk} = 0.5 \cdot K_r \cdot (1 + \frac{T_p}{T_{nk}}) \cdot (1+\epsilon )$
+    \\
+    \\
+
+    &
+    \multicolumn{2}{l}{wobei $\epsilon^2 = 1-(4 \cdot T_n \cdot \frac{T_v-T_p}{(T_n+T_p)^2})$}
+    \\
+    \bottomrule
+    \caption{Formeln zur Umrechung zwischen bode- zu reglerkonformer Darstellung \cite{regelungstechnik:zellweger}, \cite{regelungstechnik:schumleon}}
+    \label{tab:bode_regler_konform}
+\end{longtable}
+
+
+F\"ur die Berechnungen in diesem Projekt wird, wenn nicht anders angegeben, mit $T_p=\frac{1}{10} \cdot T_v$ gerechnet.

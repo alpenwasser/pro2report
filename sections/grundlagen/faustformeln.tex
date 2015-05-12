@@ -1,0 +1,118 @@
+Im   Praxiseinsatz  stehen   f\"ur   die  Dimensieung   der  Regler   einfache
+Berechnungsformeln f\"ur die Einstellwerte der  Regler anhand von $T_u$, $T_g$
+und $K_s$ zur Verf\"ugung.
+
+Einige   dieser  Faustformeln   werden  in   der  Applikation   zum  Vergleich
+mitberechnet. Die    dazugeh\"origen    Berechnungen    sind    der    Tabelle
+\ref{tab:faustformeln} zu entnehmen.
+
+\begin{longtable}{p{50mm}rrrrr}
+    \toprule
+
+    %\multicolumn{3}{l}{\large{\textsc{Auftragsanalyse und Hintergrundinformationen}}} \\
+
+    Faustformel
+    &
+    \multicolumn{2}{l}{PI-Regler}
+    &
+    \multicolumn{2}{l}{PID-T1-Regler}
+    \\
+
+    &
+    $T_n$
+    &
+    $K_p$
+    &
+    $T_n$
+    &
+    $T_v$
+    &
+    $K_p$
+    \\
+
+    \midrule
+
+    \endhead
+    \endfoot
+    \endlastfoot
+
+    % CONTENT HERE ---------------------------------------------------------- %
+
+    \pbox{45mm}{Chiens, Hrones, Reswick \\ \small{\textbf{(0\% \"Uberschwingen)}} \\ \cite{ref:chiens_tsn}, \cite{ref:chiens_wiki}}
+    &
+    $1.2\cdot T_g$
+    &
+    $\frac{0.35}{K_s} \cdot \frac{T_g}{T_u}$
+    &
+    $T_g$
+    &
+    $0.5\cdot T_u$
+    &
+    $ \frac{0.6}{K_s} \cdot \frac{T_g}{T_u} $
+    \\
+
+    \addlinespace[1em]
+
+    \pbox{45mm}{Chiens, Hrones, Reswick \small{\textbf{(20\% \"Uberschwingen)}} \\ \cite{ref:chiens_tsn}, \cite{ref:chiens_wiki}}
+    &
+    $T_g$
+    &
+    $\frac{0.6}{K_s} \cdot \frac{T_g}{T_u}$
+    &
+    $1.35\cdot T_g$
+    &
+    $0.47 \cdot T_u$
+    &
+    $ \frac{0.95}{K_s} \cdot \frac{T_g}{T_u} $
+    \\
+
+    \addlinespace[1em]
+
+    Oppelt \cite{ref:op_ros_zieg}
+    &
+    $3 \cdot T_u$
+    &
+    $\frac{0.8}{K_s} \cdot \frac{T_g}{T_u}$
+    &
+    $2 \cdot T_u$
+    &
+    $ 0.42 \cdot T_u $
+    &
+    $ \frac{1.2}{K_s} \cdot \frac{T_g}{T_u} $
+    \\
+
+    \addlinespace[1em]
+
+    Rosenberg \cite{ref:op_ros_zieg}
+    &
+    $3.3 \cdot T_u $
+    &
+    $ \frac{0.91}{K_s} \cdot \frac{T_g}{T_u} $
+    &
+    $ 2 \cdot T_u $
+    &
+    $ 0.45 \cdot T_u $
+    &
+    $ \frac{1.2}{T_s} \cdot \frac{T_g}{T_u}$
+    \\
+
+    \addlinespace[1em]
+
+    Ziegler/Nichols \cite{ref:op_ros_zieg}
+    &
+    $ 3.33 \cdot T_u $
+    &
+    $ \frac{0.9}{K_s} \cdot \frac{T_g}{T_u} $
+    &
+    $ 2 \cdot T_u $
+    &
+    $ 0.5 \cdot T_u $
+    &
+    $ \frac{1.2}{K_s} \cdot \frac{T_g}{t_u} $
+    \\
+
+    \bottomrule
+\caption{Faustformeln zur Reglerdimensionierung}
+\label{tab:faustformeln}
+\end{longtable}
+\todo{Quellen hinzuf\"ugen}

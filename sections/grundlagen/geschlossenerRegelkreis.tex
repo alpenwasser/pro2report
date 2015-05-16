@@ -1,0 +1,33 @@
+
+
+Die Aufgabe eines geschlossenen Regelkreises\todo{link zu Bild geschlossRegelk} ist es, einen vorgegeben Sollwert zu erreichen und diesen auch bei Störungen aufrecht zu erhalten. Dabei sollen die unten genannten dynamischen Anforderungen eingehalten werden, damit die Stabilität des Regelsystems garaniert ist. Die wichtigste Bedingung für die Schrittantwort ein geschlossenen Regelkreis heisst, dass der Regelfehler, die Differenz zwischen Ist-und Sollwert, gleich Null oder möglichst klein ist.\\
+
+
+\todo{Bild von geschlRegelkreis}
+
+%Name Bild Struktur eines allgemeinen Regelkreises
+\begin{itemize}
+\item ysoll bezeichnet der Sollwert der Regelgrösse.
+\item e Regelabweichung (Regelfehler) 
+\item u Steuergrösse
+\item x Stellgrösse
+\item y Regelgrösse
+\item z Störgrösse
+\item yist ist der Istwert der Regelgrösse und wird auch als die Schrittantwort des Regelkreis bezeichnet.
+\end{itemize}
+
+\todo{Bild Schrittantwort}
+
+Grundsätzlich können fünf Anforderungen für einen geschlossenen Regelkreis und deren Schrittantworten zusammengefasst werden:\\
+\begin{enumerate}
+\item Der Regelkreis muss stabil sein: 
+	\begin{itemize}
+		\item Das heisst für die Schrittantwort, dass nach dem einschwungenen Zustand kein erneutes Überschwingen stattfinden darf. 
+		\item Für das Regelsystem heisst stabil, dass es in seinen Gleichgewichtszustand zurückgeführt werden kann.
+	\end{itemize}
+\item  Der Regelkreis muss genügend gedämpft sein: \\Die Dämpfung der Schrittantwort soll so stark sein, dass der eingeschwungene Zustand möglichst rasch erreicht wird ohne dass das Überschwingen des Systems zu stark wird.
+\item Der Regelkreis muss eine bestimmte stationäre Genauigkeit
+aufweisen: Das bedeutet, der Regelfehler e(t) soll für t-> oo gegen Null gehen. Für die Schrittantwort heisst das, dass die Schrittantwort gleich ysoll sein muss.
+\item Der Regelkreis muss hinreichend schnell sein: Die Schnelligkeit des Einschwingvorganges der Schrittantwort ist stark von der Dämpfung abhängig. Ist die Dämpfung zu stark oder zu schwach, braucht der Einschwingvorgang mehr Zeit. Hierbei muss darauf geachtet werden, dass die spezifischen Anforderungen an das Regelsystem eingehalten werden.
+\item Der Regelkreis muss robust sein: Der Regelkreis muss so ausgelegt werden, dass das Regelsystem auch im schlimmsten Fall (je nach Regelsystem situationsabhängig) in der Lage ist, das System zurück in den stabilen Zustand (siehe 1.) zu regeln.
+\end{enumerate}

@@ -2,9 +2,11 @@
 % Assume values for now:
 
 clear all;clc
-Tu=1;
-Tg=3;
-Ks=1;
+% Tu=1;
+% Tg=3;
+Tu=1.1;
+Tg=8.9;
+Ks=2;
 
 figure;
 % Create Step Response Plot
@@ -24,4 +26,4 @@ text((Tu+Tg)/2,1-0.095,'Tg');
 
 % Create Frequency responses
 figure;
-p2_phasengang(n, T, Ks, 2, 2, 1)
+p2_phasengang(n, T, Ks, 3, 2, 1)

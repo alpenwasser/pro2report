@@ -181,6 +181,7 @@ if (reglertyp == 3) %PID-Regler
     
     %Ableitung Strecke
     dphi_s=subs(diff(phi_s,omega),omega,omega_regler);
+    dphi_s
 
     for m=0:20
         beta=(beta_o-beta_u)/2+beta_u;
@@ -338,8 +339,9 @@ end;
 %Berechnung von K_rk
 A_o_durchtritt=subs(A_r*A_s,omega,omega_durchtritt);
 k_rk=1/A_o_durchtritt;
-disp('K_rk')
-double(k_rk)
+vpa(k_rk,6)
+% disp('K_rk')
+% double(k_rk)
 
 
 %Ausgabe berechneter Werte zur Kontrolle

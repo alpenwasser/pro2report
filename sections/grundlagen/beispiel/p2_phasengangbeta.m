@@ -4,20 +4,20 @@ function [] = p2_phasengangbeta(n, t_s, reglertyp, ueberschwingung, bode)
 
 
 % regelertyp: 0=P-Regler; 1=i-Regler; 2=PI-Regler; 3=PID-Regler
-% Überschwingung: 0=0%; 1=4.6%;  2=16.3%;  3=23.3%;
+% ï¿½berschwingung: 0=0%; 1=4.6%;  2=16.3%;  3=23.3%;
 
 %Diese Funktion wurde im Rahmen einer Projektarbeit an der FHNW
 %Brugg-Windisch erstellt. Aller Rechte vorbehalten.
 %
-%Erstellt durch: Benjamin Müller
+%Erstellt durch: Benjamin Mï¿½ller
 %Datum: 4.3.2015
 %
-%Geprüft durch:
+%Geprï¿½ft durch:
 %Datum:
 
-%Mit der Variable Test = 1 werden einige Werte zur überwachung ausgegeben
-%mit Test = 2 zusätzlich noch die Plots
-test=1;
+%Mit der Variable Test = 1 werden einige Werte zur ï¿½berwachung ausgegeben
+%mit Test = 2 zusï¿½tzlich noch die Plots
+test=2;
 
 if (test==2)
     bode=1;
@@ -39,21 +39,28 @@ end;
 if (bode ==1) %Bodediagramm Ploten
     
     omega_num=logspace(-2, 2, 1e3);
-    
+
     %Amplitudengang
     subplot(2,1,1);
     loglog(omega_num,subs(amplGang,omega,omega_num));
+    title('Frequenzgang Strecke');
+    legend('Strecke');
+    xlabel('Kreisfrequenz \omega [rad/s]');
+    ylabel('Betrag [normiert]');
     hold on; grid on;
     
     %Phasengang
     subplot(2,1,2);
     semilogx(omega_num,subs(phasenGang,omega,omega_num));
+    legend('Strecke');
+    xlabel('Kreisfrequenz \omega [rad/s]');
+    ylabel('Phase [rad]');
     hold on, grid on;
 end;
 
 
 
-%Überschwingungsdefinition
+%ï¿½berschwingungsdefinition
 
 if (ueberschwingung == 0) % 0%
     phi_s=-1.8099064; %-103.7/180*pi
@@ -67,7 +74,7 @@ end;
 
 
 
-%alpha bestimmen für die einzelnen Regler
+%alpha bestimmen fï¿½r die einzelnen Regler
 
 if (reglertyp == 1) %I-Regler
      error('!!!! Nicht implementiert zum jetzigen Zeitpunkt !!!!');
@@ -87,7 +94,7 @@ end;
 
 
 %Bestimmung der Frequenz im Punkt Phasengang = alpha mithilfe einer
-%Näherung
+%Nï¿½herung
 
 xx=1;
 k=0;
@@ -117,7 +124,7 @@ clear k xx_u xx_o xx yy ;
     
 %Ausgabe berechneter Werte zur Kontrolle
 if (test > 0)
-    disp('Vergleich von der angenäherten Frequenz eingesetzt in den Phasengang zu alpha')
+    disp('Vergleich von der angenï¿½herten Frequenz eingesetzt in den Phasengang zu alpha')
     vpa(subs(phasenGang,omega,omega_regler),8)
     alpha
 end;
@@ -142,12 +149,14 @@ if (reglertyp == 2) %PI-Regler
         subplot(2,1,2);
         plot(omega_num,subs(phasenGang_regler,omega,omega_num),'r');
         plot(omega_num,subs(phasenGang_summe,omega,omega_num),'g');
+        legend('Strecke','Regler','Regler+Strecke');
         subplot(2,1,1);
         plot(omega_num,subs(amplGang_regler,omega,omega_num),'r');
+        legend('Strecke','Regler');
     end;
     
     %Bestimmung der Frequenz im Punkt Phasengang_summe = phi_s mithilfe einer
-    %Näherung
+    %Nï¿½herung
     xx=1;
     k=0;
     xx_u=0.001;
@@ -176,7 +185,7 @@ if (reglertyp == 2) %PI-Regler
     
      %Ausgabe berechneter Werte zur Kontrolle
     if (test > 0)
-        disp('Vergleich von der angenäherten Frequenz eingesetzt in den Phasengang zu phi_s')
+        disp('Vergleich von der angenï¿½herten Frequenz eingesetzt in den Phasengang zu phi_s')
         vpa(subs(phasenGang_summe,omega,omega_durchtritt),8)
         phi_s
     end;   

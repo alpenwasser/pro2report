@@ -4,25 +4,30 @@ function [t_nk, t_vk, k_rk] = p2_phasengang(n, t_s, k_s, reglertyp, ueberschwing
 
 
 % regelertyp: 0=P-Regler; 1=i-Regler; 2=PI-Regler; 3=PID-Regler
-% Überschwingung: 0=0%; 1=4.6%;  2=16.3%;  3=23.3%;
+% ï¿½berschwingung: 0=0%; 1=4.6%;  2=16.3%;  3=23.3%;
 
 %Diese Funktion wurde im Rahmen einer Projektarbeit an der FHNW
 %Brugg-Windisch erstellt. Aller Rechte vorbehalten.
 %
-%Erstellt durch: Benjamin Müller
+%Erstellt durch: Benjamin Mï¿½ller
 %Datum: 4.3.2015
 %
-%Geprüft durch:
+%Geprï¿½ft durch:
 %Datum:
 
-%Mit der Variable Test = 1 werden einige Werte zur überwachung ausgegeben
-%mit Test = 2 zusätzlich noch die Plots
-test=0;
+%Mit der Variable Test = 1 werden einige Werte zur ï¿½berwachung ausgegeben
+%mit Test = 2 zusï¿½tzlich noch die Plots
+test=2;
 
 if (test==2)
     bode=1;
 end;
 
+
+% Unteres limit der vertikalen Markierungen fuer Omega im Phasengang
+VERT_LOWER_LIMIT_PHASE=-8;
+VERT_UPPER_LIMIT_PHASE=2;
+VERT_LOWER_LIMIT_ABS=1e-10
 
 
 %Berechnung von Amplituden und Phasengang der Strecke
@@ -45,17 +50,24 @@ if (bode ==1)
     %Amplitudengang
     subplot(2,1,1);
     loglog(omega_num,subs(A_s,omega,omega_num));
+    title('Frequenzgang');
+    legend('Strecke');
+    xlabel('Kreisfrequenz \omega [rad/s]');
+    ylabel('Betrag [normiert]');
     hold on; grid on;
     
     %Phasengang
     subplot(2,1,2);
     semilogx(omega_num,subs(phi_s,omega,omega_num));
+    legend('Strecke');
+    xlabel('Kreisfrequenz \omega [rad/s]');
+    ylabel('Phase [rad]');
     hold on, grid on;
 end;
 
 
 
-%Überschwingungsdefinition
+%ï¿½berschwingungsdefinition
 if (ueberschwingung == 0) % 0%
     phi_u=-1.8099064; %-103.7/180*pi
 elseif (ueberschwingung ==1)% 4.6%
@@ -68,7 +80,7 @@ end;
 
 
 
-%alpha bestimmen für die einzelnen Regler
+%alpha bestimmen fï¿½r die einzelnen Regler
 if (reglertyp == 1) %I-Regler
      error('!!!! Nicht implementiert zum jetzigen Zeitpunkt !!!!');
      %alpha= -45/180*pi;
@@ -82,7 +94,7 @@ end;
 
 
 
-%Bestimmung der Frequenz im Punkt Phasengang = alpha mithilfe einer Näherung
+%Bestimmung der Frequenz im Punkt Phasengang = alpha mithilfe einer Nï¿½herung
 xx=1;
 k=0;
 xx_u=0.001;
@@ -107,26 +119,40 @@ for k=0:20
     end;
 end;
 omega_regler=xx;
+
+%Output for control:
+omega_regler
 clear k xx_u xx_o xx yy ;
 
 %Plot Punkt Omega_regler
 if bode==1
     subplot(2,1,2);
-    plot([omega_regler,omega_regler],[-4,0],'--b');
+    plot([omega_regler,omega_regler],[VERT_LOWER_LIMIT_PHASE,VERT_UPPER_LIMIT_PHASE],'--b'); % Phasengang blau
+    if (reglertyp == 2)
+        legend('Strecke','\omega_{pi}');
+    elseif (reglertyp == 3)
+        legend('Strecke','\omega_{pid}');
+    end;
+            
     subplot(2,1,1);
-    plot([omega_regler,omega_regler],[1e-8,1e6],'--b');
+    plot([omega_regler,omega_regler],[VERT_LOWER_LIMIT_ABS,1e6],'--b'); % Betragsplot blau
+    if (reglertyp == 2)
+        legend('Strecke','\omega_{pi}');
+    elseif (reglertyp == 3)
+        legend('Strecke','\omega_{pid}');
+    end;
 end;
     
 %Ausgabe berechneter Werte zur Kontrolle
 if (test > 0)
-    disp('Vergleich von der angenäherten Frequenz eingesetzt in den Phasengang zu alpha')
+    disp('Vergleich von der angenï¿½herten Frequenz eingesetzt in den Phasengang zu alpha')
     vpa(subs(phi_s,omega,omega_regler),8)
     alpha
 end;
     
 
 
-%Reglerspezifische Berechnungen für t_nk t_vk bzw. t_p
+%Reglerspezifische Berechnungen fï¿½r t_nk t_vk bzw. t_p
 if (reglertyp == 2) %PI-Regler
     
     %Berechnung T_n
@@ -141,6 +167,9 @@ if (reglertyp == 2) %PI-Regler
     %Berechnung Amplitudengang Regler mit Kr=1
     A_r=1*sqrt(1+1/(omega^2*t_nk^2));
     A_o=A_r*A_s;
+    
+    % Control
+    t_nk
 end;
 
 if (reglertyp == 3) %PID-Regler
@@ -152,6 +181,7 @@ if (reglertyp == 3) %PID-Regler
     
     %Ableitung Strecke
     dphi_s=subs(diff(phi_s,omega),omega,omega_regler);
+    dphi_s
 
     for m=0:20
         beta=(beta_o-beta_u)/2+beta_u;
@@ -168,7 +198,7 @@ if (reglertyp == 3) %PID-Regler
         dphi_o=dphi_r+dphi_s;
         %vpa(dphi_o,6)
         
-        %Multiplikation mit omega_regler für Steigungsbestimmung
+        %Multiplikation mit omega_regler fï¿½r Steigungsbestimmung
         wdphi_o=dphi_o*omega_regler;
         %vpa(wdphi_o,6)
         
@@ -185,7 +215,7 @@ if (reglertyp == 3) %PID-Regler
     
     %Ausgabe berechneter Werte zur Kontrolle
     if (test > 0)
-        disp('Vergleich von der angenäherten Werte für T_nk und T_vk eingesetzt in die Steigung')
+        disp('Vergleich von der angenï¿½herten Werte fï¿½r T_nk und T_vk eingesetzt in die Steigung')
         %dphi_o_num=;
         wdphi_o_num=subs((diff(atan(omega*t_nk)+atan(omega*t_vk)-pi/2,omega)+dphi_s)*omega_regler,omega,omega_regler);
         vpa(wdphi_o_num,6)
@@ -204,9 +234,14 @@ if (reglertyp == 3) %PID-Regler
     %Plot Punkt t_nk und t_vk
     if bode==1
         subplot(2,1,1);
-        plot([1/t_nk,1/t_nk],[1e-8,1e6],'--g');
-        plot([1/t_vk,1/t_vk],[1e-8,1e6],'--g');
-end;
+        plot([1/t_nk,1/t_nk],[VERT_LOWER_LIMIT_ABS,1e6],'--g');
+        plot([1/t_vk,1/t_vk],[VERT_LOWER_LIMIT_ABS,1e6],'--g');
+        if (reglertyp == 2)
+            legend('Strecke','\omega_{pi}');
+        elseif (reglertyp == 3)
+            legend('Strecke','\omega_{pid}');
+        end;
+    end;
 end;
    
 %Plot zur Kontrolle
@@ -214,22 +249,31 @@ if (bode==1)
     subplot(2,1,2);
     plot(omega_num,subs(phi_r,omega,omega_num),'g');
     plot(omega_num,subs(phi_o,omega,omega_num),'r');
+    if (reglertyp == 2)
+        legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis');
+    elseif (reglertyp == 3)
+        legend('Strecke','\omega_{pid}','Regler','Offener Regelkreis');
+    end;
     subplot(2,1,1);
     plot(omega_num,subs(A_r,omega,omega_num),'g');
     plot(omega_num,subs(A_o,omega,omega_num),'r');
-    
+    if (reglertyp == 2)
+        legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis');
+    elseif (reglertyp == 3)
+        legend('Strecke','\omega_{pid}','Regler','Offener Regelkreis');
+    end;
 end;
 
 
 
 %Bestimmung der Frequenz omega_durchtritt anhand der
-%Überschwingungsdefinition
+%ï¿½berschwingungsdefinition
 if (phi_u==-2.3561945)
-    %omega_durchtritt = omega_regler bei 23.3% Überschwingung
+    %omega_durchtritt = omega_regler bei 23.3% ï¿½berschwingung
     omega_durchtritt=omega_regler;
 else
-    %Bestimmung der Frequenz omega_durchtritt für den Punkt phi_o = phi_u
-    %(Überschwingung) mithilfe einer Näherung
+    %Bestimmung der Frequenz omega_durchtritt fï¿½r den Punkt phi_o = phi_u
+    %(ï¿½berschwingung) mithilfe einer Nï¿½herung
     xx=1;
     k=0;
     xx_u=0.001;
@@ -256,25 +300,37 @@ else
     omega_durchtritt=xx;
     clear k xx_u xx_o xx yy ;
 end;
+% Control
+omega_durchtritt
 
 
     
 %Plot Punkt Omega_durchtritt
 if bode==1
     subplot(2,1,2);
-    plot([omega_durchtritt,omega_durchtritt],[-4,0],'--r');
+    plot([omega_durchtritt,omega_durchtritt],[VERT_LOWER_LIMIT_PHASE,0],'--r');
+   if (reglertyp == 2)
+        legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis','\omega_{d}');
+    elseif (reglertyp == 3)
+        legend('Strecke','\omega_{pid}','Regler','Offener Regelkreis','\omega_{d}');
+    end;
     subplot(2,1,1);
-    plot([omega_durchtritt,omega_durchtritt],[1e-8,1e6],'--r');
+    plot([omega_durchtritt,omega_durchtritt],[VERT_LOWER_LIMIT_ABS,1e6],'--r');
+   if (reglertyp == 2)
+        legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis','\omega_{d}');
+    elseif (reglertyp == 3)
+        legend('Strecke','\omega_{pid}','Regler','Offener Regelkreis','\omega_{d}');
+    end;
 end;
 
 %Ausgabe berechneter Werte zur Kontrolle
-if (ueberschwingung == 3 && test>0)
+if (ueberschwingung == 2 && test>0)
     disp('Vergleich von omega_regler zu omega_durchtritt sollte gleich sein, da 23.3% Ueberschw.')
     omega_regler
     omega_durchtritt
 end;
 if (test > 0)
-    disp('Vergleich von der angenäherten Frequenz eingesetzt in den Phasengang zu phi_s')
+    disp('Vergleich von der angenï¿½herten Frequenz eingesetzt in den Phasengang zu phi_s')
     vpa(subs(phi_o,omega,omega_durchtritt),8)
     phi_u
 end;
@@ -283,6 +339,10 @@ end;
 %Berechnung von K_rk
 A_o_durchtritt=subs(A_r*A_s,omega,omega_durchtritt);
 k_rk=1/A_o_durchtritt;
+vpa(k_rk,6)
+% disp('K_rk')
+% double(k_rk)
+
 
 %Ausgabe berechneter Werte zur Kontrolle
 %{

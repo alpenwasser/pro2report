@@ -78,7 +78,7 @@ if p==1
         n1=nen1;  
     end;
     nens=n1;
-    step(za,nens,t); grid on;
+    step(za,nens,'k'); grid on;
     hold on;
     %wendepkt(T);
     hold off;

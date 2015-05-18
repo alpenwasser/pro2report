@@ -18,12 +18,12 @@ plot([Tg+Tu,Tg+Tu],[0,1],'--r','LineWidth',1);
 plot([0,Tu],[0.1,0.1],'b','LineWidth',2);
 plot([Tu,Tg+Tu],[1-0.1,1-0.1],'b','LineWidth',2);
 % legend('Schrittantwort Strecke','Wendetangente','T_u','T_g+Tu','T_u','T_g');
-text(Tu,-0.02,'T_u');
-text(Tu+Tg,-0.02,'T_u+T_g');
-text(Tu/2,0.105,'Tu');
-text((Tu+Tg)/2,1-0.095,'Tg');
+text(Tu,-0.06,'T_u');
+text(Tu+Tg,-0.06,'T_u+T_g');
+text(Tu/2,0.12,'Tu');
+text((Tu+Tg)/2,.92,'Tg');
 
 
 % Create Frequency responses
 figure;
-p2_phasengang(n, T, Ks, 3, 2, 1)
+p2_phasengang(n, T, Ks, 2, 2, 1)

@@ -27,7 +27,8 @@ end;
 % Unteres limit der vertikalen Markierungen fuer Omega im Phasengang
 VERT_LOWER_LIMIT_PHASE=-8;
 VERT_UPPER_LIMIT_PHASE=2;
-VERT_LOWER_LIMIT_ABS=1e-10
+VERT_LOWER_LIMIT_ABS=1e-10;
+VERT_UPPER_LIMIT_ABS=1e10;
 
 
 %Berechnung von Amplituden und Phasengang der Strecke
@@ -135,7 +136,7 @@ if bode==1
     end;
             
     subplot(2,1,1);
-    plot([omega_regler,omega_regler],[VERT_LOWER_LIMIT_ABS,1e6],'--b'); % Betragsplot blau
+    plot([omega_regler,omega_regler],[VERT_LOWER_LIMIT_ABS,VERT_UPPER_LIMIT_ABS],'--b'); % Betragsplot blau
     if (reglertyp == 2)
         legend('Strecke','\omega_{pi}');
     elseif (reglertyp == 3)
@@ -143,6 +144,7 @@ if bode==1
     end;
 end;
     
+
 %Ausgabe berechneter Werte zur Kontrolle
 if (test > 0)
     disp('Vergleich von der angen�herten Frequenz eingesetzt in den Phasengang zu alpha')
@@ -171,6 +173,8 @@ if (reglertyp == 2) %PI-Regler
     % Control
     t_nk
 end;
+
+% return
 
 if (reglertyp == 3) %PID-Regler
     
@@ -234,8 +238,8 @@ if (reglertyp == 3) %PID-Regler
     %Plot Punkt t_nk und t_vk
     if bode==1
         subplot(2,1,1);
-        plot([1/t_nk,1/t_nk],[VERT_LOWER_LIMIT_ABS,1e6],'--g');
-        plot([1/t_vk,1/t_vk],[VERT_LOWER_LIMIT_ABS,1e6],'--g');
+        plot([1/t_nk,1/t_nk],[VERT_LOWER_LIMIT_ABS,VERT_UPPER_LIMIT_ABS],'--g');
+        plot([1/t_vk,1/t_vk],[VERT_LOWER_LIMIT_ABS,VERT_UPPER_LIMIT_ABS],'--g');
         if (reglertyp == 2)
             legend('Strecke','\omega_{pi}');
         elseif (reglertyp == 3)
@@ -315,7 +319,7 @@ if bode==1
         legend('Strecke','\omega_{pid}','Regler','Offener Regelkreis','\omega_{d}');
     end;
     subplot(2,1,1);
-    plot([omega_durchtritt,omega_durchtritt],[VERT_LOWER_LIMIT_ABS,1e6],'--r');
+    plot([omega_durchtritt,omega_durchtritt],[VERT_LOWER_LIMIT_ABS,VERT_UPPER_LIMIT_ABS],'--r');
    if (reglertyp == 2)
         legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis','\omega_{d}');
     elseif (reglertyp == 3)

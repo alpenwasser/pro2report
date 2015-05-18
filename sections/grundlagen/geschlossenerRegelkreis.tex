@@ -1,5 +1,4 @@
-Die    Aufgabe   eines    geschlossenen    Regelkreises\todo{link   zu    Bild
-geschlossRegelk} ist  es, einen  vorgegeben Sollwert  zu erreichen  und diesen
+Die    Aufgabe   eines    geschlossenen    Regelkreises (Abbildung \ref{fig:geschlossenerRegelkreis}) ist  es, einen  vorgegeben Sollwert  zu erreichen  und diesen
 auch bei  St\"orungen aufrecht zu  erhalten. Dabei sollen die  unten genannten
 dynamischen  Anforderungen  eingehalten  werden, damit  die  Stabilit\"at  des
 Regelsystems garaniert ist. Die wichtigste  Bedingung f\"ur die Schrittantwort
@@ -7,7 +6,13 @@ ein  geschlossenen  Regelkreis heisst,  dass  der  Regelfehler, die  Differenz
 zwischen Ist-und Sollwert, gleich Null oder m\"oglichst klein ist.\\
 
 
-\todo{Bild von geschlRegelkreis}
+\begin{figure}[!h!, width=\pagewidth]
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/geschlRegelkreis}
+    \caption{Geschlossener Regelkreis}
+    \label{fig:geschlossenerRegelkreis}
+\end{center}
+\end{figure}
 
 %Name Bild Struktur eines allgemeinen Regelkreises
 \begin{itemize}
@@ -28,7 +33,7 @@ zwischen Ist-und Sollwert, gleich Null oder m\"oglichst klein ist.\\
         Schrittantwort des Regelkreis bezeichnet.
 \end{itemize}
 
-\todo{Bild Schrittantwort}
+\todo{Bild Schrittantworten passend zu Aufzählung unten}
 
 Grunds\"atzlich  k\"onnen  f\"unf   Anforderungen  f\"ur  einen  geschlossenen
 Regelkreis und deren Schrittantworten zusammengefasst werden:\\
@@ -63,5 +68,5 @@ Regelkreis und deren Schrittantworten zusammengefasst werden:\\
         Der  Regelkreis muss  robust  sein: Der Regelkreis  muss so  ausgelegt
         werden,  dass  das  Regelsystem  auch im  schlimmsten  Fall  (je  nach
         Regelsystem situationsabh\"angig) in der Lage ist, das System zur\"uck
-        in den stabilen Zustand (siehe 1.) zu regeln.
+        in den stabilen Zustand (vgl. 1.) zu regeln.
 \end{enumerate}

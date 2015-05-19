@@ -185,7 +185,8 @@ if (reglertyp == 3) %PID-Regler
     
     %Ableitung Strecke
     dphi_s=subs(diff(phi_s,omega),omega,omega_regler);
-    dphi_s
+    disp('dphi_s')
+    vpa(dphi_s,6)
 
     for m=0:20
         beta=(beta_o-beta_u)/2+beta_u;
@@ -212,8 +213,9 @@ if (reglertyp == 3) %PID-Regler
             beta_o=beta;
         end;
     end;
-    t_vk=1/(omega_regler/beta);
-    t_nk=1/(beta*omega_regler);
+    t_vk=1/(omega_regler/beta)
+    t_nk=1/(beta*omega_regler)
+    beta
     clear beta_u beta_o k_rk beta
     
     
@@ -239,7 +241,7 @@ if (reglertyp == 3) %PID-Regler
     if bode==1
         subplot(2,1,1);
         plot([1/t_nk,1/t_nk],[VERT_LOWER_LIMIT_ABS,VERT_UPPER_LIMIT_ABS],'--g');
-        plot([1/t_vk,1/t_vk],[VERT_LOWER_LIMIT_ABS,VERT_UPPER_LIMIT_ABS],'--g');
+        plot([1/t_vk,1/t_vk],[VERT_LOWER_LIMIT_ABS,VERT_UPPER_LIMIT_ABS],'--c');
         if (reglertyp == 2)
             legend('Strecke','\omega_{pi}');
         elseif (reglertyp == 3)
@@ -264,7 +266,7 @@ if (bode==1)
     if (reglertyp == 2)
         legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis');
     elseif (reglertyp == 3)
-        legend('Strecke','\omega_{pid}','Regler','Offener Regelkreis');
+        legend('Strecke','\omega_{pid}','1/T_{nk}','1/T_{vk}','Regler','Offener Regelkreis');
     end;
 end;
 
@@ -312,7 +314,7 @@ omega_durchtritt
 %Plot Punkt Omega_durchtritt
 if bode==1
     subplot(2,1,2);
-    plot([omega_durchtritt,omega_durchtritt],[VERT_LOWER_LIMIT_PHASE,0],'--r');
+    plot([omega_durchtritt,omega_durchtritt],[VERT_LOWER_LIMIT_PHASE,VERT_UPPER_LIMIT_PHASE],'--r');
    if (reglertyp == 2)
         legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis','\omega_{d}');
     elseif (reglertyp == 3)
@@ -323,7 +325,7 @@ if bode==1
    if (reglertyp == 2)
         legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis','\omega_{d}');
     elseif (reglertyp == 3)
-        legend('Strecke','\omega_{pid}','Regler','Offener Regelkreis','\omega_{d}');
+        legend('Strecke','\omega_{pid}','1/T_{nk}','1/T_{vk}','Regler','Offener Regelkreis','\omega_{d}');
     end;
 end;
 
@@ -343,6 +345,7 @@ end;
 %Berechnung von K_rk
 A_o_durchtritt=subs(A_r*A_s,omega,omega_durchtritt);
 k_rk=1/A_o_durchtritt;
+disp('K_rk')
 vpa(k_rk,6)
 % disp('K_rk')
 % double(k_rk)

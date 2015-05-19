@@ -26,4 +26,4 @@ text((Tu+Tg)/2,.92,'Tg');
 
 % Create Frequency responses
 figure;
-p2_phasengang(n, T, Ks, 2, 2, 1)
+p2_phasengang(n, T, Ks,3, 2, 1)

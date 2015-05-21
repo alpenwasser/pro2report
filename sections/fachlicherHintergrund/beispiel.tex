@@ -1,5 +1,5 @@
-Im Folgenden wird  anhand eines Beispiels illustriert,  wie der Arbeitsprozess
-mit unserer Software funktioniert. Dabei werden wir sowohl einen PI-Regler als
+Im Folgenden wird  anhand eines Beispiels gezeigt, wie  der Arbeitsprozess mit
+unserer  Software funktioniert. Dabei  werden wir  sowohl einen  PI-Regler als
 auch einen PID-Regler durchrechnen und den Prozess grafisch illustrieren.
 
 Als  Ausgangspunkt  des  Prozesses   dient  die  Schrittantwort  der  Strecke,
@@ -9,7 +9,7 @@ Eingabeparameter unseres Tools.
 
 Wir werden in diesem Bericht folgende Strecke als Beispiel nehmen:
 \begin{figure}[h! width=\pagewidth]
-    \includegraphics[width=.9\textwidth]{images/streckeSchrittantwort.png}
+    \includegraphics[width=\textwidth]{images/streckeSchrittantwort.png}
     \caption{%
     Schrittantwort der  Beispielstrecke (schwarz), Wendetangende  (rot), $T_u$
     und $T_g$ (blau)%
@@ -33,7 +33,7 @@ Wir erhalten:
 Da  die Phasengangmethode  vom {\em{Frequenzgang}}  einer Strecke  ausgeht und
 nicht von der Schrittantwort, besteht der n\"achste Schritt nun darin, aus den
 obigen Werten  den Frequenzgang  der Strecke  zu bestimmen. Dies  erledigt die
-methode \code{p\_sani}, welche uns  die Werte f\"ur die \"Ubertragungsfunktion
+Methode \code{p\_sani}, welche uns  die Werte f\"ur die \"Ubertragungsfunktion
 der  Strecke   liefert.  \todo{Allenfalls   Verweis  auf   Softwareteil  f\"ur
 Erkl\"arungen  zu  sani-Methode.}   In  unserem  Fall  ergibt  dies  folgendes
 Polynom:
@@ -55,7 +55,7 @@ Mit einem  geeigneten Tool  kann man sich  den dazugeh\"origen  Plot erstellen
 lassen.
 
 \begin{figure}[h! width=\pagewidth]
-    \includegraphics[width=.9\textwidth]{images/streckeFrequenzgang.png}
+    \includegraphics[width=\textwidth]{images/streckeFrequenzgang.png}
     \caption{%
         Frequenzgang der Strecke%
     }
@@ -67,8 +67,8 @@ soll zuerst der PI-Regler dimensioniert werden.
 
 \subsubsection*{PI-Regler}
 
-Das schlussendliche Ziel ist die Bestimmung der Parameter $K_{rk}$ und $T_{nk}$
-in der Gleichung:
+Das  Ziel ist  die  Bestimmung  der Parameter  $K_{rk}$  und  $T_{nk}$ in  der
+Gleichung:
 
 \begin{equation} \label{eq:pi:target}
     H_{rpi} = K_{rk} \cdot \biggl[ 1 + \frac{1}{s \cdot T_{nk}} \biggr]
@@ -82,7 +82,7 @@ welche die Phase der Strecke $-90\degree$ betr\"agt.
 \end{equation}
 
 \begin{figure}[h! width=\pagewidth]
-    \includegraphics[width=.9\textwidth]{images/piStreckeOmegaPI.png}
+    \includegraphics[width=\textwidth]{images/piStreckeOmegaPI.png}
     \caption{%
         $\omega_{pi}$ eingetragen (vertikale gestrichelte Linie).
     }
@@ -178,7 +178,7 @@ Regelkreis eine Phase von $-128.5\degree$ aufweist. \footnotemark[2]
 }
 
 \begin{figure}[h! width=\pagewidth]
-    \includegraphics[width=.9\textwidth]{images/piOffenerRegelkreisPhasengang.png}
+    \includegraphics[width=\textwidth]{images/piOffenerRegelkreisPhasengang.png}
     \caption{%
         Phasengang   $\varphi_o(j\omega)$   des   offenen   Regelkreises   mit
         eingetragener Durchtrittsfrequenz $\omega_{d}$ (vertikale gestrichelte
@@ -246,7 +246,7 @@ Somit ist der PI-Regler vollst\"andig bestimmt und hat folgende Form:
 
 Zum Vergleich das Bode-Diagramm mit allen relevanten Kurven und Werten:
 \begin{figure}[h! width=\pagewidth]
-    \includegraphics[width=.9\textwidth]{images/piBode.png}
+    \includegraphics[width=\textwidth]{images/piBode.png}
     \caption{%
         Frequenzgang des Reglers (gr\"un), der  Strecke (blau) und des offenen
         Regelkreises (rot).
@@ -267,8 +267,8 @@ in der Gleichung:
 \end{equation}
 
 Analog  zum PID-Regler  wird zuerst  im  Phasengang der  Strecke die  Frequenz
-$\omega_{pid}$  bestimmt, f\"ur  welche  die Phase  der Strecke  $-135\degree$
-betr\"agt.
+$\omega_{pid}$  bestimmt, f\"ur  welche  die Phase  der Strecke  einen bestimmten
+Wert aufweist, nur wird hier $-135\degree$ benutzt:
 
 \begin{equation} \label{eq:pid:phi_s}
     \varphi_s(\omega_{pid}) = -135 \degree
@@ -280,9 +280,10 @@ In unserem Beispiel ergibt dies:
     \omega_{pid} = \SI{0.6714}{\per\second}
 \end{equation}
 
-Anschliessend wird die  Steigung des Phasengangs $\varphi_s$  bei der Frequenz
-$\omega_{pid}$ bestimmt, ausgehend von der \"Ubertragungsfunktion der Strecke,
-welche \code{p\_sani} berechnet hat (siehe Gleichung \ref{eq:transfer:plant}).
+Anschliessend wird  die Steigung des  Phasengangs $\varphi_s$ der  Strecke bei
+der  Frequenz  $\omega_{pid}$  bestimmt. Ausgangspunkt  daf\"ur  ist  die  von
+\code{p\_sani} bestimmte  \"Ubertragungsfunktion der Strecke  (siehe Gleichung
+\ref{eq:transfer:plant}).
 
 \begin{equation} \label{eq:transfer:plant:derivative}
     \frac{d\varphi_s}{d\omega} \biggr \rvert_{\omega=\omega_{pid}}
@@ -297,20 +298,27 @@ Strecke ($\varphi_s$) und des Reglers ($\varphi_r$) gilt folgende Beziehung:
 \begin{equation} \label{eq:pid:phi_sum}
     \varphi_o = \varphi_s + \varphi_r
 \end{equation}
-\todo{Verweis auf plot}
+
+Da die Ableitung eine lineare Funktion ist, gilt somit auch: \todo{korrekte Begriffe}
+\begin{equation} \label{eq:pid:dphi_sum}
+    \frac{d\varphi_o}{d\omega} = \frac{d\varphi_s}{d\omega} + \frac{d\varphi_r}{d\omega}
+\end{equation}
+
+Diese Beziehungen  k\"onnen auch  gut in Abbildung  \ref{fig:pid_complete} von
+Hand \"uberpr\"uft werden.
 
 Es soll nun gelten:
 
 \begin{equation} \label{eq:pid:dphi_o_target}
-    \frac{\varphi_o}{d\omega} \biggr \rvert_{\omega=\omega_{pid}} = - \frac{1}{2}
+    \frac{d\varphi_o}{d\omega} \biggr \rvert_{\omega=\omega_{pid}} = - \frac{1}{2}
 \end{equation}
 
-Es ist also  ein passender Wert f\"ur $\varphi_r$  gesucht, sodass Gleichungen
-\ref{eq:pid:phi_sum}  und  \ref{eq:pid:dphi_o_target}   erf\"ullt  sind  unter
-Ber\"ucksichtigung des Resultats von \ref{eq:transfer:plant:derivative}.
+Da   $\frac{d\varphi_s}{d\omega}$  durch   die  Strecke   gegeben  und   somit
+unver\"anderlich ist, kann lediglich der Wert von $\frac{d\varphi_r}{d\omega}$
+angepasst     werden,     damit     $\frac{d\varphi_o}{d\omega}$     Gleichung
+\ref{eq:pid:dphi_o_target} erf\"ullt.
 
 Dazu f\"uhrt man den Hilfsparameter $\beta$ ein, f\"ur den gilt:
-
 
 \begin{gather} \label{eq:pid:beta:start}
     \begin{split}
@@ -362,12 +370,19 @@ Ableitung an der Stelle $\omega = \omega_{pid}$ aus:
 
 
 Setzt man dies in Gleichung \ref{eq:pid:phi_sum} ein, erh\"alt man:
-\begin{equation} \label{eq:pid:phi_sum_result_iteration_one}
-    \varphi_o = \varphi_s + \varphi_r =\SI{-1.5124}{\second} + \SI{1.1920}{\second} = \SI{-0.3204}{\second} > -\frac{1}{2}
-\end{equation}
+\begin{gather} \label{eq:pid:phi_sum_result_iteration_one}
+    \begin{split}
+    \frac{d\varphi_o}{d\omega}       \biggr \rvert_{\omega=\omega_{pid}, \beta=0.5}
+        & = \frac{d\varphi_s}{d\omega} \biggr \rvert_{\omega=\omega_{pid}}
+        + \frac{d\varphi_r}{d\omega} \biggr \rvert_{\omega=\omega_{pid}, \beta=0.5} \\
+        & = \SI{-1.5124}{\second} + \SI{1.1920}{\second} \\
+        & = \SI{-0.3204}{\second} \\
+        & > -\frac{1}{2}
+    \end{split}
+\end{gather}
 
 Mit  $\beta  = 0.5$  erh\"alt  man  also eine  zu  hohe  Steigung des  offenen
-Regelkreises   and   der   Stelle  $\omega_{pid}$,   folglich   muss   $\beta$
+Regelkreises   an    der   Stelle  $\omega_{pid}$,   folglich   muss   $\beta$
 {\em{verkleinert}} werden.   Diese Berechnungen  werden nun mit  jeweils neuen
 Werten  f\"ur  $\beta$  solange  wiederholt,  bis  die  Steigung  des  offenen
 Regelkreises die gew\"unschte N\"ahe zu $-\frac{1}{2}$ aufweist.
@@ -388,7 +403,7 @@ geeigneten Algorithmus in Matlab liefert schlussendlich folgendes Ergebnis:
 Sollte  man  f\"ur  $\beta$  einen komplexen  Wert  erhalten,  wird  $\beta=1$
 gesetzt.\todo{Wie kann dies egtl. passieren?}
 
-Dieser Werte setzt man nun in Gleichung \ref{eq:pid:target} ein. $K_{rk}$ wird
+Diese  Werte setzt man nun in Gleichung \ref{eq:pid:target} ein. $K_{rk}$ wird
 wie bei der Bestimmung von $\beta$ vorerst noch auf 1 gesetzt.
 
 \begin{gather} \label{eq:pid:h_rpid_beta_result}
@@ -398,10 +413,10 @@ wie bei der Bestimmung von $\beta$ vorerst noch auf 1 gesetzt.
     \end{split}
 \end{gather}
 
-Zur  Bestimmung   von  $K_{rk}$   wird  nun   der  Frequenzgang   des  offenen
-Regelkreises    betrachtet. Dazu   multipliziert    man    wie   gehabt    die
-\"Ubertragungsfunktion der  Strecke (siehe  Gleichung \ref{eq:transfer:plant})
-mit  der  soeben  bestimmten  \"Ubertragungsfunktion  des  Reglers  (Gleichung
+Zur Bestimmung von $K_{rk}$ wird nun der Frequenzgang des offenen Regelkreises
+betrachtet. Dazu  multipliziert  man  wie  gehabt  die  \"Ubertragungsfunktion
+der  Strecke   (siehe  Gleichung   \ref{eq:transfer:plant})  mit   der  soeben
+bestimmten  provisorischen   \"Ubertragungsfunktion  des   Reglers  (Gleichung
 \ref{eq:pid:h_rpid_beta_result}).
 
 \begin{equation} \label{eq:pid:h_o_k_rk_one}
@@ -418,7 +433,7 @@ anstreben, womit gilt:
 \end{equation}
 
 Dieser Wert wird analog zum PI-Regler aus dem Phasengang des offenen Regelkreises
-abgelesen. \todo{siehe Plot} Eine Berechnung mittels Matlab ergibt:
+abgelesen. \todo{siehe Plot} Eine Nachrechnung mittels Matlab ergibt:
 
 
 \begin{equation} \label{eq:pid:omega_d_target}
@@ -469,19 +484,20 @@ Dies liefert:
 
 Somit ist der Regler vollst\"andig bestimmt und hat folgende \"Ubertragungsfunktion:
 
-\begin{equation} \label{eq:pid:target}
+\begin{equation} \label{eq:pid:result}
     H_{rpid}(s) = 1.83084 \cdot \biggl[ \frac{(1 + s \cdot \SI{5.3656}{\second} ) \cdot (1 + s \cdot \SI{0.4134}{\second} ) }{ s \cdot \SI{5.3656}{\second} } \biggr]
 \end{equation}
 
 Die Frequenzg\"ange der Strecke, des Reglers und des offenen Regelkreises:
 
 \begin{figure}[h! width=\pagewidth]
-    \includegraphics[width=.9\textwidth]{images/pidCompletePlot.png}
+    \includegraphics[width=\textwidth]{images/pidCompletePlot.png}
     \caption{%
         Frequenzgang der Strecke (blau), des  Reglers (gr\"un) und des offenen
         Regelkreises  (rot).  Ebenfalls  eingetragen  sind die  Reglerfrequenz
         $\omega_{pid}$,   die   beiden   Frequenzen   $\frac{1}{T_{vk}}$   und
         $\frac{1}{T_{nk}}$ sowie die Durchtrittsfrequenz $\omega_d$.
     }
-    \label{fig:plant_step}
+    \label{fig:pid_complete}
 \end{figure}
+\clearpage

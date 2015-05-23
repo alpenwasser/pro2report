@@ -82,7 +82,7 @@ Damit kann nun $T_{nk}$ direkt bestimmt werden\footnotemark[2]:
 \end{equation}
 
 \footnotetext[2]{%
-    Um die  Akkumulation von Ungenauigkeiten  zu minimieren werden  bei diesen
+    Um die  Akkumulation von Ungenauigkeiten  zu minimieren, werden bei diesen
     Berechnungen  die  genauen  Werte  aus  Matlab  verwendet  und  nicht  die
     gerundeten  Zwischenresultate,  was  zu   Abweichungen  zu  den  von  Hand
     berechneten Ergebnissen f\"uhren kann.
@@ -182,11 +182,15 @@ Dies ergibt:
 
 \subsubsection{Bestimmung der Reglerverst\"arkung $K_{rk}$}
 
-In  einem  letzten  Schritt  wird  nun  die  Durchtrittsfrequenz  benutzt,  um
-die  ben\"otigte Verst\"arkung  $K_{rk}$ des  Reglers zu  bestimmen. Dazu wird
-$\omega_d$  in  Gleichung~\ref{eq:pi:h_open}  eingesetzt  und  $|H_o(j\omega)|
-=   1$  gesetzt   (Durchtrittsfrequenz: Frequenz,   bei   der  die   Amplitude
-$\SI{0}{\decibel} = 1$ ist).
+Im  letzten  Schritt   wird  nun  die  Durchtrittsfrequenz\footnotemark[3]   benutzt,  um  die
+ben\"otigte  Verst\"arkung  $K_{rk}$  des   Reglers  zu  bestimmen. Dazu  wird
+$j\omega_d$ in Gleichung~\ref{eq:pi:h_open} f\"ur den Parameter $s$ eingesetzt
+und $|H_o(j\omega_d)| = 1$ gesetzt.
+
+\footnotetext[3]{%
+    Durchtrittsfrequenz: Frequenz,  bei der  die  Amplitude der  betrachteten
+    \"Ubertragungsfunktion $\SI{0}{\decibel} = 1$ ist.
+}
 
 \begin{gather} \label{eq:pi:A_o_set_to_one}
     \begin{split}

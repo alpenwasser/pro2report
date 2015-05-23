@@ -181,15 +181,15 @@ bestimmten  provisorischen   \"Ubertragungsfunktion  des   Reglers  (Gleichung
 Nun wird  die Durchtrittsfrequenz $\omega_d$  bestimmt, an welcher  der offene
 Regelkreis eine  Verst\"arkung von $\SI{0}{\decibel} =  1$ aufweisen soll. Wie
 auch  beim  PI-Regler  werden  wir   hier  ein  \"Uberschwingen  von  $16.3\%$
-anstreben, womit gem\"ass Tabelle \ref{tab:phi_s}gilt:
+anstreben, womit gem\"ass Tabelle \ref{tab:phi_s} gilt:
 
 \begin{equation} \label{eq:pid:omega_d_target}
     \varphi_s(\omega_d) = \varphi_s = -128.5\degree
 \end{equation}
 
-Dieser Wert wird analog zum PI-Regler aus dem Phasengang des offenen Regelkreises
-abgelesen. \todo{siehe Plot} Eine Nachrechnung mittels Matlab ergibt:
-
+Dieser   Wert   wird   analog   zum   PI-Regler   aus   dem   Phasengang   des
+offenen Regelkreises  abgelesen (siehe Abbildung~\ref{fig:pid_complete}). Eine
+Nachrechnung mittels Matlab ergibt:
 
 \begin{equation} \label{eq:pid:omega_d_target}
     \omega_d = \SI{0.5341}{\per\second}
@@ -221,7 +221,7 @@ aufgel\"ost:
     \end{split}
 \end{equation}
 
-Mit den gegebenen und berechneten Werten:
+Die einzusetzenden Werte sind:
 \begin{gather} \label{eq:pid:h_o_k_rk_one}
     \begin{split}
         K_s         & = 2                        \\
@@ -234,12 +234,13 @@ Mit den gegebenen und berechneten Werten:
     \end{split}
 \end{gather}
 
-Dies liefert:
+Womit man f\"ur die Verst\"arkung den Wert
 
 \begin{equation} \label{eq:pid:k_rk_result}
     K_{rk} = 1.83084
 \end{equation}
 
+erh\"alt.
 
 \subsubsection{Resultat}
 

@@ -73,6 +73,7 @@ $\SI{0.3}{\per\second}$. Die Kontrollrechnung mittels Matlab ergibt:
 \end{equation}
 
 
+\clearpage
 \subsubsection{Bestimmung von $T_{nk}$}
 Damit kann nun $T_{nk}$ direkt bestimmt werden\footnotemark[2]:
 
@@ -134,21 +135,16 @@ bestimmt werden.
 \end{gather}
 
 
-Wobei der Amplitudengang den Betragsverlauf und der Phasengang den Verlauf des
-Arguments dieser \"Ubertragungsfunktion repr\"asentieren:
+Von   besonderem    Interesse   ist   der    Phasengang   $\varphi_o(j\omega)$
+dieser  \"Ubertragungsfunktion  (siehe  Tabelle~\ref{tab:terms}). Wie  Anfangs
+spezifiziert, soll  ein maximals  \"Uberschwingen von  ca. $16.3\%$ angestrebt
+werden. Dazu  muss  gem\"ass Tabelle~\ref{tab:phi_s}  die  Durchtrittsfrequenz
+$\omega_d$ gefunden  werden, an welcher  der offene Regelkreis eine  Phase von
+$-128.5\degree$ aufweist (Gleichung~\ref{eq:phi_o}).
 
-\begin{equation}
-    \begin{split} \label{eq:pi:a_o_phi_o}
-        A_o(j\omega)       & = |H_o(j\omega)| \\
-        \varphi_o(j\omega) & = arg(H_o(j\omega))
-    \end{split}
+\begin{equation} \label{eq:phi_o}
+    \varphi_o(\omega_d)=\varphi_s.
 \end{equation}
-
-Von besonderem  Interesse ist  hier der Phasengang. Wie  Anfangs spezifiziert,
-soll  ein maximals  \"Uberschwingen von  ca. $16.3\%$ angestrebt  werden. Dazu
-muss  gem\"ass  Tabelle~\ref{tab:phi_s}   die  Durchtrittsfrequenz  $\omega_d$
-gefunden   werden,  an   welcher  der   offene  Regelkreis   eine  Phase   von
-$-128.5\degree$ aufweist.
 
 \begin{longtable}{llll}
     \toprule
@@ -231,6 +227,7 @@ erh\"alt:
 \end{equation}
 
 
+\clearpage
 \subsubsection{Resultat}
 
 Somit ist der PI-Regler vollst\"andig bestimmt und hat folgende Form:

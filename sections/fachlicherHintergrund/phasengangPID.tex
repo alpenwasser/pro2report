@@ -41,14 +41,15 @@ der  Frequenz  $\omega_{pid}$  bestimmt. Ausgangspunkt  daf\"ur  ist  die  von
 
 \subsubsection{Hilfsparameter $\beta$}
 
-Zwischen den Steigungen der Phasen des offenen Regelkreises ($\varphi_o$), der
-Strecke ($\varphi_s$) und des Reglers ($\varphi_r$) gilt folgende Beziehung:
+Zwischen  den Steigungen  der Phasen  des offenen  Regelkreises ($\varphi_o$),
+der  Strecke  ($\varphi_s$)  und   des  Reglers  ($\varphi_r$)  gilt  gem\"ass
+Tabelle~\ref{tab:terms} folgende Beziehung:
 
 \begin{equation} \label{eq:pid:phi_sum}
     \varphi_o = \varphi_s + \varphi_r
 \end{equation}
 
-Da die Ableitung eine lineare Funktion ist, gilt somit auch: \todo{korrekte Begriffe}
+Da die Ableitung eine lineare Funktion ist, gilt somit auch:
 \begin{equation} \label{eq:pid:dphi_sum}
     \frac{d\varphi_o}{d\omega} = \frac{d\varphi_s}{d\omega} + \frac{d\varphi_r}{d\omega}
 \end{equation}
@@ -79,8 +80,9 @@ Dazu f\"uhrt man den Hilfsparameter $\beta$ ein, f\"ur den gilt:
 
 Die  beiden Frequenzen  $\frac{1}{T_{vk}}$  und  $\frac{1}{T_{nk}}$ sind  also
 symmetrisch  um den  Faktor $\beta$  gr\"osser bzw.  kleiner als  die Frequenz
-$\omega_{pid}$. \todo{siehe Plot} Will man  $\beta$ von Hand bestimmen, trifft
-man zuerst eine ``vern\"unftige'' Annahme, zum Beispiel:
+$\omega_{pid}$, gut ersichtlich  in Abbildung~\ref{fig:pid_complete}. Will man
+$\beta$ von Hand bestimmen, trifft  man zuerst eine ``vern\"unftige'' Annahme,
+zum Beispiel:
 
 \begin{equation} \label{eq:pid:beta:initial_value}
     \beta = 0.5
@@ -106,13 +108,14 @@ Eingesetzt in die Reglergleichung, vorerst mit $K_{rk} = 1$:
     \end{split}
 \end{gather}
 
-Von dieser Gleichung bestimmt man nun den Phasengang und wertet danach dessen
-Ableitung an der Stelle $\omega = \omega_{pid}$ aus:
+Von dieser Gleichung bestimmt man nun  den Phasengang und wertet danach dessen
+Ableitung an der Stelle $\omega = \omega_{pid}$ aus. Die zugeh\"orige Rechnung
+kann in Anhang~\ref{app:beta_manual_calculation} gefunden werden.
 
 \begin{gather} \label{eq:pid:phi_r_first_iteration}
     \begin{split}
-        \varphi_s (j\omega)                                            & = arg(H_{rpid}(j\omega))        \\
-        \frac{d\varphi_s}{d\omega} \biggr \rvert_{\omega=\omega_{pid}} & = \SI{1.1920}{\second}
+        \varphi_r (j\omega)                                            & = arg(H_{rpid}(j\omega))        \\
+        \frac{d\varphi_r}{d\omega} \biggr \rvert_{\omega=\omega_{pid}} & = \SI{1.1920}{\second}
     \end{split}
 \end{gather}
 \todo{Die zugeh\"orige Rechnung ist lange und m\"uhsam, allenfalls in Anhang? Ebenfalls: Einheit kontrollieren}

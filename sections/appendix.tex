@@ -1,0 +1,105 @@
+\section{Manuelle Berechnung des Hilfsparameteres $\beta$}
+\label{app:beta_manual_calculation}
+
+Der   erste  Iterationsschtitt   der  in   Abschnitt~\ref{subs:phasengang:pid}
+erw\"ahnten  manuellen Berechnung  des  Hilfsparameteres $\beta$  ist hier  im
+Detail ausgef\"uhrt.
+
+Zur  Rekapitulation   eine  kurze   Wiederholung  der   Ausgangslage:
+
+\begin{gather} \label{eq:app:recap}
+    \begin{split}
+        \omega_{pid} & = \SI{0.6714}{\per\second} \\
+        {T_{vk}}     & = \frac{\beta}{\omega_{pid}}  = \frac{0.5}{\SI{0.6714}{\per\second}}                   = \SI{0.7447}{\second} \\
+        {T_{nk}}     & = \frac{1}{\omega_{pid} \cdot \beta} = \frac{1}{\SI{0.6714}{\per\second} \cdot 0.5 }  = \SI{2.9789}{\second}  \\
+        K_{rk}       & = 1
+    \end{split}
+\end{gather}
+
+Diese Werte eingesetzt in Gleichung~\ref{eq:pid:target} ergeben:
+
+\begin{gather} \label{eq:app:h_rpid:start}
+    \begin{split}
+        H_{rpid}(j\omega)
+                 & = K_{rk} \cdot \biggl[ \frac{(1 + s       \cdot T_{nk}              ) (1 + s       \cdot T_{vk}              )}{ s       \cdot T_{nk} }              \biggr] \\
+                 & =      1 \cdot \biggl[ \frac{(1 + j\omega \cdot \SI{0.7447}{\second}) (1 + j\omega \cdot \SI{2.9789}{\second})}{ j\omega \cdot \SI{2.9789}{\second}} \biggr] \\
+                 & = \frac{%
+                                1
+                                +
+                                j\omega
+                                \cdot (
+                                          \SI{2.9789}{\second}
+                                          +
+                                          \SI{0.7447}{\second}
+                                      )
+                                -
+                                \omega^2
+                                \cdot
+                                \SI{0.7447}{\second}
+                                \cdot
+                                \SI{2.9789}{\second}
+                           }{%
+                                j\omega
+                                \cdot
+                                \SI{2.9789}{\second}
+                           } \\
+                 & = \frac{1 - \SI{2.2184}{\square\second} \cdot \omega^2 + j\omega \cdot \SI{3.7236}{\second}}{j\omega \cdot \SI{2.9789}{\second}} \\
+                 & = \frac{-\omega \cdot \SI{3.7236}{\second} + j (1 - \omega^2 \cdot \SI{2.2184}{\square\second})}{\omega \cdot \SI{2.9789}{\second}} \\
+                 & = -1.250 + j \cdot (\omega^{-1} \cdot \SI{0.3357}{\per\second} - \omega \cdot \SI{0.7450}{\second})
+    \end{split}
+\end{gather}
+
+Von   dieser   Zahl   gilt   es   nun,   das   Argument   zu   bestimmen   und
+abzuleiten. $H_{rpid}(j\omega)$ ist eine komplexe Zahl in der linken Halbebene
+($Re <  0$), somit  kommen folgende  Formeln zur  Berechnung des  Arguments in
+Frage:
+
+\begin{gather} \label{eq:app:argument}
+    \begin{split}
+        \varphi(Re + j \cdot Im) = atan \biggl( \frac{Im}{Re} \biggr) + \pi \hspace{2em} Re < 0 \land Im \geq 0 \\
+        \varphi(Re + j \cdot Im) = atan \biggl( \frac{Im}{Re} \biggr) - \pi \hspace{2em} Re < 0 \land Im < 0
+    \end{split}
+\end{gather}
+
+Da aber in diesem Fall lediglich die \emph{Ableitung} von $\varphi$ ben\"otigt
+wird, f\"allt der Summand $\pm\pi$ weg  und welche Formel f\"ur die Berechnung
+des  Arguments   verwendet  wird,  ist  ohne   Konsequenz.
+
+\begin{gather} \label{eq:app:argument_numerical}
+    \begin{split}
+        \varphi(H_{rpid}(j\omega)) & = atan \biggl( \frac{ \omega^{-1} \cdot \SI{0.3357}{\per\second} - \omega \cdot \SI{0.7450}{\second} }{ -1.250 } \biggr) \pm \pi \\
+                                   & = atan \biggl( \omega^{-1} \cdot \SI{-0.2686}{\per\second}       - \omega \cdot \SI{0.5960}{\second}             \biggr) \pm \pi
+    \end{split}
+\end{gather}
+
+Die Ableitung des Arkustangens ist:
+
+\begin{equation} \label{eq:app:d_atan}
+    \frac{d}{dx} atan(x) = \frac{1}{1+x^2}
+\end{equation}
+
+Mit
+
+\begin{equation} \label{eq:app:x_of_omega}
+    x(j\omega) = \omega^{-1} \cdot \SI{-0.2686}{\per\second} - \omega \cdot \SI{0.5960}{\second}
+\end{equation}
+
+folgt
+
+\begin{gather} \label{eq:app:d_argument}
+    \begin{split}
+        \frac{d}{d\omega} \varphi(H_{rpid}(j\omega)) & = \frac{d}{dx} atan(x(j\omega)) \cdot \frac{d}{d\omega} x(j\omega) \\
+                                                     & = \frac{0.5960 + \omega^{-2} \cdot \SI{0.2686}{\square\second}}{1+(\omega \cdot \SI{0.5960}{\second} - \omega^{-1} \cdot \SI{0.2686}{\per\second})^2} \\
+                                                     & \approx 1.1920
+    \end{split}
+\end{gather}
+
+
+Wie    in  Gleichung~\ref{eq:pid:phi_sum_result_iteration_one}  gezeigt,   ist
+dies  noch  nicht  der  gesuchte  Wert  f\"ur  $\beta$. F\"ur  den  n\"achsten
+Iterationsschritt    w\"urde     nun    ein    kleinerer     Wert    gew\"ahlt
+(z.B.   $\beta=0.25$),    der   zu    neuen   Werten   f\"ur    $T_{nk}$   und
+$T_{vk}$   f\"uhren   w\"urde,   mit   denen   dann   die   Berechnungen   aus
+Gleichungen~\ref{eq:app:h_rpid:start}    bis~\ref{eq:app:d_argument}    erneut
+ausgef\"uhrt w\"urden. Bei zufriedenstellender N\"ahe der Steigung des offenen
+Regelkreises an $-\frac{1}{2}$ w\"are die Iteration beended.

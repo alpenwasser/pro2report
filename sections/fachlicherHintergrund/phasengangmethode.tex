@@ -1,22 +1,17 @@
-Als     Hauptberechnung    wird     die    sogenannte     ``Phasengang-Methode
-zur      Reglerdimensionierung''      von     Jakob      Zellweger      (FHNW)
-\cite{regelungstechnik:zellweger_short}   zu   Hilfe   genommen. Diese   wurde
+Das  Kernst\"uck  dieser  Arbeit  und des  zuge\"origen  Softwaretools  stellt
+die   so  genannte   ``Phasengang-Methode   zur  Reglerdimensionierung''   von
+Jakob   Zellweger~\cite{regelungstechnik:zellweger_short}   dar. Diese   wurde
 urspr\"unglich  als  vereinfachte  grafische  Methode  zur  Approximation  der
--20dB/Dek Methode erarbeitet und soll im Rahmen dieses Projektes automatisiert
-werden. Schlussendlich   soll   sie   zur   numerischen   Berechnung   mittels
-N\"aherungen in das Tool implementiert sein.
+-20dB/Dek Methode erarbeitet und im Rahmen dieses Projektes in einem Java-Tool
+automatisiert.
 
-Um die  Berechnung mit  der Phasengang-Methode  zu erm\"oglichen,  muss zuerst
-die  vermessene  Regelstrecke  in   eine  Funktion  im  Bildbereich  gewandelt
-werden. Dazu  wird die  bereits  erw\"ahnte Matlab-Funktion  \code{p2\_sani.m}
-verwendet  \todo{Ist  dies  bezogen  auf  das  schlussendliche  Programm  noch
-korrekt? Falls nein,  anpassen}. Die Berechnung anhand  der Phasengang-Methode
-wird  nachfolgend  als  Rezept aufgef\"uhrt. Genauere  Informationen  sind
-dem   Skript   \cite{regelungstechnik:zellweger_short}  zu   entnehmen.    Das
-\"Uberschwingverhalten  des Regelkreises  soll  f\"ur dieses  Projekt in  drei
-Stufen berechnet werden. Verwendet wird dazu folgende Abstufung:
-\todo{Ist diese Einteilung des \"Uberschwingens noch aktuell oder wurde das
-in der Auftragserweiterung angepasst?}
+Genauere  Informationen  zu  den  Hingergr\"unden  der  beiden  aufgef\"uhrten
+Rezepte sind dem Skript~\cite{regelungstechnik:zellweger_short} zu entnehmen.
+
+Das \"Uberschwingverhalten des Regelkreises soll  f\"ur dieses Projekt in drei
+Stufen  berechnet werden. Verwendet  wird dazu  folgende Abstufung:  \todo{Ist
+diese  Einteilung des  \"Uberschwingens noch  aktuell  oder wurde  das in  der
+Auftragserweiterung angepasst?}
 
 
 \begin{itemize}

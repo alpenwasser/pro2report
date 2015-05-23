@@ -1,10 +1,8 @@
 Im   Praxiseinsatz  stehen   f\"ur   die  Dimensieung   der  Regler   einfache
 Berechnungsformeln f\"ur die Einstellwerte der  Regler anhand von $T_u$, $T_g$
-und $K_s$ zur Verf\"ugung.
-
-Einige   dieser  Faustformeln   werden  in   der  Applikation   zum  Vergleich
-mitberechnet. Die    dazugeh\"origen    Berechnungen    sind    der    Tabelle
-\ref{tab:faustformeln} zu entnehmen.
+und $K_s$ zur Verf\"ugung. An dieser  Stelle wird daher unsere Beispielstrecke
+zuerst mit einigen der g\"angigen  Faustformeln dimensioniert, um das Ergebnis
+anschliessend mit dem Resultat der Phasengangmethode vergleichen zu k\"onnen.
 
 \begin{longtable}{p{50mm}rrrrr}
     \toprule
@@ -98,21 +96,106 @@ mitberechnet. Die    dazugeh\"origen    Berechnungen    sind    der    Tabelle
 
     \addlinespace[1em]
 
-    Ziegler/Nichols \cite{ref:op_ros_zieg}
-    &
-    $ 3.33 \cdot T_u $
-    &
-    $ \frac{0.9}{K_s} \cdot \frac{T_g}{T_u} $
-    &
-    $ 2 \cdot T_u $
-    &
-    $ 0.5 \cdot T_u $
-    &
-    $ \frac{1.2}{K_s} \cdot \frac{T_g}{t_u} $
-    \\
-
     \bottomrule
 \caption{Faustformeln zur Reglerdimensionierung}
 \label{tab:faustformeln}
 \end{longtable}
-\todo{Quellen hinzuf\"ugen}
+
+Setzt man die Werte f\"ur $K_s$, $T_u$, $T_g$ in diese Formeln ein, ergibt sich Folgendes:
+
+\begin{longtable}{p{50mm}rrrrr}
+    \toprule
+
+    %\multicolumn{3}{l}{\large{\textsc{Auftragsanalyse und Hintergrundinformationen}}} \\
+
+    Faustformel
+    &
+    \multicolumn{2}{l}{PI-Regler}
+    &
+    \multicolumn{2}{l}{PID-T1-Regler}
+    \\
+
+    &
+    $T_n$
+    &
+    $K_p$
+    &
+    $T_n$
+    &
+    $T_v$
+    &
+    $K_p$
+    \\
+
+    \midrule
+
+    \endhead
+    \endfoot
+    \endlastfoot
+
+    % CONTENT HERE ---------------------------------------------------------- %
+
+    \pbox{45mm}{Chiens, Hrones, Reswick \\ \small{\textbf{(0\% \"Uberschwingen)}} \\ \cite{ref:chiens_tsn}, \cite{ref:chiens_wiki}}
+    &
+    $\SI{10.68}{\second}$
+    &
+    $1.42$
+    &
+    $\SI{8.9}{\second}$
+    &
+    $\SI{0.55}{\second}$
+    &
+    $2.43$
+    \\
+
+    \addlinespace[1em]
+
+    \pbox{45mm}{Chiens, Hrones, Reswick \small{\textbf{(20\% \"Uberschwingen)}} \\ \cite{ref:chiens_tsn}, \cite{ref:chiens_wiki}}
+    &
+    $\SI{8.9}{\second}$
+    &
+    $2.43$
+    &
+    $\SI{12.02}{\second}$
+    &
+    $\SI{052}{\second}$
+    &
+    $3.84$
+    \\
+
+    \addlinespace[1em]
+
+    Oppelt \cite{ref:op_ros_zieg}
+    &
+    $\SI{3.3}{\second}$
+    &
+    $3.24$
+    &
+    $\SI{2.2}{\second}$
+    &
+    $\SI{0.46}{\second}$
+    &
+    $4.85$
+    \\
+
+    \addlinespace[1em]
+
+    Rosenberg \cite{ref:op_ros_zieg}
+    &
+    $\SI{3.63}{\second}$
+    &
+    $3.68$
+    &
+    $\SI{2.2}{\second}$
+    &
+    $\SI{0.50}{\second}$
+    &
+    $4.85$
+    \\
+
+    \addlinespace[1em]
+
+    \bottomrule
+    \caption{Reglerparameter bestimmt mit Faustformeln aus Tabelle~\ref{tab:faustformeln}}
+\label{tab:ff_results}
+\end{longtable}

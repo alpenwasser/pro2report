@@ -1,7 +1,3 @@
-Im Folgenden wird  anhand eines Beispiels gezeigt, wie  der Arbeitsprozess mit
-unserer  Software funktioniert. Dabei  werden wir  sowohl einen  PI-Regler als
-auch einen PID-Regler durchrechnen und den Prozess grafisch illustrieren.
-
 Als  Ausgangspunkt  des  Prozesses   dient  die  Schrittantwort  der  Strecke,
 aus  welcher  die  Verts\"arkung  $K_s$ der  Strecke,  die  Verz\"ogerungszeit
 $T_u$  und die  Anstiegszeit $T_g$  abgelesen werden. Diese  Werte dienen  als
@@ -30,7 +26,7 @@ Wir erhalten:
         $T_g = \SI{8.9}{\second}$
 \end{itemize}
 
-Da  die Phasengangmethode  vom {\em{Frequenzgang}}  einer Strecke  ausgeht und
+Da  die Phasengangmethode  vom \emph{Frequenzgang}  einer Strecke  ausgeht und
 nicht von der Schrittantwort, besteht der n\"achste Schritt nun darin, aus den
 obigen Werten  den Frequenzgang  der Strecke  zu bestimmen. Dies  erledigt die
 Methode \code{p\_sani}, welche uns  die Werte f\"ur die \"Ubertragungsfunktion

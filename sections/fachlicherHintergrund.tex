@@ -1,33 +1,63 @@
+Das  Kernst\"uck  dieser Arbeit  und  des  zugeh\"origen Softwaretools  stellt
+die   so  genannte   ``Phasengang-Methode   zur  Reglerdimensionierung''   von
+Jakob   Zellweger   dar~\cite{regelungstechnik:zellweger_short}. Diese   wurde
+urspr\"unglich  als  vereinfachte  grafische  Methode  zur  Approximation  der
+-20dB/Dek Methode erarbeitet und im Rahmen dieses Projektes in einem Java-Tool
+automatisiert. Als  Vergleich   wertet  die  Software  ebenfalls   einige  der
+g\"angigen Faustformeln aus.
+
+Das Tool f\"uhrt grob vereinfacht folgende Schritte aus:
+\begin{itemize}
+    \item
+        Bestimmung des  Frequenzgangs der Regelstrecke  aus Verz\"ogerungszeit
+        $T_u$,     Anstiegszeit     $T_g$      und     Verst\"arkung     $K_s$
+        (Abschnitt~\ref{subs:frequenzgang})
+    \item
+        Dimensionierung       des      Reglers       mittels      Faustformeln
+        (Abschnitt~\ref{subs:faustformeln})
+    \item
+        Dimensionierung      des      Reglers     durch      Phasengangmethode
+        (Abschnitte~\ref{subs:phasengang:pi} und~\ref{subs:phasengang:pid})
+    \item
+        Umrechung   der   Regler-Darstellung    zwischen   bodekonformer   und
+        reglerkonformer Darstellung (Abschnitt~\ref{subs:bode_regler})
+    \item
+        Berechnung   der   Schrittantwort   des   geschlossenen   Regelkreises
+        (Abschnitt~\ref{subs:geschlossen})
+\end{itemize}
+
+Im  folgenden   Kapitel  wird  auf   diese  Punkte  genauer   eingegangen  und
+das  Vorgehen  anhand  eines  konkreten  Beispiels  rechnerisch  und  grafisch
+erl\"autert. Die   Durchrechnung   der   Phasengangmethode   orientiert   sich
+an   den   Rezepten,   welche   im   fachlichen   Teil   des   Pflichtenheftes
+dieses    Projektes    zu    finden    sind~\cite{ref:pflichtenheft}. Genauere
+Hintergrundinformationen    zur    Phasengangmethode     selbst    sind    dem
+Skript~\cite{regelungstechnik:zellweger_short} zu entnehmen.
+
+Das \"Uberschwingverhalten des Regelkreises soll  f\"ur dieses Projekt in drei
+Stufen  berechnet werden. Verwendet  wird dazu  folgende Abstufung:  \todo{Ist
+diese  Einteilung des  \"Uberschwingens noch  aktuell  oder wurde  das in  der
+Auftragserweiterung angepasst?}
+
+\begin{itemize}
+    \item
+        wenig \"Uberschwingen (ca. 0\%)
+    \item
+        mittleres \"Uberschwingen (ca. 16\%)
+    \item
+        starkes \"Uberschwingen (ca. 23\%)
+\end{itemize}
+
 \subsection{Grundlagen}
 \input{sections/fachlicherHintergrund/grundlagen.tex}
 \todo{Abschnitt verfassen}
 
-\subsection{Rezepte}
-\todo{Fix Strukturierung}
-F\"ur   die  Regler-Dimensionierung   sowie  das   grafische  Darstellen   der
-Schrittantwort  muss   die  Software  einige  Berechnungen   ausf\"uhren.   Im
-folgenden  Kapitel werden  die wichtigsten  Schritte dieser  Berechnungen kurz
-zusammengefasst und erkl\"art.
-
-\begin{itemize}
-    \item
-    Bestimmung  des  Frequenzgangs  der  Regelstrecke  aus  Verz\"ogerungszeit
-    $T_u$, Anstiegszeit $T_g$ und Verst\"arkung $K_s$.
-    \item
-    Dimensionierung des Reglers mittels Faustformeln.
-    \item
-    Dimensionierung des Reglers durch Phasengangmethode.
-    \item
-    Umrechung der Regler-Darstellung zwischen bodekonformer und reglerkonformer
-    Darstlelung. \todo{Erkl\"arung}
-    \item
-    Berechnung der Schrittantwort des geschlossenen Regelkreises.
-\end{itemize}
-
 \subsection{Frequenzgang der Regelstrecke}
+\label{subs:frequenzgang}
 \input{sections/fachlicherHintergrund/frequenzgang.tex}
 
 \subsection{Regler-Dimensionierung mittels Faustformeln}
+\label{subs:faustformeln}
 \input{sections/fachlicherHintergrund/faustformeln.tex}
 
 \subsection{Regler-Dimensionierung durch Phasengangmethode}

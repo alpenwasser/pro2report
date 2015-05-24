@@ -1,0 +1,173 @@
+\subsection{Regelstrecke}
+In  der  Regelungstechnik  wird  die  zu  regelnde  Strecke  als  Regelstrecke
+bezeichnet. Die  Regelstrecke wird  durch  ihr Zeitverhalten  charakterisiert,
+welches den Aufwand und die G\"ute der Regelung bestimmt. Um das Zeitverhalten
+zu  beschreiben,  verwendet  man  die Sprungantwort,  welche  zeigt,  wie  die
+Regelgr\"osse  auf  Stellgr\"ossen\"anderung  reagiert. Mit  der  entstehenden
+Regelgr\"osse werden verschiedene Regelstrecken unterschieden:
+
+\begin{itemize}
+ \item  P-Regelstrecke
+ \item I-Regelstrecke
+ \item    Strecken mit einer Totzeit
+ \item Strecken mit Energiespeicher
+\end{itemize}
+
+Dieses  Projekt   besch\"aftigt  sich   mit  den  PTn-Strecken,   welche  eine
+Kombination einer Strecke  mit proportionalen Verhalten und  einer mit Totzeit
+sowie der Angabe der Ordnung n der Strecke sind.
+
+\subsubsection*{P-Regelstrecke}
+Bei  der  Regelstrecke mit  proportionalem  Verhalten  folgt die  Regelstrecke
+proportional der  Stellgr\"osse ohne  Verz\"ogerung. Dies kommt in  der Praxis
+nicht vor,  da immer eine  Verz\"ogerung vorhanden ist. Ist diese  jedoch sehr
+klein spricht man von  einer P-Strecke. Der Proportionalit\"atsfaktor wird mit
+$K_p$ abgek\"urzt. Wird  $K_p<1$ wirkt $K_p$ nicht  mehr verst\"arkend sondern
+abschw\"achend.
+\todo{Bild Blockschaltbild P-Strecke}
+
+\subsubsection*{Strecken mit Totzeit}
+\"Andert sich die Stellgr\"osse, wirkt sich diese \"Anderung bei einer Strecke
+mit Totzeit erst nach einer gewissen Zeit auf die Regelgr\"osse aus. Mit $T_t$
+wird das Mass der Totzeit gekennzeichnet.
+
+Totzeiten     verursachen     schnell     Schwingungen,    da     sich     die
+Stellgr\"osse\"anderung  zeitverz\"ogert auf  die Regelgr\"osse  auswirkt. Die
+Schwingungen  entstehen  wenn sich  die  Stellgr\"osse  und die  Regelgr\"osse
+periodisch \"andern.
+
+\todo{Bild Blockschaltbild Totzeit}
+
+\subsubsection*{I-Regelstrecke}
+Die  I-Regelstrecke  antwortet  auf eine  Stellgr\"ossen\"anderung  mit  einer
+fortw\"ahrenden   \"Anderung   in   steigende  oder   fallende   Richtung. Die
+Begrenzung dieses  Vorganges ist mit den  systemgegeben Schranken gegeben. Die
+Integrierzeit  $T_i$  ist  ein  Mass  f\"ur  die  Anstiegsgeschwindigkeit  der
+Regelgr\"osse.
+
+\todo{Bild Blockschaltbild I-Strecke}
+
+\subsection{Regler}
+Die  Aufgabe  eines  Reglers  besteht   die  zu  regelnde  Strecke  mit  einem
+Stellsignal  so  zu  beeinflussen,  dass der  Wert  der  Regelgr\"osse  gleich
+dem  Wert  der F\"uhrungsgr\"osse  entspricht. Der  Regler  besteht aus  einem
+Vergleichsglied,  welches  die  Reglerdifferenz  aus  der  Differenz  zwischen
+F\"uhrungs-  und Reglergr\"osse  bildet und  dem Reglerglied. Das  Reglerglied
+erzeugt aus der Reglerdifferenz die Stellgr\"osse.
+
+Es wird zwischen P-, I- und  D-Regler unterschieden.  In diesem Projekt werden
+die PI- und  PID-Regler, welche Kombinationen der oben  genannten Regler sind,
+behandelt.
+
+\subsubsection*{PI-Regler}
+Der  PI-Regler  besteht  aus  einer   Parallelschaltung  eines  P-  und  eines
+I-Reglers. Durch  diese   Kombination  werden  die  Nachteile   beider  Regler
+kompensiert und die Vorteile (schnell, stabil) hervorgehoben.
+\todo{Bild Blockschaltbild PI-Regler}
+
+\subsubsection*{PID-Regler}
+Wird   dem  PI-Regler   ein   D-Anteil  parallel   geschaltet,  entsteht   der
+PID-Regler. Der  PID-Regler ist  ein  sehr oft  verwendeter  Regler, da  durch
+den  D-Anteil  die  Regelgr\"osse  rascher   den  Sollwert  erreicht  und  der
+Einschwingvorgang  schneller abgeschlossen  ist. Der  PID-Regler ist  geeignet
+f\"ur Strecken h\"oheren Ordung, welche m\"oglichst schnell und ohne bleibende
+Regelabweichung geregelt werden m\"ussen.
+\todo{Bild Blockschaltbild PID-Regler}
+
+\subsection{Die Steuerung}
+\todo{bild offener Regelkreis}
+Unter einer Steuerung  versteht man eine offen Wirkungskette  wie in Abbildung
+XX \todo{Referenz Bild  offener Regelkreis}, dass heisst  die Wirkglieder sind
+ketten\"ahnlich aufgereiht und  besitzen keine R\"uckkopplung. Die Steuerkette
+wird  genau  f\"ur  eine  Steuerung  ausgelegt und  kann  nur  einer  Art  von
+St\"orgr\"osse entgegenwirken. Ohne die  R\"uckkopplung wird das Ausgangsignal
+nicht  mit dem  Eingangssignal verglichen  und es  k\"onnen keine  Korrekturen
+vorgenommen werden.
+
+\subsection{Der geschlossene Regelkreis}
+Die      Aufgabe     eines      geschlossenen     Regelkreises      (Abbildung
+\ref{fig:geschlossenerRegelkreis})  ist  es,   einen  vorgegeben  Sollwert  zu
+erreichen und diesen  auch bei St\"orungen aufrecht  zu erhalten. Dabei sollen
+die unten  genannten dynamischen  Anforderungen eingehalten werden,  damit die
+Stabilit\"at des  Regelsystems garantiert ist. Die wichtigste  Bedingung f\"ur
+die Schrittantwort ein geschlossenen  Regelkreis heisst, dass der Regelfehler,
+die Differenz zwischen  Ist- und Sollwert, gleich Null  oder m\"oglichst klein
+ist.
+
+
+\begin{figure}[!h!, width=\pagewidth]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/geschlRegelkreis}
+    \caption{Geschlossener Regelkreis}
+    \label{fig:geschlossenerRegelkreis}
+\end{figure}
+
+%Name Bild Struktur eines allgemeinen Regelkreises
+\begin{itemize}
+    \item
+        $y_soll$ bezeichnet den Sollwert der Regelgr\"osse.
+    \item
+        $e$ Regelabweichung (Regelfehler)
+    \item
+        $u$ Steuergr\"osse
+    \item
+        $x$ Stellgr\"osse
+    \item
+        $y$ Regelgr\"osse
+    \item
+        $z$ St\"orgr\"ossen werden in diesem Projekt nicht ber\"ucksichtigt
+    \item
+        $y_ist$  ist der  Ist-Wert der  Regelgr\"osse  und wird  auch als  die
+        Schrittantwort des Regelkreises bezeichnet.
+\end{itemize}
+
+
+Grunds\"atzlich  k\"onnen  f\"unf   Anforderungen  f\"ur  einen  geschlossenen
+Regelkreis und deren Schrittantworten zusammengefasst werden:
+
+\begin{enumerate}
+    \item
+        Der Regelkreis muss stabil sein:  F\"ur das Regelsystem heisst stabil,
+        dass es in seinen Gleichgewichtszustand zur\"uckgef\"uhrt werden kann.
+    \item
+        Der Regelkreis muss gen\"ugend ged\"ampft sein.
+    \item
+        Der   Regelkreis   muss   eine  bestimmte   station\"are   Genauigkeit
+        aufweisen: Das bedeutet, der Regelfehler e(t)  soll f\"ur t-> oo gegen\todo{math mode}
+        Null gehen.
+    \item
+        Der  Regelkreis muss  hinreichend  schnell sein:   Ist die  D\"ampfung
+        zu  stark   oder  zu  schwach,  braucht   der  Einschwingvorgang  mehr
+        Zeit. Hierbei  muss  darauf  geachtet werden,  dass  die  spezifischen
+        Anforderungen an das Regelsystem eingehalten werden.
+    \item
+        Der  Regelkreis muss  robust  sein: Der Regelkreis  muss so  ausgelegt
+        werden,  dass  das  Regelsystem  auch im  schlimmsten  Fall  (je  nach
+        Regelsystem situationsabh\"angig) in der Lage ist, das System zur\"uck
+        in den stabilen Zustand (vgl. Punkt 1) zu regeln.
+\end{enumerate}
+
+
+\subsubsection*{Die Schrittantwort des geschlossenen Regelkreises}
+
+\todo{Bild Schrittantworten passend zu Aufz\"ahlung unten}
+
+Als Schrittantwort  eines geschlossenen  Regelkreises wird  das Ausgangssignal
+$y(t)$ bezeichnet. Im Zusammenhang mit  den Anforderungen an den geschlossenen
+Regelkreis, werden an die Schrittantwort folgende Forderungen gestellt:
+
+\begin{enumerate}
+    \item
+        Die Schrittantwort eines stabilen Regelkreises darf nach dem Erreichen
+        des eingeschwungenen Zustand kein erneutes \"Uberschwingen auftreten.
+    \item
+        Die  D\"ampfung  der  Schrittantwort  soll so  stark  sein,  dass  der
+        eingeschwungene Zustand m\"oglichst rasch  erreicht wird ohne dass das
+        \"Uberschwingen des Systems zu stark wird.
+    \item
+        Die Schrittantwort muss f\"ur ein t->oo gleich $y_soll$ sein.
+    \item
+        Die Schnelligkeit des Einschwingvorganges der Schrittantwort ist stark
+        von der  D\"ampfung abh\"angig. Wenn  diese zu  stark oder  zu schwach
+        ist, ist der Regelkreis zu langsam.
+\end{enumerate}

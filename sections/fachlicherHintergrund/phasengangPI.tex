@@ -2,8 +2,8 @@ Es  werden nun  anhand  der  Phasengangmethode sowohl  ein  PI-  wie auch  ein
 PID-Regler f\"ur die in Abschnitt~\ref{subs:frequenzgang} ausgemessene Strecke
 dimensioniert (siehe n\"achster Abschnitt f\"ur PID-Regler).
 
-Folgende  Begriff   werden  dabei  h\"aufig   verwendet  und  sind   daher  in
-Tabelle~\ref{tab:terms} \"ubersichtlich zusammengefasst.
+Tabelle~\ref{tab:terms}  fasst  die  h\"aufig verwendeten  Begriffe  in  einer
+\"Ubersicht zusammen:
 
 \begin{longtable}{lp{60mm}}
     \toprule
@@ -22,8 +22,8 @@ Tabelle~\ref{tab:terms} \"ubersichtlich zusammengefasst.
     $H_o(j\omega)=H_s \cdot H_r(j\omega)                                            $ &  \"Ubertragungsfunktion des offenen Regelkreises \\
     $A_o(j\omega)=|H_o(j\omega)|                                                    $ &  Amplitudengang des offenen Regelkreises \\
     $\varphi_o(j\omega)=arg(H_o(j\omega))=\varphi_s(j\omega)+\varphi_r(j\omega)     $ &  Phasengang des offenen Regelkreises \\
-    $H_{rpid}= K_{rk}\Big[ \frac{(1+sT_{nk})(1+sT_{vk})}{sT_{nk}}\Big]              $ & \"Ubertragungsfunktion des PID-Reglers \\
-    $H_{rpi} = K_{rk}\Big[ 1 + \frac{1}{sT_{nk}} \Big]                              $ & \"Ubertragungsfunktion des PI-Reglers \\
+    $H_{rpid}= K_{rk}\Big[ \frac{(1+sT_{nk})(1+sT_{vk})}{sT_{nk}}\Big]              $ & \"Ubertragungsfunktion des PID-Reglers (bodekonform) \\
+    $H_{rpi} = K_{rk}\Big[ 1 + \frac{1}{sT_{nk}} \Big]                              $ & \"Ubertragungsfunktion des PI-Reglers (bodekonform) \\
 
     \bottomrule
     \caption{Die wichtigsten Begriffsdefinitionen}
@@ -33,7 +33,7 @@ Tabelle~\ref{tab:terms} \"ubersichtlich zusammengefasst.
 
 \subsubsection*{Ziel}
 Das  Ziel ist  die  Bestimmung  der Parameter  $K_{rk}$  und  $T_{nk}$ in  der
-Gleichung:
+\"Ubertragungsfunktion des Reglers:
 
 \begin{equation} \label{eq:pi:target}
     H_{rpi} = K_{rk} \cdot \biggl[ 1 + \frac{1}{s \cdot T_{nk}} \biggr]
@@ -42,14 +42,15 @@ Gleichung:
 
 \subsubsection{Bestimmung der Reglerfrequenz $\omega_{pi}$}
 
-Zuerst wird im Phasengang der Strecke die Frequenz $\omega_{pi}$ bestimmt, f\"ur
-welche die Phase der Strecke $-90\degree$ betr\"agt\footnotemark[1].
+Zuerst wird  im Phasengang  der Strecke  die Frequenz  $\omega_{pi}$ bestimmt,
+f\"ur  welche die  Phase der  Strecke $-90\degree$  betr\"agt, ersichtlich  in
+Abbildung~\ref{fig:pi:omega_pi}~\footnotemark[4].
 
 \begin{equation} \label{eq:pi:phi_s}
     \varphi_s(\omega_{pi}) = -90 \degree
 \end{equation}
 
-\footnotetext[1]{%
+\footnotetext[4]{%
     Der  Winkel  stellt  keinen   endg\"ultigen  Wert  dar. Dieser  wurde  von
     Jakob  Zellweger  fixiert, um  eine  grafische  Evaluation \"uberhaupt  zu
     erm\"oglichen. Durch Anpassung dieses Wertes kann je nach Regelstrecke das
@@ -75,13 +76,13 @@ $\SI{0.3}{\per\second}$. Die Kontrollrechnung mittels Matlab ergibt:
 
 \clearpage
 \subsubsection{Bestimmung von $T_{nk}$}
-Damit kann nun $T_{nk}$ direkt bestimmt werden\footnotemark[2]:
+Damit kann nun $T_{nk}$ direkt bestimmt werden\footnotemark[5]:
 
 \begin{equation} \label{eq:pi:omega_pi}
     T_{nk} = \frac{1}{\omega_{pi}} = \frac{1}{\SI{0.3039}{\per\second}} = \SI{3.2902}{\second}
 \end{equation}
 
-\footnotetext[2]{%
+\footnotetext[5]{%
     Um die  Akkumulation von Ungenauigkeiten  zu minimieren, werden bei diesen
     Berechnungen  die  genauen  Werte  aus  Matlab  verwendet  und  nicht  die
     gerundeten  Zwischenresultate,  was  zu   Abweichungen  zu  den  von  Hand
@@ -91,18 +92,58 @@ Damit kann nun $T_{nk}$ direkt bestimmt werden\footnotemark[2]:
 
 \subsubsection{Bestimmung der Durchtrittsfrequenz $\omega_d$}
 
-Als N\"achstes  soll die Durchtrittsfrequenz $\omega_d$  bestimmt werden. Dazu
-wird  der  f\"ur  $T_{nk}$  erhaltene  Wert  in  Gleichung~\ref{eq:pi:target}
-eingesetzt. Da $K_{rk}$ noch unbekannt ist, wird vorerst $K_{rk} = 1$ gesetzt.
+Die   Durchtrittsfrequenz  ist   die  Frequenz,   bei  der   eine  betrachtete
+\"Ubertragungsfunktion   eine  Verst\"arkung   von   $\SI{0}{\decibel}  =   1$
+aufweist. In  der  Phasengangmethode  soll  sie  so  festgelegt  werden,  dass
+der  offene  Regelkreis  Gleichung~\ref{eq:phi_o} erf\"ullt. Dabei  ist  f\"ur
+$\varphi_s$ abh\"angig  vom gew\"unschten \"Uberschwingverhalten ein  Wert aus
+Tabelle~\ref{tab:phi_s}  auszuw\"ahlen~\footnotemark[6].   Nach dem  Festlegen
+der Durchtrittsfrequenz  wird dann  im n\"achsten Abschnitt  die Verst\"arkung
+des Reglers noch angepasst.
 
-\begin{gather} \label{eq:pi:target}
+\footnotetext[6]{%
+    Die  Werte f\"ur  $\varphi_s$  aus  Tabelle~\ref{tab:phi_s} stellen  keine
+    abschliessende  Auflistung dar  und  sind lediglich  als Anhaltspunkte  zu
+    betrachten. Weicht das Verhalten des geschlossenen Regelkreises am Schluss
+    zu stark  vom gew\"unschten  Ergebnis ab, besteht  durch die  Wahl anderer
+    Werte f\"ur $\varphi_s$ die M\"oglichkeit weiterer Optimierung.
+}
+
+\begin{equation} \label{eq:phi_o}
+    \varphi_o(\omega_d)=\varphi_s.
+\end{equation}
+
+\begin{longtable}{llll}
+    \toprule
+    \endhead
+    \endfoot
+    \endlastfoot
+
+    % CONTENT HERE ---------------------------------------------------------- %
+
+    \"Uberschwingen & 0\%              & 16.3\%           & 23.3\% \\
+    $\varphi_s$        & $-103.7 \degree$ & $-128.5 \degree$ & $-135 \degree$ \\
+
+    \bottomrule
+    \caption{Werte f\"ur $\varphi_s$}
+    \label{tab:phi_s}
+\end{longtable}
+
+Um  Gleichung~\ref{eq:phi_o}  auswerten  zu   k\"onnen,  wird  der  Phasengang
+des    \emph{offenen    Regelkreises}    ben\"otigt. Dazu    wird    der    in
+Gleichung~\ref{eq:pi:omega_pi}    erhaltene    Wert    f\"ur    $T_{nk}$    in
+die   \"Ubertragungsfunktion    des   Reglers   (Gleichung~\ref{eq:pi:target})
+eingesetzt. $K_{rk}$  ist  noch  unbekannt,  hat aber  auf  die  Phase  keinen
+Einfluss und wird somit vorerst einfach auf 1 gesetzt.
+
+\begin{gather} \label{eq:pi:target:inserted}
     \begin{split}
         H_{rpi} & = K_{rk} \cdot \biggl[ 1 + \frac{1}{s \cdot T_{nk}} \biggr] \\
                 & = 1      \cdot \biggl[ 1 + \frac{1}{s \cdot \SI{3.2902}{\second}} \biggr]
     \end{split}
 \end{gather}
 
-Daraus   kann   nun   der   Frequenzgang   des   \emph{offenen   Regelkreises}
+Daraus    kann    nun    der    Frequenzgang    des    offenen    Regelkreises
 (\"Ubertragungsfunktion $H_o$,  Amplitudengang $A_o$,  Phasengang $\varphi_o$)
 bestimmt werden.
 
@@ -139,36 +180,17 @@ Von   besonderem    Interesse   ist   der    Phasengang   $\varphi_o(j\omega)$
 dieser  \"Ubertragungsfunktion  (siehe  Tabelle~\ref{tab:terms}). Wie  Anfangs
 spezifiziert, soll  ein maximals  \"Uberschwingen von  ca. $16.3\%$ angestrebt
 werden. Dazu  muss  gem\"ass Tabelle~\ref{tab:phi_s}  die  Durchtrittsfrequenz
-$\omega_d$ gefunden  werden, an welcher  der offene Regelkreis eine  Phase von
-$-128.5\degree$ aufweist (Gleichung~\ref{eq:phi_o}).
-
-\begin{equation} \label{eq:phi_o}
-    \varphi_o(\omega_d)=\varphi_s.
-\end{equation}
-
-\begin{longtable}{llll}
-    \toprule
-    \endhead
-    \endfoot
-    \endlastfoot
-
-    % CONTENT HERE ---------------------------------------------------------- %
-
-    \"Uberschwingen & 0\%              & 16.3\%           & 23.3\% \\
-    $\varphi_s$        & $-103.7 \degree$ & $-128.5 \degree$ & $-135 \degree$ \\
-
-    \bottomrule
-    \caption{Werte f\"ur $\varphi_s$}
-    \label{tab:phi_s}
-\end{longtable}
+$\omega_d$    gefunden   werden,    an   welcher    der   offene    Regelkreis
+eine   Phase  von   $-128.5\degree$  aufweist   (Gleichung~\ref{eq:phi_o}). In
+Abbildung~\ref{fig:pi:omega_d} kann dies grafisch verifiziert werden.
 
 \begin{figure}[h! width=\pagewidth]
     \includegraphics[width=\textwidth]{images/piOffenerRegelkreisPhasengang.png}
     \caption{%
         Phasengang   $\varphi_o(j\omega)$   des   offenen   Regelkreises   mit
         eingetragener Durchtrittsfrequenz $\omega_{d}$ (vertikale gestrichelte
-        Linie). Wie man verifizieren kann, weist der offene Regelkreis unseres
-        Beispiels bei dieser Kreisfrequenz  eine Phase von $-128.5\degree$ auf
+        Linie). Wie man  sieht, weist der offene  Regelkreis unseres Beispiels
+        bei dieser Kreisfrequenz eine Phase von $-128.5\degree$ auf
         (etwa $\SI{-2.24}{\radian}$).
     }
     \label{fig:pi:omega_d}
@@ -182,19 +204,16 @@ Dies ergibt:
 
 \subsubsection{Bestimmung der Reglerverst\"arkung $K_{rk}$}
 
-Im  letzten  Schritt   wird  nun  die  Durchtrittsfrequenz\footnotemark[3]   benutzt,  um  die
-ben\"otigte  Verst\"arkung  $K_{rk}$  des   Reglers  zu  bestimmen. Dazu  wird
-$j\omega_d$ in Gleichung~\ref{eq:pi:h_open} f\"ur den Parameter $s$ eingesetzt
-und $|H_o(j\omega_d)| = 1$ gesetzt.
-
-\footnotetext[3]{%
-    Durchtrittsfrequenz: Frequenz,  bei der  die  Amplitude der  betrachteten
-    \"Ubertragungsfunktion $\SI{0}{\decibel} = 1$ ist.
-}
+Im  letzten  Schritt  muss  nun  wie im  vorherigen  Abschnitt  erw\"ahnt  die
+Verst\"arkung  $K_{rk}$   des  Reglers   noch  angepasst  werden,   damit  der
+offene   Regelkreis  bei   der  angestrebten   Durchtrittsfrequenz  $\omega_d$
+auch  effektiv  eine Verst\"arkung  von  1  aufweist.  Dazu  wird  $j\omega_d$
+in  Gleichung~\ref{eq:pi:h_open}  f\"ur  den   Parameter  $s$  eingesetzt  und
+$|H_o(j\omega_d)| = 1$ gesetzt.
 
 \begin{gather} \label{eq:pi:A_o_set_to_one}
     \begin{split}
-        A_o & = | H_o (j\omega_d) | \\
+        A_o & = | H_o (j\omega_d) | = | H_{rpi} (j\omega) \cdot H_s (j\omega)| \\
             & = \abs*{
                     \bigg(
                         K_{rk} \cdot \biggl[ 1 + \frac{1}{j \cdot \omega_d \cdot T_{nk}} \biggr]
@@ -240,7 +259,9 @@ Somit ist der PI-Regler vollst\"andig bestimmt und hat folgende Form:
     H_{rpi} = 0.518 \cdot \biggl[ 1 + \frac{1}{s \cdot \SI{3.29}{\second}} \biggr]
 \end{equation}
 
-Zum Vergleich das Bode-Diagramm mit allen relevanten Kurven und Werten:
+In Abbildung~\ref{fig:pi:all} sind die  wichtigsten Werte f\"ur diesen Prozess
+nochmals in einer \"Ubersicht zusammengefasst.
+
 \begin{figure}[h! width=\pagewidth]
     \includegraphics[width=\textwidth]{images/piBode.png}
     \caption{%

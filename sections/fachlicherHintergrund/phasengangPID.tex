@@ -1,6 +1,6 @@
 \subsubsection*{Ziel}
 Das Ziel ist  die Bestimmung der Parameter $K_{rk}$, $T_{nk}$  und $T_{vk}$ in
-der Gleichung:
+der \"Ubertragungsfunktion des Reglers:
 
 \begin{equation} \label{eq:pid:target}
     H_{rpid} = K_{rk} \cdot \biggl[ \frac{(1 + s \cdot T_{nk}) \cdot (1 + s \cdot T_{vk}) }{ s \cdot T_{nk} } \biggr]
@@ -9,19 +9,28 @@ der Gleichung:
 
 \subsubsection{Bestimmung der Reglerfrequenz $\omega_{pid}$}
 
-Analog  zum PI-Regler  wird zuerst  im  Phasengang der  Strecke die  Frequenz
-$\omega_{pid}$ bestimmt, f\"ur  welche die Phase der  Strecke einen bestimmten
-Wert aufweist, nur wird hier $-135\degree$ benutzt:
+Analog  zum PI-Regler  wird  zuerst  im Phasengang  der  Strecke die  Frequenz
+$\omega_{pid}$  bestimmt,  f\"ur  welche   die  Phase  einen  bestimmten  Wert
+aufweist, nur wird hier $-135\degree$ benutzt~\footnotemark[7]:
 
 \begin{equation} \label{eq:pid:phi_s}
     \varphi_s(\omega_{pid}) = -135 \degree
 \end{equation}
+
+\footnotetext[7]{%
+    Wie   auch  beim   PI-Regler   stellt  diese   Frequenz  lediglich   einen
+    Ausgangspunkt dar  und kann  zur weiteren  Optimierung des  Resultats noch
+    angepasst werden.
+}
 
 In unserem Beispiel ergibt dies:
 
 \begin{equation} \label{eq:pid:omega_pid}
     \omega_{pid} = \SI{0.6714}{\per\second}
 \end{equation}
+
+Eine       grafische        \"Uberpr\"ufung       kann        anhand       von
+Abbildung~\ref{fig:pid:complete} durchgef\"uhrt werden.
 
 
 \subsubsection{Steigung des Phasengangs bei der Reglerfrequenz}
@@ -54,7 +63,7 @@ Da die Ableitung eine lineare Funktion ist, gilt somit auch:
     \frac{d\varphi_o}{d\omega} = \frac{d\varphi_s}{d\omega} + \frac{d\varphi_r}{d\omega}
 \end{equation}
 
-Diese Beziehungen  k\"onnen auch  gut in Abbildung  \ref{fig:pid_complete} von
+Diese Beziehungen  k\"onnen auch  gut in Abbildung  \ref{fig:pid:complete} von
 Hand \"uberpr\"uft werden.
 
 Es soll nun gelten:
@@ -78,19 +87,30 @@ Dazu f\"uhrt man den Hilfsparameter $\beta$ ein, f\"ur den gilt:
     \end{split}
 \end{gather}
 
-Die  beiden Frequenzen  $\frac{1}{T_{vk}}$  und  $\frac{1}{T_{nk}}$ sind  also
-symmetrisch  um den  Faktor $\beta$  gr\"osser bzw.  kleiner als  die Frequenz
-$\omega_{pid}$, gut ersichtlich  in Abbildung~\ref{fig:pid_complete}. Will man
-$\beta$ von Hand bestimmen, trifft  man zuerst eine ``vern\"unftige'' Annahme,
-zum Beispiel:
+Wie in Abbildung ~\ref{fig:pid:complete} gesehen werden kann~\footnotemark[8],
+liegen  die   beiden  Frequenzen  $\frac{1}{T_{vk}}$   und  $\frac{1}{T_{nk}}$
+symmetrisch um  den Faktor $\beta$ respektive  $\frac{1}{\beta}$ oberhalb bzw.
+unterhalb der Frequenz $\omega_{pid}$.
+
+\footnotetext[8]{%
+    Man  beachte  dabei,  dass  der Plot  logarithmisch  skaliert  ist.   Eine
+    identische Wegstrecke  zwischen zwei  Punkte-Paaren auf  der Frequenzachse
+    bedeutet also,  dass diese um denselben  \emph{Faktor} auseinander liegen,
+    und nicht,  dass die Differenz  zwischen den jeweiligen  Punkten identisch
+    ist. Im  Falle  der  Punkte-Paare $[\frac{1}{T_{nk}},  \omega_{pid}]$  und
+    $[\omega_{pid}, \frac{1}{T_{vk}}]$  ist  dieser  Faktor  $\beta$,  wie  in
+    Gleichung~\ref{eq:pid:beta:start} ersichtlich.
+}
+
+
+Will  man $\beta$  von Hand  berechnen, trifft  zuerst eine  ``vern\"unftige''
+Annahme, zum Beispiel:
 
 \begin{equation} \label{eq:pid:beta:initial_value}
     \beta = 0.5
 \end{equation}
 
-Mit  diesem Startwert  bestimmt  man nun  $T_{nk}$  und ${T_{vk}}$. Die  somit
-erhaltenen Werte setzt man in  Gleichung \ref{eq:pid:target} ein, zusammen mit
-dem Wert f\"ur $\omega_{pid}$ aus Gleichung \ref{eq:pid:omega_pid}:
+Mit  diesem Startwert  bestimmt  man nun  $T_{nk}$  und ${T_{vk}}$:
 
 \begin{gather} \label{eq:pid:t_nk_t_vk_initial_results}
     \begin{split}
@@ -99,7 +119,11 @@ dem Wert f\"ur $\omega_{pid}$ aus Gleichung \ref{eq:pid:omega_pid}:
     \end{split}
 \end{gather}
 
-Eingesetzt in die Reglergleichung, vorerst mit $K_{rk} = 1$:
+Die  somit  erhaltenen  Werte   setzt  man  in  Gleichung  \ref{eq:pid:target}
+ein,   zusammen   mit   dem    Wert   f\"ur   $\omega_{pid}$   aus   Gleichung
+\ref{eq:pid:omega_pid}. Da  $K_{rk}$   noch  unbekannt   ist,  aber   auf  den
+Phasengang  keinen  Einfluss   hat,  setzt  man  vorerst  $K_{rk}   =  1$,  um
+weiterrechnen zu k\"onnen.
 
 \begin{gather} \label{eq:pid:t_nk_t_vk_initial_results}
     \begin{split}
@@ -118,7 +142,6 @@ kann in Anhang~\ref{app:beta_manual_calculation} gefunden werden.
         \frac{d\varphi_r}{d\omega} \biggr \rvert_{\omega=\omega_{pid}} & = \SI{1.1920}{\second}
     \end{split}
 \end{gather}
-\todo{Die zugeh\"orige Rechnung ist lange und m\"uhsam, allenfalls in Anhang? Ebenfalls: Einheit kontrollieren}
 
 
 Setzt man dies in Gleichung \ref{eq:pid:phi_sum} ein, erh\"alt man:
@@ -135,7 +158,7 @@ Setzt man dies in Gleichung \ref{eq:pid:phi_sum} ein, erh\"alt man:
 
 Mit  $\beta  = 0.5$  erh\"alt  man  also eine  zu  hohe  Steigung des  offenen
 Regelkreises   an    der   Stelle  $\omega_{pid}$,   folglich   muss   $\beta$
-{\em{verkleinert}} werden.   Diese Berechnungen  werden nun mit  jeweils neuen
+\emph{verkleinert} werden.   Diese Berechnungen  werden nun mit  jeweils neuen
 Werten  f\"ur  $\beta$  solange  wiederholt,  bis  die  Steigung  des  offenen
 Regelkreises die gew\"unschte N\"ahe zu $-\frac{1}{2}$ aufweist.
 
@@ -152,14 +175,21 @@ geeigneten Algorithmus in Matlab liefert schlussendlich folgendes Ergebnis:
     \end{split}
 \end{gather}
 
+Diese Werte sind in ebenfalls in~\ref{fig:pid:complete} eingetragen.
+
 Sollte  man  f\"ur  $\beta$  einen komplexen  Wert  erhalten,  wird  $\beta=1$
 gesetzt.\todo{Wie kann dies egtl. passieren?}
 
 
 \subsubsection{Durchtrittsfrequenz $\omega_d$}
 
-Diese  Werte setzt man nun in Gleichung \ref{eq:pid:target} ein. $K_{rk}$ wird
-wie bei der Bestimmung von $\beta$ vorerst noch auf 1 gesetzt.
+Als  letzte Unbekannte  verbleibt  die Verst\"arkung  $K_{rk}$. Wie auch  beim
+PI-Regler ist zum Finden  der Verst\"arkung die Durchtrittsfrequenz $\omega_d$
+zu bestimmen, um anschliessend mit deren Hilfe $K_{rk}$ auszurechnen.
+
+Die    Resultate    aus     Gleichung~\ref{eq:pid:beta_result}    werden    in
+Gleichung~\ref{eq:pid:target} eingesetzt. $K_{rk}$  ist immer  noch unbekannt,
+und wird daher vorerst bei 1 belassen.
 
 \begin{gather} \label{eq:pid:h_rpid_beta_result}
     \begin{split}
@@ -168,11 +198,12 @@ wie bei der Bestimmung von $\beta$ vorerst noch auf 1 gesetzt.
     \end{split}
 \end{gather}
 
-Zur Bestimmung von $K_{rk}$ wird nun der Frequenzgang des offenen Regelkreises
-betrachtet. Dazu  multipliziert  man  wie  gehabt  die  \"Ubertragungsfunktion
+
+Es interessiert hier der Phasengang des offenen Regelkreises (auch eingetragen
+in   Abbildung~\ref{fig:pid:complete}),    wozu   die   \"Ubertragungsfunktion
 der  Strecke   (siehe  Gleichung   \ref{eq:transfer:plant})  mit   der  soeben
 bestimmten  provisorischen   \"Ubertragungsfunktion  des   Reglers  (Gleichung
-\ref{eq:pid:h_rpid_beta_result}).
+\ref{eq:pid:h_rpid_beta_result}) multipliziert wird.
 
 \begin{equation} \label{eq:pid:h_o_k_rk_one}
     H_{o}(j\omega) = H_{rpid}(j\omega) \cdot H_s(j\omega)
@@ -188,7 +219,7 @@ anstreben, womit gem\"ass Tabelle \ref{tab:phi_s} gilt:
 \end{equation}
 
 Dieser   Wert   wird   analog   zum   PI-Regler   aus   dem   Phasengang   des
-offenen Regelkreises  abgelesen (siehe Abbildung~\ref{fig:pid_complete}). Eine
+offenen Regelkreises  abgelesen (siehe Abbildung~\ref{fig:pid:complete}). Eine
 Nachrechnung mittels Matlab ergibt:
 
 \begin{equation} \label{eq:pid:omega_d_target}
@@ -198,14 +229,13 @@ Nachrechnung mittels Matlab ergibt:
 
 \subsubsection{Bestimmung der Reglerverst\"arkung $K_{rk}$}
 
-In einem letzten Schritt wird  nun der Amplitudengang des offenen Regelkreises
-an der  Stelle $\omega_d$ gleich 1  gesetzt und diese Gleichung  nach $K_{rk}$
+Im letzten  Schritt wird  nun der Amplitudengang  des offenen  Regelkreises an
+der  Stelle $\omega_d$  gleich 1  gesetzt  und diese  Gleichung nach  $K_{rk}$
 aufgel\"ost:
 
 \begin{equation} \label{eq:pid:h_o_k_rk_one}
     \begin{split}
-        A_{o}(j\omega_d)    & = | H_{o}(j\omega_d) |                            \\
-                            & = | H_{rpid}(j\omega_d) \cdot H_s(j\omega_d) |    \\
+        A_{o}(j\omega_d)    & = | H_{o}(j\omega_d) | = | H_{rpid}(j\omega_d) \cdot H_s(j\omega_d) |    \\
                             & = \Biggl \rvert
                                     K_{rk}
                                     \cdot
@@ -250,7 +280,8 @@ Somit ist der Regler vollst\"andig bestimmt und hat folgende \"Ubertragungsfunkt
     H_{rpid}(s) = 1.83084 \cdot \biggl[ \frac{(1 + s \cdot \SI{5.3656}{\second} ) \cdot (1 + s \cdot \SI{0.4134}{\second} ) }{ s \cdot \SI{5.3656}{\second} } \biggr]
 \end{equation}
 
-Die Frequenzg\"ange der Strecke, des Reglers und des offenen Regelkreises:
+Zusammenfassend sind in Abbildung~\ref{fig:pid:complete} die verschiedenen
+Frequenzg\"ange und Frequenzen eingetragen.
 
 \begin{figure}[h! width=\pagewidth]
     \includegraphics[width=\textwidth]{images/pidCompletePlot.png}
@@ -260,6 +291,6 @@ Die Frequenzg\"ange der Strecke, des Reglers und des offenen Regelkreises:
         $\omega_{pid}$,   die   beiden   Frequenzen   $\frac{1}{T_{vk}}$   und
         $\frac{1}{T_{nk}}$ sowie die Durchtrittsfrequenz $\omega_d$.
     }
-    \label{fig:pid_complete}
+    \label{fig:pid:complete}
 \end{figure}
 \clearpage

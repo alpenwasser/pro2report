@@ -1,43 +1,66 @@
-Als   Ausgangspunkt  der   Reglerdimensionierung   dient  die   Schrittantwort
-der  Strecke,   aus  welcher   die  Verts\"arkung   $K_s$  der   Strecke,  die
-Verz\"ogerungszeit  $T_u$ und  die Anstiegszeit  $T_g$ abgelesen  werden.  Bei
-unserem Tool werden diese Werte als Eingabeparameter verwendet.
+Als  Ausgangspunkt  der  Reglerdimensionierung dient  die  Schrittantwort  der
+Strecke. Durch  Einzeichnen  der Wendetangente~\footnotemark[1]  ergeben  sich
+Schnittpunkte  der  Wendetangente mit  der  Zeitachse  $[T_u,0]$ und  mit  dem
+Zielwert  $[T_g+T_g,1]$.  Es  k\"onnen nun  also die  Verz\"ogerungszeit $T_u$
+und die  Anstiegszeit $T_g$  aus aus  Abbildung~\ref{fig:plant_step} abgelesen
+werden.
+
+\footnotetext[1]{%
+    Die Wendetangante ist die Tangente an den Wendepunkt in der Anstiegs-Phase
+    der Schrittantwort.
+}
 
 Wir werden in diesem Bericht folgende Strecke als Beispiel nehmen:
 \begin{figure}[h! width=\pagewidth]
     \includegraphics[width=\textwidth]{images/streckeSchrittantwort.png}
     \caption{%
     Schrittantwort der  Beispielstrecke (schwarz), Wendetangende  (rot), $T_u$
-    und $T_g$ (blau)%
+    und $T_g$ (blau)
     }
     \label{fig:plant_step}
 \end{figure}
 
-Der  geschlossene   Regelkreis  soll  schlussendlich  maximal   etwa  $16.3\%$
-\"uberschwingen.
-
 Ausmessen der Schrittantwort ergibt:
 \begin{itemize}
     \item
-        $K_s = \SI{2}{\second}$
+        $K_s = 2$~\footnotemark[2]
     \item
         $T_u = \SI{1.1}{\second}$
     \item
         $T_g = \SI{8.9}{\second}$
 \end{itemize}
 
-Da die Reglerdimensionierung vom \emph{Frequenzgang} einer Strecke ausgeht und
-nicht von deren  Schrittantwort, besteht der n\"achste Schritt  nun darin, aus
-den obigen Werten den Frequenzgang der Strecke zu bestimmen. Dies erledigt die
-Methode  \code{p\_sani}\footnotemark[1],   welche  uns  die  Werte  f\"ur  die
-\"Ubertragungsfunktion  der  Strecke  liefert.  \todo{Allenfalls  Verweis  auf
-Softwareteil  f\"ur Erkl\"arungen  zu sani-Methode.}   In unserem  Fall ergibt
+\footnotetext[2]{%
+    Abbildung~\ref{fig:plant_step}  ist  auf  1  normiert,  die  Verst\"arkung
+    unserer  Beispielstrecke   betr\"agt  $2$.    An  den  Werten   f\"ur  die
+    Verz\"ogerungs-  und Anstiegszeit  oder  am  Ausmessen der  Schrittantwort
+    \"andert sich dadurch nichts
+}
+
+Der  geschlossene   Regelkreis  soll  schlussendlich  maximal   etwa  $16.3\%$
+\"uberschwingen.
+
+Da die Reglerdimensionierung mit der Phasengangmethode vom \emph{Frequenzgang}
+einer   Strecke  ausgeht   und   nicht  von   deren  Schrittantwort,   besteht
+der   n\"achste   Schritt    nun   darin,   aus   den    obigen   Werten   den
+Frequenzgang   der   Strecke   zu   bestimmen. Dies   erledigt   die   Methode
+\code{p\_sani}\footnotemark[3],    welche   uns    die    Werte   f\"ur    die
+\"Ubertragungsfunktion  der  Strecke  liefert.
+  In unserem  Fall ergibt
 dies folgendes Polynom:
 
-\footnotetext[1]{%
+\footnotetext[3]{%
     Die  Methode  \code{p\_sani}  wurde  zu  Beginn  des  Projektes  in  einer
     Matlab-Implementation  zur Verf\"ugung  gestellt  und anschliessend  f\"ur
     unser Tool in Java \"ubersetzt.
+
+    Sie kann aus der Verz\"ogerungszeit, der Anstiegszeit und der Verst\"arkung
+    der Strecke ein Polynom f\"ur deren \"Ubertragungsfunktion vom Grad 1 bis 8
+    ausrechnen.
+
+    Als Eingabeparameter werden  die Werte $T_u$, $T_g$  und $K_s$ ben\"otigt,
+    als R\"uckgabewert erh\"alt  man ein Array mit den Zeiten  $T_i$ f\"ur die
+    Nenner der Faktoren des Polynoms (siehe Gleichung~\ref{eq:transfer:plant}).
 }
 
 \begin{gather} \label{eq:transfer:plant}

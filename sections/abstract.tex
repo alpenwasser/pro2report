@@ -1,15 +1,12 @@
-% Problemstellung (Welches Problem wurde gelöst? Welche Aufgabe war zu erfüllen? In welchem Gebiet wurde es gelöst?)
-Im Gebiet der Regelungstechnik ist das Dimensionieren von Regler eine zentrale Aufgabe, da mit der korrekten Einstellung der Regler stabil und die Differenz zwischen Ist und Soll-Wert möglichst klein ist.\\
-Die Phasengangmethode ist eine ursprünglich eine graphische Berechnungsart, welche anhand der Schrittantwort die Reglerwerte berechnet. Die Aufgabe der Implementierung dieser Methode in Java war die Hauptaufgabe.\\
-\\
-%Ziel/Anforderungen (Was soll unter welchen Bedingungen/Berücksichtigungen erreicht werden?)
-Die Ziel dieses Projektes war, ein  benutzerfreundliches Softwaretool, das heisst auch für ein ungeübter Regelungstechniker benutzen kann,  zu entwickeln, welches anhand der Phasengangmethode die Dimensionierung eines PI und PID Reglers durchführt. Die Ausgabe des   Tools soll anhand der Eingabe der Schrittantwortwerte die numerische wie auch die graphische Lösung ausgeben.\\
-\\
-%Methodik: (Wie wurde das Problem angegangen?)
-Die Phasengangmethode und die als Vergleich angewendete Faustformeln wurden in Matlab geschrieben und mit Referenzdaten getestet. Die Implementierung in Java war ein zweistufiger Prozess, in welchem zuerst die matlabtypischen Berechungsfunktionen ausprogrammiert  und im zweiten Schritt die Regeldimensionierung implementiert wurden.\\
-\\
-%Hauptresultate
-Das Softwaretool besitzt eine graphische Benutzeroberfläche, über welche auf der linken Seite die Werte der Schrittantwort eingelesen und die numerserischen Lösungen des Reglers ausgegeben  und über die rechte Seite die graphischen Lösungen dargestellt werden.\\
-\\
-%Konklusion (Schlussfolgerung; Was ist das Zentrale an der Lösung? Was ist das Neue an der Lösung?
-Das Zentrale an der Lösung ist die Berechungungseschwindigkeit mit welcher das Tool arbeitet. Dies ermöglicht eine "Echtzeit" Dimensionierung des Reglers. Das Neue an dieser Lösung ist das Einbinden der Phasengangmethode in ein Reglerdimensionierungstool.
+
+In der Regelungstechnik ist die korrekte Dimensionierung der Regler grundlegend. Die zu regelnde Strecke kann nur durch richtig eingestellte Regelwerte wie gewünscht verändert werden. 
+
+Dieses Projekt hat sich zum Ziel gesetzt ein Softwaretool zu entwickeln, welches aus den eingegebenen Streckenwerten $K_s$, $T_u$ und $T_g$ PI- und PID-Regler dimensioniert. Das Tool berechnet die Reglerwerte mit der sogenannten Phasengangmethode, welche von Jakob Zellweger, ehemaliger Dozent der Fachhochschule Nordwestschweiz, stammt. Diese Methode wurde ursprünglich für die graphische Auswertung des Phasengangs entwickelt und durch Handarbeit mit Geodreieck und Bleistift angewendet. Das Softwaretool ermöglicht die bewährte Methode effizient durch ein automatisiertes Verfahren anzuwenden.
+
+Das entwickelte Softwaretool simuliert neben den berechneten Reglerwerten auch die Schrittantwort des geschlossenen Regelkreises. Zusätzlich wurde die Berechnung dreier gängigen Faustformeln mit implementiert. Zum Vergleich können die Schrittantworten der Faustformeln im gleichen Plot angezeigt werden.
+Für die Phasengangmethode werden gleichzeitig drei Graphen abgebildet. Einer mit der Standart-Reglerknickfrequenz gemäss Phasengangmethode und zwei weitere welche sich in der Reglerknickfrequenz um ± 10° unterscheiden.
+
+Zusätzlich kann die Reglerknickfrequenz und das Überschwingen mittels Schiebregler manuell verändert werden. Dies ermöglicht die im Vergleich, zu der ursprünglichen Handarbeit, enorm hohe Geschwindigkeit. Somit wird eine Echtzeit Optimierung der bestehenden Phasengangmethode getätigt.
+
+
+

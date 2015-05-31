@@ -506,3 +506,39 @@ zwei Arrays) an einem bestimmten Array-Index.
 
 \subsubsection*{Java-Code}
 \lstinputlisting[style=java]{java/schrittIfft.java}
+
+
+% ---------------------------------------------------------------------------- %
+\subsection{overShootOptimisation}
+% ---------------------------------------------------------------------------- %
+
+\code{overShootOptimisation}   optimiert    das   \"Uberschwingverhalten   des
+generierten Reglers.
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    Keine Eingabewerte &
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    Keine R\"uckgabewerte &
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        Das Maximum in der Schrittantwort des geschlossenen Regelkreises finden.
+    \item
+        Diesen Wert mit dem vom Benutzer gew\"unschten maximalen \"Uberschwingen vergleichen.
+    \item
+        Falls   zu   starkes   \"Uberschwingen: Reglerverst\"arkung   $K_{rk}$
+        schrittweise reduzieren, bis gew\"unschtes Verhalten eingehalten wird.
+    \item
+        Falls   zu  schwaches   \"Uberschwingen: Reglerverst\"arkung  $K_{rk}$
+        schrittweise erh\"ohen, bis gew\"unschtes Verhalten eingehalten wird.
+\end{enumerate}
+
+\subsubsection*{Java-Code}
+\lstinputlisting[style=java]{java/overshootoptimisation.java}

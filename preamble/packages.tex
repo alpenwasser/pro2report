@@ -30,6 +30,28 @@
 \usepackage[german, colorinlistoftodos]{todonotes}
 \usepackage{siunitx}
 \usepackage{mathtools}
+\usepackage{matlab-prettifier}
+\lstdefinestyle{numbers}{numbers=left, stepnumber=1, numberstyle=\tiny, numbersep=10pt}
+%\lstset{%
+%    style                 = Matlab-editor,
+%    basicstyle            = \tiny\mlttfamily,
+%    upquote               = true,
+%    mlunquotedstringdelim = {/*}{*/},
+%    mlmoresharedvars      = {myglobalvar},
+%}
+\lstdefinestyle{Matlab-editor-2}{%
+  style               = MatlabBaseStyle@mlpr,
+  mllastelementstyle  = \color{black}                    ,
+  mlkeywordstyle      = \color[RGB]{000,000,255}         ,
+  mlcommentstyle      = \color[RGB]{034,139,034}         ,
+  mlstringstyle       = \color[RGB]{160,032,240}         ,
+  mlsyscomstyle       = \color[RGB]{178,140,000}         ,
+  mlsectiontitlestyle = \commentStyle@mlpr      \bfseries,
+  mlsharedvarstyle    = \color[RGB]{000,163,163}         ,
+  mlplaceholderstyle  = \mleditorphstyle,
+  basicstyle          = \ttfamily\scriptsize,
+  numbers             = left,
+}
 
 
 \SetWatermarkText{\texttt{Entwurf}}

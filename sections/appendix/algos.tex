@@ -423,3 +423,86 @@
 
 \subsubsection*{Matlab-Code}
 \lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffchien.m}
+
+
+% ---------------------------------------------------------------------------- %
+\subsection{diskDiff}
+% ---------------------------------------------------------------------------- %
+
+\code{diskDiff} berechnet  die Steigung einer Funktion  (repr\"asentiert durch
+zwei Arrays) an einem bestimmten Array-Index.
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    x-Array        & Array mit x-Werten \\
+    y-Array        & Array mit zugeh\"origen Funktionswerten \\
+    Index          & Index, an dem die Steigung berechnet werden soll
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    Steigung   & Steigung an gesuchter Stelle
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        Pr\"ufen, ob Index innerhalb des Arrays liegt.
+    \item
+        Steigungsdreieck  zwischen  Element  and  Index  und  den  unmittelbar
+        daneben liegenden Array-Elementen bilden.
+    \item
+        Durchschnitt der beiden Steigungsdreiecke ausrechnen.
+    \item
+        Falls Steigung an erster Array-Stelle verlangt ist: Steigungsdreieck
+        mit dem zweiten Element bilden und Steigung zur\"uckgeben.
+    \item
+        Falls Steigung an letzter Array-Stelle verlangt ist: Steigungsdreieck
+        mit zweitletztem Array-Element bilden und Steigung zur\"uckgeben.
+\end{enumerate}
+
+\subsubsection*{Java-Code}
+\lstinputlisting[style=java]{java/diskDiff.java}
+
+
+% ---------------------------------------------------------------------------- %
+\subsection{schrittIfft}
+% ---------------------------------------------------------------------------- %
+
+\code{schrittIfft}   berechnet  die   Schrittantwort   im  Zeitbereich   einer
+\"Ubertragungsfunktion. \todo{korrekt?}
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    Z\"ahler & Z\"ahler der \"Ubertragungsfunktion                             \\
+    Nenner   & Nenner der \"Ubertragungsfunktion                               \\
+    Frequenz & Frequenz, bis zu der die Frequenzachse ausgewertet werden soll. \\
+    n        & Granulierung der Frequenzachse
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    Resultat & \parbox[t][4em][s]{0.7\textwidth}{Zweidimensionales Array mit Zeitachse und zugeh\"origen Funktionswerten}
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        Array mit f\"ur Frequenzachse generieren.
+    \item
+        Frequenzgang der \"Ubertragungsfunktion berechnen.
+    \item
+        Impulsantwort im Frequenzbereich berechnen.
+    \item
+        In den Zeitbereich zur\"ucktransformieren.
+    \item
+        Aus   den   Realteilen    des   Resultat-Arrays   die   Schrittantwort
+        zusammensetzen    (aufsummieren    des   Realteils    des    aktuellen
+        Array-Elements    mit    den     Realteilen    aller    vorhergehenden
+        Array-Elementen).
+\end{enumerate}
+
+\subsubsection*{Java-Code}
+\lstinputlisting[style=java]{java/schrittIfft.java}

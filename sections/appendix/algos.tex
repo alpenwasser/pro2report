@@ -1,19 +1,21 @@
-\subsection*{Sani}
+% ---------------------------------------------------------------------------- %
+\subsection{Sani}
+% ---------------------------------------------------------------------------- %
 
-\subsubsection{Input}
+\subsubsection*{Input}
 
 \begin{tabular}{p{40mm}l}
-    \code{Tu} & Verzugszeit \\
-    \code{Tg} & Anstiegszeit
+    $ T_u $ & Verzugszeit \\
+    $ T_g $ & Anstiegszeit
 \end{tabular}
 
-\subsubsection{Output}
+\subsubsection*{Output}
 \begin{tabular}{p{40mm}l}
-    \code{n} & Ordnung der Regelstrecke \\
-    \code{T} & Zeitkonstante
+    $ n $ & Ordnung der Regelstrecke \\
+    $ T $ & Zeitkonstante
 \end{tabular}
 
-\subsubsection{Algorithmus}
+\subsubsection*{Algorithmus}
 \begin{enumerate}
     \item
         Ung\"ultige Eingaben warden abgefangen und ein Fehler zur\"uckgegeben.
@@ -31,28 +33,31 @@
         Umspeichern \& Sortieren
 \end{enumerate}
 
-\subsubsection{Matlab-Code}
+\subsubsection*{Matlab-Code}
 \lstinputlisting[style=Matlab-editor-2]{mfiles/p2Sani.m}
 
 
-\subsection*{Umrechnung von reglerkonformer in bodekonforme Darstellung}
-\subsubsection{Input}
+% ---------------------------------------------------------------------------- %
+\subsection{Umrechnung von reglerkonformer in bodekonforme Darstellung}
+% ---------------------------------------------------------------------------- %
+
+\subsubsection*{Input}
 \begin{tabular}{p{40mm}l}
-    \code{Tv}        & Vorhaltezeit \\
-    \code{Tn}        & Nachstellzeit \\
-    \code{Tp}        & Periodendauer \\
-    \code{Kr}        & Verst\"arkungsfaktor des Reglers \\
-    \code{Reglertyp} & Typ des Reglers (P, PI, PID)
+    $ T_v $        & Vorhaltezeit \\
+    $ T_n $        & Nachstellzeit \\
+    $ T_p $        & Periodendauer \\
+    $ K_r $        & Verst\"arkungsfaktor des Reglers \\
+      Reglertyp    & Typ des Reglers (P, PI, PID)
 \end{tabular}
 
-\subsubsection{Output}
+\subsubsection*{Output}
 \begin{tabular}{p{40mm}l}
-    \code{Tnk} & Nachstellzeit \\
-    \code{Tvk} & Vorhaltezeit \\
-    \code{Krk} & Verst\"arkungsfaktor des Reglers
+    $ T_{nk} $ & Nachstellzeit \\
+    $ T_{vk} $ & Vorhaltezeit \\
+    $ K_{rk} $ & Verst\"arkungsfaktor des Reglers
 \end{tabular}
 
-\subsubsection{Algorithmus}
+\subsubsection*{Algorithmus}
 \begin{enumerate}
     \item
         W\"ahlt je nach Reglertyp die Umrechnungsformel.
@@ -79,333 +84,342 @@
             T_{vk} = \frac{(T_n+T_p)*(1+\varepsilon)}{2}
         \end{equation*}
 \end{enumerate}
-\subsubsection{Matlab-Code}
-%\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Sani.m}
+\subsubsection*{Matlab-Code}
+\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Bodekonf.m}
 
 
-%    Algorithmus:  \\
-%    1.	Entscheidet je nach Reglertyp die Umrechungformel\\
-%    2.	Beim I Regler giebt dies einen Error zur\"uck das dieser nicht Implementiert ist.\\
-%    3.	F\"ur PI:\\
-%		Tnk=Tn , Krk=Kr , Tvk=0 .  \\
-%    4.	F\"ur PID:         \\
-%\begin{equation}
-%\varepsilon =\frac{
-%\sqrt{1-(4*Tn*(Tv-Tp))}}{(Tn+Tp)^2}
-%\end{equation}    \\
-%\begin{equation}
-%Tnk= \frac{(Tn+Tp)\cdot(1+\varepsilon)}{2}
-%\end{equation} \\
-%\begin{equation}
-%Krk= \frac{Kr*(\frac{1+Tp}{Tnk})*(1+\varepsilon)}{2}
-%\end{equation} \\
-%\begin{equation}
-%Tvk = \frac{(Tn+Tp)*(1+\varepsilon)}{2}
-%\end{equation}\\ \hline
-%Matlabcode: \\
-%\includegraphics[width=\textwidth] {bodekonf}   \\ \hline
-%\end{tabular}
-%
-%    \begin{tabular}{| p{13cm} |}
-%    \hline
-%    Umrechnung von Regel- zu Bodekonform \\ \hline
-%    Input:
-%    \begin{tabbing}
-%    \hspace*{4cm}\=\hspace*{2cm}\= \kill
-%    Tp	\>			Periodendauer\\
-%    Tnk	\>			Nachstellzeit\\
-%    Tvk	\>			Vorhaltzeit\\
-%    Krk	\>			Verst\"arkungsfaktor des Reglers\\
-%    Reglertyp	\>		Reglertyp(I,Pi,PID)
-%    \end{tabbing} \\  \hline
-%
-%    Output:
-%    \begin{tabbing}
-%    \hspace*{4cm}\=\hspace*{2cm}\= \kill
-%    Tn	\>			Nachstellzeit \\
-%    Tv	\>			Vorhaltzeit\\
-%    Kr	\>			Verst\"arkungsfaktor des Reglers
-%    \end{tabbing} \\ \hline
-%
-%    Algorithmus:  \\
-%    1.	Entscheidet je nach Reglertyp die Umrechungformel\\
-%    2.	Beim I Regler giebt dies einen Error zur\"uck das dieser nicht Implementiert ist.\\
-%    3.	F\"ur PI:\\
-%		Tn=Tnk , Kr=Krk , Tv=0 .  \\
-%    4.	F\"ur PID:         \\
-%\begin{equation}
-%Kr= Krk*\frac{1+Tvk}{Tnk}
-%\end{equation} \\
-%\begin{equation}
-%Tn= Tnk+Tvk-Tp
-%\end{equation} \\
-%\begin{equation}
-%Tv = \frac{Tnk*Tvk}{Tnk+Tvk-Tp)-Tp}
-%\end{equation}\\ \hline
-%
-%Matlabcode: \\
-%\includegraphics[width=\textwidth] {regelkonf}
-%\\ \hline
-%    \end{tabular}
-%
-%
-%     \begin{tabular}{| p{13cm} |}
-%    \hline
-%    utfController \\ \hline
-%    Input:
-%    \begin{tabbing}
-%    \hspace*{4cm}\=\hspace*{2cm}\= \kill
-%    Tp	\>			Periodendauer\\
-%    Tnk	\>			Nachstellzeit\\
-%    Tvk	\>			Vorhaltzeit\\
-%    Krk	\>			Verst\"arkungsfaktor des Reglers\\
-%    Reglertyp	\>		Reglertyp(I,Pi,PID)
-%    \end{tabbing} \\  \hline
-%
-%    Output:
-%    \begin{tabbing}
-%    \hspace*{4cm}\=\hspace*{2cm}\= \kill
-%    Z\"ahler	\>			Reeller Z\"ahler \\
-%    Nenner \>			Reeller Nenner
-%    \end{tabbing} \\ \hline
-%
-%    Algorithmus:  \\
-%    1.	Entscheidet je nach Reglertyp die Umrechungformel\\
-%    2.	F\"ur PI:\\
-%    \begin{equation}
-%    Zaehler = Krk* Matrix
-%    \end{equation}  \\
-%        \begin{equation}
-%    Nenner = Matrix
-%    \end{equation}  \\
-%    3.	F\"ur PID:         \\
-%    \begin{equation}
-%    Zaehler = Krk *Convolution(Matrix)
-%    \end{equation}  \\
-%        \begin{equation}
-%    Nenner = Matrix
-%    \end{equation}  \\ \hline
-%
-%Matlabcode: \\
-%\includegraphics[width=\textwidth] {utfRegler}
-%\\ \hline
-%    \end{tabular}
-%
-%
-%     \begin{tabular}{| p{13cm} |}
-%    \hline
-%    Faustformel Oppelt \\ \hline
-%    Input:
-%    \begin{tabbing}
-%    \hspace*{4cm}\=\hspace*{2cm}\= \kill
-%    Tu	\>			Verzugszeit\\
-%    Tg	\>			Anstiegszeit \\
-%    Ks  \>			Reglerverst\"arkung\\
-%    Reglertyp	\>		Reglertyp(I,Pi,PID)
-%    \end{tabbing} \\  \hline
-%
-%    Output:
-%    \begin{tabbing}
-%    \hspace*{4cm}\=\hspace*{2cm}\= \kill
-%    Kp \>	Proportionalfaktor	\\
-%    Tn	\>	Nachstellzeit		\\
-%    Tv	\>	Vorhaltezeit		\\
-%    \end{tabbing} \\ \hline
-%
-%    Algorithmus:  \\
-%    1.	Entscheidet je nach Reglertyp die Umrechungformel\\
-%    2.	F\"ur PI:\\
-%    \begin{equation}
-%     k_p= \frac{0.8}{Ks}*\frac{Tg}{Tu}
-%    \end{equation}  \\
-%    \begin{equation}
-%     t_n=3*t_u
-%    \end{equation} \\
-%    \begin{equation}
-%      t_v=0
-%    \end{equation} \\
-%    3.	F\"ur PID:         \\
-%    \begin{equation}
-%    Kp = \frac{1.2}{Ks}*\frac{Tg}{Tu}
-%    \end{equation}  \\
-%    \begin{equation}
-%    Tn=2*Tu
-%    \end{equation}
-%    \begin{equation}
-%    Tv=0.42*Tu;
-%    \end{equation}\\ \hline
-%
-%Matlabcode: \\
-%\includegraphics[width=\textwidth] {oppelt}
-%\\ \hline
-%\end{tabular}
-%
-%
-%
-%\begin{tabular}{| p{13cm} |}
-%    \hline
-%    Faustformel Rosenberg \\ \hline
-%    Input:
-%    \begin{tabbing}
-%    \hspace*{4cm}\=\hspace*{2cm}\= \kill
-%    Tu	\>			Verzugszeit\\
-%    Tg	\>			Anstiegszeit \\
-%    Ks  \>			Reglerverst\"arkung\\
-%    Reglertyp	\>		Reglertyp(I,Pi,PID)
-%    \end{tabbing} \\  \hline
-%
-%    Output:
-%    \begin{tabbing}
-%    \hspace*{4cm}\=\hspace*{2cm}\= \kill
-%    Kp \>	Proportionalfaktor	\\
-%    Tn	\>	Nachstellzeit		\\
-%    Tv	\>	Vorhaltezeit		\\
-%    \end{tabbing} \\ \hline
-%
-%    Algorithmus:  \\
-%    1.	Entscheidet je nach Reglertyp die Umrechungformel\\
-%    2.	F\"ur PI:\\
-%    \begin{equation}
-%     k_p= \frac{0.91}{Ks}*\frac{Tg}{Tu}
-%    \end{equation}  \\
-%    \begin{equation}
-%     t_n=3.3*t_u
-%    \end{equation} \\
-%    \begin{equation}
-%      t_v=0
-%    \end{equation} \\
-%    3.	F\"ur PID:    \\
-%    \begin{equation}
-%    Kp = \frac{1.2}{Ks}*\frac{Tg}{Tu}
-%    \end{equation}  \\
-%    \begin{equation}
-%    Tn=2*Tu
-%    \end{equation}
-%    \begin{equation}
-%    Tv=0.45*Tu;
-%    \end{equation}\\ \hline
-%
-%Matlabcode: \\
-%\includegraphics[width=\textwidth] {rosenberg}
-%\\ \hline
-%\end{tabular}
-%
-%
-%\begin{tabular}{| p{13cm} |}
-%    \hline
-%    Faustformel Ziegler \\ \hline
-%    Input:
-%    \begin{tabbing}
-%    \hspace*{4cm}\=\hspace*{2cm}\= \kill
-%    Tu	\>			Verzugszeit\\
-%    Tg	\>			Anstiegszeit \\
-%    Ks  \>			Reglerverst\"arkung\\
-%    Reglertyp	\>		Reglertyp(I,Pi,PID)
-%    \end{tabbing} \\  \hline
-%
-%    Output:
-%    \begin{tabbing}
-%    \hspace*{4cm}\=\hspace*{2cm}\= \kill
-%    Kp \>	Proportionalfaktor	\\
-%    Tn	\>	Nachstellzeit		\\
-%    Tv	\>	Vorhaltezeit		\\
-%    \end{tabbing} \\ \hline
-%
-%    Algorithmus:  \\
-%    1.	Entscheidet je nach Reglertyp die Umrechungformel\\
-%    2.	F\"ur PI:\\
-%    \begin{equation}
-%     k_p= \frac{0.9}{Ks}*\frac{Tg}{Tu}
-%    \end{equation}  \\
-%    \begin{equation}
-%     t_n=3.33*t_u
-%    \end{equation} \\
-%    \begin{equation}
-%      t_v=0
-%    \end{equation} \\
-%    3.	F\"ur PID:    \\
-%    \begin{equation}
-%    Kp = \frac{1.2}{Ks}*\frac{Tg}{Tu}
-%    \end{equation}  \\
-%    \begin{equation}
-%    Tn=2*Tu
-%    \end{equation}
-%    \begin{equation}
-%    Tv=0.5*Tu;
-%    \end{equation}\\ \hline
-%
-%Matlabcode: \\
-%\includegraphics[width=\textwidth] {ziegler}
-%\\ \hline
-%\end{tabular}
-%
-%
-%\begin{tabular}{| p{13cm} |}
-%    \hline
-%    Faustformel Chien \\ \hline
-%    Input:
-%    \begin{tabbing}
-%    \hspace*{4cm}\=\hspace*{2cm}\= \kill
-%    Tu	\>			Verzugszeit\\
-%    Tg	\>			Anstiegszeit \\
-%    Ks  \>			Reglerverst\"arkung\\
-%    Reglertyp	\>		Reglertyp(I,Pi,PID)\\
-%    Ueb		\>		\"Uberschwingen\\
-%    \end{tabbing} \\  \hline
-%
-%    Output:
-%    \begin{tabbing}
-%    \hspace*{4cm}\=\hspace*{2cm}\= \kill
-%    Kp \>	Proportionalfaktor	\\
-%    Tn	\>	Nachstellzeit		\\
-%    Tv	\>	Vorhaltezeit		\\
-%    \end{tabbing} \\ \hline
-%
-%    Algorithmus:  \\
-%    1.	Entscheidet je nach Reglertyp die Umrechungformel\\
-%    2.	F\"ur PI ohne \"Uberschwingen:\\
-%    \begin{equation}
-%     k_p= \frac{0.35*Tg}{Ks*Tu}
-%    \end{equation}  \\
-%    \begin{equation}
-%     t_n=1.2*t_u
-%    \end{equation} \\
-%    \begin{equation}
-%      t_v=0
-%    \end{equation} \\
-%    3.	F\"ur PI mit 20 Prozent \"Uberschwingen:
-%    \begin{equation}
-%     k_p= \frac{0.7*Tg}{Ks*Tu}
-%    \end{equation}  \\
-%    \begin{equation}
-%     t_n=3*t_u
-%    \end{equation} \\
-%    \begin{equation}
-%      t_v=0
-%    \end{equation} \\
-%    4.	F\"ur PID ohne \"Uberschwingen:    \\
-%    \begin{equation}
-%    Kp = \frac{0.9*Tg}{Ks*Tu}
-%    \end{equation}  \\
-%    \begin{equation}
-%    Tn=2.4*Tu
-%    \end{equation}
-%    \begin{equation}
-%    Tv=0.42*Tu;
-%    \end{equation}\\
-%    5. F\"ur PID mit 20 Prozent \"Uberschwingen:
-%     \begin{equation}
-%    Kp = \frac{1.2*Tg}{Ks*Tu}
-%    \end{equation}  \\
-%    \begin{equation}
-%    Tn=2*Tu
-%    \end{equation}
-%    \begin{equation}
-%    Tv=0.42*Tu;
-%    \end{equation}\\ \hline
-%Matlabcode: \\
-%\includegraphics[width=\textwidth] {chien}
-%\\ \hline
-%\end{tabular}
-%
-%
+% ---------------------------------------------------------------------------- %
+\subsection{Umrechnung von bodekonformer in reglerkonforme Darstellung}
+% ---------------------------------------------------------------------------- %
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    $ T_p  $ & Periodendauer \\
+    $ T{nk} $ & Nachstellzeit \\
+    $ T{vk} $ & Vorhaltezeit \\
+    $ K{rk} $ & Verst\"arkungsfaktor des Reglers \\
+      Reglertyp   & Reglertyp (P, PI, PID)
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    $ T_n $ & Nachstellzeit \\
+    $ T_v $ & Vorhaltezeit \\
+    $ K_r $ & Verst\"arkungsfaktor des Reglers
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        W\"ahlt je nach Reglertyp die Umrechnungsformel.
+    \item
+        Falls der I-Regler gew\"ahlt wird, gibt der Algorithmus einen Fehler zur\"uck, da der I-Regler nicht implementiert ist.
+    \item
+        PI-Regler:
+        $T_{n} = T_{nk}$, $K_{k} = K_{rk}$, $T_{v} = 0$
+    \item
+       F\"ur PID-Regler:
+
+       \begin{equation*}
+           K_r= K_{rk} \cdot \frac{1+T_{vk}}{T_{nk}}
+       \end{equation*}
+
+       \begin{equation*}
+           T_n= T_{nk}+T_{vk}-T_p
+       \end{equation*}
+
+       \begin{equation*}
+           T_v = \frac{T_{nk} \cdot T_{vk}}{T_{nk}+T_{vk}-T_p)-T_p}
+       \end{equation*}
+
+\end{enumerate}
+
+\subsubsection*{Matlab-Code}
+\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Reglerkonf.m}
+
+
+% ---------------------------------------------------------------------------- %
+\subsection{utfController}
+% ---------------------------------------------------------------------------- %
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    $ T_p $        & Verzugszeit \\
+    $ T_{nk} $     & Nachstellzeit \\
+    $ T_{vk} $     & Vorhaltezeit \\
+    $ K_{rk} $     & Verst\"arkungsfaktor des Reglers \\
+      Reglertyp    & Reglertyp (P, PI, PID)
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    Z\"ahler & Reeller Z\"ahler \\
+    Nenner   & Reeller Nenner
+\end{tabular}\todo{korrekt? Oder einfach reelle Koeffizienten?}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        W\"ahlt je nach Reglertyp die korrekten Formeln.
+    \item
+        \todo{Matrix}
+\end{enumerate}
+
+\subsubsection*{Matlab-Code}
+\lstinputlisting[style=Matlab-editor-2]{mfiles/p2UTFRegler.m}
+
+\subsection{Faustformel Oppelt}
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    $ T_p $        & Verzugszeit \\
+    $ T_u $        & Anstiegszeit \\
+    $ K_s $        & Verst\"arkung der Strecke \\
+      Reglertyp    & Reglertyp (P, PI, PID)
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    $ K_p $ & Proportionalit\"atsfaktor \\
+    $ T_n $ & Nachstellzeit \\
+    $ T_v $ & Vorhaltezeit
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        W\"ahlt je nach Reglertyp die korrekten Formeln.
+    \item
+        F\"ur PI:
+        \begin{equation*}
+             K_p= \frac{0.8}{K_s} \cdot \frac{T_g}{T_u}
+        \end{equation*}
+
+        \begin{equation*}
+             T_n=3 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+              t_v=0
+        \end{equation*}
+    \item
+        F\"ur PID:
+        \begin{equation*}
+            K_p = \frac{1.2}{K_s} \cdot \frac{T_g}{T_u}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=2 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0.42*T_u
+        \end{equation*}
+\end{enumerate}
+
+\subsubsection*{Matlab-Code}
+\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffoppelt.m}
+
+
+% ---------------------------------------------------------------------------- %
+\subsection{Faustformel Rosenberg}
+% ---------------------------------------------------------------------------- %
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    $ T_p $        & Verzugszeit \\
+    $ T_u $        & Anstiegszeit \\
+    $ K_s $        & Verst\"arkung der Strecke \\
+      Reglertyp    & Reglertyp (P, PI, PID)
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    $ K_p $ & Proportionalit\"atsfaktor \\
+    $ T_n $ & Nachstellzeit \\
+    $ T_v $ & Vorhaltezeit
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        W\"ahlt je nach Reglertyp die korrekten Formeln.
+    \item
+    \item
+        F\"ur PI:
+
+        \begin{equation*}
+            K_p= \frac{0.91}{K_s} \cdot \frac{T_g}{T_u}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=3.3 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0
+        \end{equation*}
+    \item
+        F\"ur PID:
+
+        \begin{equation*}
+            Kp = \frac{1.2}{K_s} \cdot \frac{T_g}{T_u}
+        \end{equation*}  \\
+
+        \begin{equation*}
+            T_n=2 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0.45 \cdot T_u;
+        \end{equation*}
+\end{enumerate}
+
+\subsubsection*{Matlab-Code}
+\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffrosenberg.m}
+
+
+% ---------------------------------------------------------------------------- %
+\subsection{Faustformel Ziegler}
+% ---------------------------------------------------------------------------- %
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    $ T_p $        & Verzugszeit \\
+    $ T_u $        & Anstiegszeit \\
+    $ K_s $        & Verst\"arkung der Strecke \\
+      Reglertyp   & Reglertyp (P, PI, PID)
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    $ K_p $ & Proportionalit\"atsfaktor \\
+    $ T_n $ & Nachstellzeit \\
+    $ T_v $ & Vorhaltezeit
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        W\"ahlt je nach Reglertyp die korrekten Formeln.
+    \item
+        F\"ur PI:
+        \begin{equation*}
+            K_p= \frac{0.9}{K_s} \cdot \frac{T_g}{T_u}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=3.33 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0
+        \end{equation*}
+    \item
+        F\"ur PID:
+        \begin{equation*}
+            K_p = \frac{1.2}{K_s} \cdot \frac{T_g}{T_u}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=2 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v = 0.5 \cdot T_u
+        \end{equation*}
+\end{enumerate}
+
+\subsubsection*{Matlab-Code}
+\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffziegler.m}
+
+% ---------------------------------------------------------------------------- %
+\subsection{Faustformel Chien}
+% ---------------------------------------------------------------------------- %
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    $ T_p $             & Verzugszeit \\
+    $ T_u $             & Anstiegszeit \\
+    $ K_s $             & Verst\"arkung der Strecke \\
+      Reglertyp         & Reglertyp (P, PI, PID) \\
+    \"Uberschwingen     & Flag f\"ur \"Uberschwingeng %\TODO{specifics $
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    $ K_p $ & Proportionalit\"atsfaktor \\
+    $ T_n $ & Nachstellzeit \\
+    $ T_v $ & Vorhaltezeit
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        W\"ahlt je nach Reglertyp die korrekten Formeln.
+    \item
+        F\"ur PI, ohne \"Uberschwingen:
+        \begin{equation*}
+            K_p= \frac{0.35 \cdot T_g}{K_s \cdot T_u}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=1.2 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0
+        \end{equation*}
+
+    \item
+        F\"ur PI, 20\% \"Uberschwingen:
+
+        \begin{equation*}
+            K_p= \frac{0.7 \cdot T_g}{K_s \cdot T_u}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=3 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0
+        \end{equation*}
+    \item
+        F\"ur PID, ohne \"Uberschwingen:
+
+        \begin{equation*}
+            K_p = \frac{0.9 \cdot Tg}{Ks \cdot Tu}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=2.4 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0.42 cdot T_u;
+        \end{equation*}
+    \item
+        F\"ur PID, 20\% \"Uberschwingen:
+
+        \begin{equation*}
+            K_p = \frac{1.2 \cdot T_g}{K_s \cdot T_u}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=2 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0.42 \cdot T_u;
+        \end{equation*}
+\end{enumerate}
+
+\subsubsection*{Matlab-Code}
+\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffchien.m}

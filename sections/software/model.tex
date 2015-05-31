@@ -1,0 +1,54 @@
+Im Model wird f\"ur jede Berechnungsart, also entwerder f\"ur die Faustformeln
+oder die Phasengangmethode, Objekt des Typs \code{CloseLoop} erzeugt.
+
+
+\subsubsection*{Controller}
+
+Der  Controller  bildet  die  Oberklasse   f\"ur  alle  Faustformeln  und  die
+Phasengangmehode. Sie  beinhaltet  die  abstrakte  Methode  \code{calculate()}
+sowie alle n\"otigen Getter und Setter.
+
+
+\subsubsection*{Faustformeln}
+
+\code{Chien20},   \code{ChienApper},   \code{Oppelt},   \code{Rosenberg}   und
+\code{ZieglerNichols} sind die Klassen  zu den zugeh\"origen Fausformeln.  Die
+abstrakte Methode  \code{calculate()} aus der Klasee  \code{Controller} ist in
+jeder dieser Klassen  implementiert. Sie liest die ben\"otigten  Werte aus der
+Strecke (Klasse  \code{Path}) aus  und f\"uhrt  die Berechnungen  gem\"ass der
+entsprechenden Faustformel aus.
+
+
+\subsubsection*{ClosedLoop}
+
+In  der  Klasee  \code{ClosedLoop}   wird  f\"ur  jede  Berechungsart  jeweils
+ein  \code{Controller}  erstellt. Auch  diese Klasse  enth\"alt  eine  Methode
+\code{calculate()}. In   dieser  wird   einerseits   f\"ur  alle   Rechenarten
+die  Berechung   der  Schrittantwort   mittels  \code{calculateStepResponse()}
+ausgel\"ost   und   f\"ur   die  Phasengangmethode   wird   zus\"atzlich   das
+\"Uberschwingverhalten durch \code{overShootOptimazation()} optimiert.
+
+
+\subsubsection*{PhaseRespsonseMethod}
+
+\todo{Dieser  Abschnitt  sollte  vermutlich nomals  Aufmerksamkeit  von  einem
+Experten zum Code erhalten.}
+
+In dieser Klasse  wird die Frequenzachse in Abh\"angigkeit  vom Phasengang und
+des ben\"otigten Winkelbereiches erstellt.   Ausserdem finden wir verschiedene
+calculate Methoden.
+
+Einerseits  ist da  calculate()  , in  dieser  wird die  UTF  Strecke aus  der
+Strecke(path)  geholt  und  die  Omega-Achse  Methode  aufgeruffen. In  dieser
+wird Sie  Abh\"angigkeit vom  Phasengang und des  ben\"otigten Winkelbereiches
+erstellt.
+
+Anschlissend werden die Werte f\"ur Hs und phiS berehnet.
+
+Andererseits  sind  da die  Methoden,  calculateTnvTnk()  um  Tnk und  Tnv  zu
+berechnen, calculateKrk um Krk zu berechnen, calculatecontrollerConf() um eine
+umrechung  von Bodekonformen  Werten  zu Reglerkonformen  Werten  in der  calc
+Klasse  auszul\"osen, calculatePhaseMargin()  bestimmt je  nach Reglertyp  den
+Phasenrand  und zum  schluss calculateOverShoot(),  hier wird  je nach  vorher
+berechnetem \"Uberschwingen, dem  Wert phiu einen der  4 vordefinierten static
+final Werte zugewiesen.

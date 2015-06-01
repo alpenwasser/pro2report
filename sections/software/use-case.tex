@@ -1,0 +1,22 @@
+Beim   Programmstart   werden   durch  das   Model   drei   \emph{closedLoops}
+(geschlossene  Regelkreise) f\"ur  die Phasengang-Methode  sowie vier  weitere
+f\"ur die  Faustformeln erzeugt. Jeder \emph{closedLoop} weiss  nun von Beginn
+an, welcher  Berechnungstyp (Phasengang-Methode,  Faustformel) er  ist. Er ist
+nun bereit, Daten aufzunehmen und zu verarbeiten.
+
+\"Uber  die  drei  Eingabefelder  f\"ur  $K_s$, $T_u$  und  $T_g$  werden  die
+Werte  der  vermessenen  Regelstrecke  durch  den  Benutzer  eingegeben. Durch
+Dr\"ucken  des   Buttons  \emph{Berechnen}  werden  die   Eingaben  durch  den
+\code{GUIController}  auf  Zul\"assigkeit  \"uberpr\"uft. Erf\"ullen  sie  die
+erforderlichen Kriterien nicht, wird eine Benachrichtigung mit Hinweis auf den
+Fehler oberhalb des Buttons ausgegeben und die Berechnung nicht ausgel\"ost.
+
+Haben  die Eingaben  die \"Uberpr\"ufung  durch den  GUI-Controller bestanden,
+fragt   dieser   zus\"atzlich   die   aktuellen  Werte/   der   Slider   f\"ur
+\"Uberschwingen  und  Optimierung sowie  den  Reglertyp  auf  dem GUI  ab  und
+leitet  alle  Daten  mittels  \code{setData()}  an  das  Model  weiter. Dieses
+erzeugt einen \code{Path} (Strecke) aus den Eingabewerten. Das Model errechnet
+den  richtigen  Optimierungs-Offset und  weist  die  Daten den  entsprechenden
+\code{closedLoops} der  Phasengang-Methode sowie der Faustformeln  mittels der
+\code{setData()}-Methode zu. Jeder  \code{closedLoop} leitet die Daten  an den
+zugeh\"origen Controller weiter, der die Reglerwerte berechnet.

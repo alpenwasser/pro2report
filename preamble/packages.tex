@@ -27,9 +27,44 @@
 \usepackage{pbox}
 \usepackage{draftwatermark}
 %\usepackage[nostamp]{draftwatermark}
-\usepackage[german, colorinlistoftodos]{todonotes}
+\usepackage[textsize=footnotesize, textwidth = 17mm, german, colorinlistoftodos]{todonotes}
 \usepackage{siunitx}
 \usepackage{mathtools}
+\usepackage{matlab-prettifier}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstdefinestyle{java}{
+    language            = Java,
+    aboveskip           = 3mm,
+    belowskip           = 3mm,
+    showstringspaces    = false,
+    columns             = flexible,
+    basicstyle          = {\scriptsize\ttfamily},
+    numbers             = left,
+    numberstyle         = \tiny\color{gray},
+    keywordstyle        = \color{blue},
+    commentstyle        = \color{dkgreen},
+    stringstyle         = \color{mauve},
+    breaklines          = true,
+    breakatwhitespace   = true,
+    tabsize             = 3
+}
+\lstdefinestyle{Matlab-editor-2}{%
+  style               = MatlabBaseStyle@mlpr,
+  mllastelementstyle  = \color{black}                    ,
+  mlkeywordstyle      = \color[RGB]{000,000,255}         ,
+  mlcommentstyle      = \color[RGB]{034,139,034}         ,
+  mlstringstyle       = \color[RGB]{160,032,240}         ,
+  mlsyscomstyle       = \color[RGB]{178,140,000}         ,
+  mlsectiontitlestyle = \commentStyle@mlpr      \bfseries,
+  mlsharedvarstyle    = \color[RGB]{000,163,163}         ,
+  mlplaceholderstyle  = \mleditorphstyle,
+  basicstyle          = \ttfamily\scriptsize,
+  numbers             = left,
+}
 
 
 \SetWatermarkText{\texttt{Entwurf}}

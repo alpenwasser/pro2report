@@ -1,0 +1,544 @@
+% ---------------------------------------------------------------------------- %
+\subsection{Sani}
+% ---------------------------------------------------------------------------- %
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    $ T_u $ & Verzugszeit \\
+    $ T_g $ & Anstiegszeit
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    $ n $ & Ordnung der Regelstrecke \\
+    $ T $ & Zeitkonstante
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        Ung\"ultige Eingaben warden abgefangen und ein Fehler zur\"uckgegeben.
+    \item
+        L\"adt Werte f\"ur Tu und Tg.
+    \item
+        Erstellt 50 Werte zwischen 0 und 1 f\"ur ri.
+    \item
+        Bestimmt die Ordnung der Regelstrecke.
+    \item
+        Spline f\"ur r und w
+    \item
+        T(n) wird aus w*tg berechnet.
+    \item
+        Umspeichern \& Sortieren
+\end{enumerate}
+
+\subsubsection*{Matlab-Code}
+\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Sani.m}
+
+
+% ---------------------------------------------------------------------------- %
+\subsection{Umrechnung von reglerkonformer in bodekonforme Darstellung}
+% ---------------------------------------------------------------------------- %
+
+\subsubsection*{Input}
+\begin{tabular}{p{40mm}l}
+    $ T_v $        & Vorhaltezeit \\
+    $ T_n $        & Nachstellzeit \\
+    $ T_p $        & Periodendauer \\
+    $ K_r $        & Verst\"arkungsfaktor des Reglers \\
+      Reglertyp    & Typ des Reglers (P, PI, PID)
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    $ T_{nk} $ & Nachstellzeit \\
+    $ T_{vk} $ & Vorhaltezeit \\
+    $ K_{rk} $ & Verst\"arkungsfaktor des Reglers
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        W\"ahlt je nach Reglertyp die Umrechnungsformel.
+    \item
+        Falls der I-Regler gew\"ahlt wird, gibt der Algorithmus einen Fehler zur\"uck, da der I-Regler nicht implementiert ist.
+    \item
+        PI-Regler:
+        $T_{nk} = T_n$, $K_{rk} = K_r$, $T_{vk} = 0$
+    \item
+        F\"ur PID-Regler:
+        \begin{equation*}
+            \varepsilon =\frac{\sqrt{1-(4 \cdot T_n \cdot (T_v-T_p))}}{(T_n+T_p)^2}
+        \end{equation*}
+
+        \begin{equation*}
+            T_{nk} = \frac{(T_n+T_p) \cdot (1+\varepsilon)}{2}
+        \end{equation*}
+
+        \begin{equation*}
+            K_{rk} = \frac{K_r \cdot (\frac{1+T_p}{T_{nk}}) \cdot (1+\varepsilon)}{2}
+        \end{equation*}
+
+        \begin{equation*}
+            T_{vk} = \frac{(T_n+T_p)*(1+\varepsilon)}{2}
+        \end{equation*}
+\end{enumerate}
+\subsubsection*{Matlab-Code}
+\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Bodekonf.m}
+
+
+% ---------------------------------------------------------------------------- %
+\subsection{Umrechnung von bodekonformer in reglerkonforme Darstellung}
+% ---------------------------------------------------------------------------- %
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    $ T_p  $ & Periodendauer \\
+    $ T{nk} $ & Nachstellzeit \\
+    $ T{vk} $ & Vorhaltezeit \\
+    $ K{rk} $ & Verst\"arkungsfaktor des Reglers \\
+      Reglertyp   & Reglertyp (P, PI, PID)
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    $ T_n $ & Nachstellzeit \\
+    $ T_v $ & Vorhaltezeit \\
+    $ K_r $ & Verst\"arkungsfaktor des Reglers
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        W\"ahlt je nach Reglertyp die Umrechnungsformel.
+    \item
+        Falls der I-Regler gew\"ahlt wird, gibt der Algorithmus einen Fehler zur\"uck, da der I-Regler nicht implementiert ist.
+    \item
+        PI-Regler:
+        $T_{n} = T_{nk}$, $K_{k} = K_{rk}$, $T_{v} = 0$
+    \item
+       F\"ur PID-Regler:
+
+       \begin{equation*}
+           K_r= K_{rk} \cdot \frac{1+T_{vk}}{T_{nk}}
+       \end{equation*}
+
+       \begin{equation*}
+           T_n= T_{nk}+T_{vk}-T_p
+       \end{equation*}
+
+       \begin{equation*}
+           T_v = \frac{T_{nk} \cdot T_{vk}}{T_{nk}+T_{vk}-T_p)-T_p}
+       \end{equation*}
+
+\end{enumerate}
+
+\subsubsection*{Matlab-Code}
+\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Reglerkonf.m}
+
+
+% ---------------------------------------------------------------------------- %
+\subsection{utfController}
+% ---------------------------------------------------------------------------- %
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    $ T_p $        & Verzugszeit \\
+    $ T_{nk} $     & Nachstellzeit \\
+    $ T_{vk} $     & Vorhaltezeit \\
+    $ K_{rk} $     & Verst\"arkungsfaktor des Reglers \\
+      Reglertyp    & Reglertyp (P, PI, PID)
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    Z\"ahler & Reeller Z\"ahler \\
+    Nenner   & Reeller Nenner
+\end{tabular}\todo{korrekt? Oder einfach reelle Koeffizienten?}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        W\"ahlt je nach Reglertyp die korrekten Formeln.
+    \item
+        \todo{Matrix}
+\end{enumerate}
+
+\subsubsection*{Matlab-Code}
+\lstinputlisting[style=Matlab-editor-2]{mfiles/p2UTFRegler.m}
+
+\subsection{Faustformel Oppelt}
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    $ T_p $        & Verzugszeit \\
+    $ T_u $        & Anstiegszeit \\
+    $ K_s $        & Verst\"arkung der Strecke \\
+      Reglertyp    & Reglertyp (P, PI, PID)
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    $ K_p $ & Proportionalit\"atsfaktor \\
+    $ T_n $ & Nachstellzeit \\
+    $ T_v $ & Vorhaltezeit
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        W\"ahlt je nach Reglertyp die korrekten Formeln.
+    \item
+        F\"ur PI:
+        \begin{equation*}
+             K_p= \frac{0.8}{K_s} \cdot \frac{T_g}{T_u}
+        \end{equation*}
+
+        \begin{equation*}
+             T_n=3 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+              t_v=0
+        \end{equation*}
+    \item
+        F\"ur PID:
+        \begin{equation*}
+            K_p = \frac{1.2}{K_s} \cdot \frac{T_g}{T_u}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=2 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0.42*T_u
+        \end{equation*}
+\end{enumerate}
+
+\subsubsection*{Matlab-Code}
+\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffoppelt.m}
+
+
+% ---------------------------------------------------------------------------- %
+\subsection{Faustformel Rosenberg}
+% ---------------------------------------------------------------------------- %
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    $ T_p $        & Verzugszeit \\
+    $ T_u $        & Anstiegszeit \\
+    $ K_s $        & Verst\"arkung der Strecke \\
+      Reglertyp    & Reglertyp (P, PI, PID)
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    $ K_p $ & Proportionalit\"atsfaktor \\
+    $ T_n $ & Nachstellzeit \\
+    $ T_v $ & Vorhaltezeit
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        W\"ahlt je nach Reglertyp die korrekten Formeln.
+    \item
+    \item
+        F\"ur PI:
+
+        \begin{equation*}
+            K_p= \frac{0.91}{K_s} \cdot \frac{T_g}{T_u}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=3.3 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0
+        \end{equation*}
+    \item
+        F\"ur PID:
+
+        \begin{equation*}
+            Kp = \frac{1.2}{K_s} \cdot \frac{T_g}{T_u}
+        \end{equation*}  \\
+
+        \begin{equation*}
+            T_n=2 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0.45 \cdot T_u;
+        \end{equation*}
+\end{enumerate}
+
+\subsubsection*{Matlab-Code}
+\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffrosenberg.m}
+
+
+% ---------------------------------------------------------------------------- %
+\subsection{Faustformel Ziegler}
+% ---------------------------------------------------------------------------- %
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    $ T_p $        & Verzugszeit \\
+    $ T_u $        & Anstiegszeit \\
+    $ K_s $        & Verst\"arkung der Strecke \\
+      Reglertyp   & Reglertyp (P, PI, PID)
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    $ K_p $ & Proportionalit\"atsfaktor \\
+    $ T_n $ & Nachstellzeit \\
+    $ T_v $ & Vorhaltezeit
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        W\"ahlt je nach Reglertyp die korrekten Formeln.
+    \item
+        F\"ur PI:
+        \begin{equation*}
+            K_p= \frac{0.9}{K_s} \cdot \frac{T_g}{T_u}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=3.33 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0
+        \end{equation*}
+    \item
+        F\"ur PID:
+        \begin{equation*}
+            K_p = \frac{1.2}{K_s} \cdot \frac{T_g}{T_u}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=2 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v = 0.5 \cdot T_u
+        \end{equation*}
+\end{enumerate}
+
+\subsubsection*{Matlab-Code}
+\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffziegler.m}
+
+% ---------------------------------------------------------------------------- %
+\subsection{Faustformel Chien}
+% ---------------------------------------------------------------------------- %
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    $ T_p $             & Verzugszeit \\
+    $ T_u $             & Anstiegszeit \\
+    $ K_s $             & Verst\"arkung der Strecke \\
+      Reglertyp         & Reglertyp (P, PI, PID) \\
+    \"Uberschwingen     & Flag f\"ur \"Uberschwingeng %\TODO{specifics $
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    $ K_p $ & Proportionalit\"atsfaktor \\
+    $ T_n $ & Nachstellzeit \\
+    $ T_v $ & Vorhaltezeit
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        W\"ahlt je nach Reglertyp die korrekten Formeln.
+    \item
+        F\"ur PI, ohne \"Uberschwingen:
+        \begin{equation*}
+            K_p= \frac{0.35 \cdot T_g}{K_s \cdot T_u}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=1.2 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0
+        \end{equation*}
+
+    \item
+        F\"ur PI, 20\% \"Uberschwingen:
+
+        \begin{equation*}
+            K_p= \frac{0.7 \cdot T_g}{K_s \cdot T_u}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=3 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0
+        \end{equation*}
+    \item
+        F\"ur PID, ohne \"Uberschwingen:
+
+        \begin{equation*}
+            K_p = \frac{0.9 \cdot Tg}{Ks \cdot Tu}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=2.4 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0.42 cdot T_u;
+        \end{equation*}
+    \item
+        F\"ur PID, 20\% \"Uberschwingen:
+
+        \begin{equation*}
+            K_p = \frac{1.2 \cdot T_g}{K_s \cdot T_u}
+        \end{equation*}
+
+        \begin{equation*}
+            T_n=2 \cdot T_u
+        \end{equation*}
+
+        \begin{equation*}
+            T_v=0.42 \cdot T_u;
+        \end{equation*}
+\end{enumerate}
+
+\subsubsection*{Matlab-Code}
+\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffchien.m}
+
+
+% ---------------------------------------------------------------------------- %
+\subsection{diskDiff}
+% ---------------------------------------------------------------------------- %
+
+\code{diskDiff} berechnet  die Steigung einer Funktion  (repr\"asentiert durch
+zwei Arrays) an einem bestimmten Array-Index.
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    x-Array        & Array mit x-Werten \\
+    y-Array        & Array mit zugeh\"origen Funktionswerten \\
+    Index          & Index, an dem die Steigung berechnet werden soll
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    Steigung   & Steigung an gesuchter Stelle
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        Pr\"ufen, ob Index innerhalb des Arrays liegt.
+    \item
+        Steigungsdreieck  zwischen  Element  and  Index  und  den  unmittelbar
+        daneben liegenden Array-Elementen bilden.
+    \item
+        Durchschnitt der beiden Steigungsdreiecke ausrechnen.
+    \item
+        Falls Steigung an erster Array-Stelle verlangt ist: Steigungsdreieck
+        mit dem zweiten Element bilden und Steigung zur\"uckgeben.
+    \item
+        Falls Steigung an letzter Array-Stelle verlangt ist: Steigungsdreieck
+        mit zweitletztem Array-Element bilden und Steigung zur\"uckgeben.
+\end{enumerate}
+
+\subsubsection*{Java-Code}
+\lstinputlisting[style=java]{java/diskDiff.java}
+
+
+% ---------------------------------------------------------------------------- %
+\subsection{schrittIfft}
+% ---------------------------------------------------------------------------- %
+
+\code{schrittIfft}   berechnet  die   Schrittantwort   im  Zeitbereich   einer
+\"Ubertragungsfunktion. \todo{korrekt?}
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    Z\"ahler & Z\"ahler der \"Ubertragungsfunktion                             \\
+    Nenner   & Nenner der \"Ubertragungsfunktion                               \\
+    Frequenz & Frequenz, bis zu der die Frequenzachse ausgewertet werden soll. \\
+    n        & Granulierung der Frequenzachse
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    Resultat & \parbox[t][4em][s]{0.7\textwidth}{Zweidimensionales Array mit Zeitachse und zugeh\"origen Funktionswerten}
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        Array mit f\"ur Frequenzachse generieren.
+    \item
+        Frequenzgang der \"Ubertragungsfunktion berechnen.
+    \item
+        Impulsantwort im Frequenzbereich berechnen.
+    \item
+        In den Zeitbereich zur\"ucktransformieren.
+    \item
+        Aus   den   Realteilen    des   Resultat-Arrays   die   Schrittantwort
+        zusammensetzen    (aufsummieren    des   Realteils    des    aktuellen
+        Array-Elements    mit    den     Realteilen    aller    vorhergehenden
+        Array-Elementen).
+\end{enumerate}
+
+\subsubsection*{Java-Code}
+\lstinputlisting[style=java]{java/schrittIfft.java}
+
+
+% ---------------------------------------------------------------------------- %
+\subsection{overShootOptimisation}
+% ---------------------------------------------------------------------------- %
+
+\code{overShootOptimisation}   optimiert    das   \"Uberschwingverhalten   des
+generierten Reglers.
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    Keine Eingabewerte &
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    Keine R\"uckgabewerte &
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+    \item
+        Das Maximum in der Schrittantwort des geschlossenen Regelkreises finden.
+    \item
+        Diesen Wert mit dem vom Benutzer gew\"unschten maximalen \"Uberschwingen vergleichen.
+    \item
+        Falls   zu   starkes   \"Uberschwingen: Reglerverst\"arkung   $K_{rk}$
+        schrittweise reduzieren, bis gew\"unschtes Verhalten eingehalten wird.
+    \item
+        Falls   zu  schwaches   \"Uberschwingen: Reglerverst\"arkung  $K_{rk}$
+        schrittweise erh\"ohen, bis gew\"unschtes Verhalten eingehalten wird.
+\end{enumerate}
+
+\subsubsection*{Java-Code}
+\lstinputlisting[style=java]{java/overshootoptimisation.java}

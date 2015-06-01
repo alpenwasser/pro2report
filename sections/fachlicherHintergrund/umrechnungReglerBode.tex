@@ -1,10 +1,50 @@
-Die    Formeln   in    Tabelle   \ref{tab:bode_regler_konform}    dienen   zur
-Umrechnung  zwischen der  bodekonformen  Darstellung  und der  reglerkonformen
-Darstellung. N\"ahere  Informationen  zu den  verschiedenen  Darstellungsarten
-k\"onnen  der   Quelle  \cite{regelungstechnik:zellweger}   entnommen  werden.
-\todo{Allenfalls noch  ein paar kurze  S\"atze zum Sinn  dieser \"Ubung? Sonst
-wird nirgends  darauf wirklich  Bezug genommen, Abschnitt  ist ein  wenig ohne
-Kontext in der Landschaft.}
+Ein Regler  kann mittels verschiedener mathematischen  Gleichungen dargestellt
+werden.  F\"ur  die Berechnungen  in diesem Projekt  sind zwei  von besonderer
+Bedeutung: Die bodekonforme und die reglerkonforme Darstellung.
+
+Dabei gilt  es zu  beachten, dass  sich die  einzelnen Darstellungen  in ihrer
+mathematischen Gleichung  unterscheiden, jedoch den  selben Informationsinhalt
+haben. Deshalb   ist  es   auch  m\"oglich,  mittels  einfacher   Umrechnungen
+die  Darstellungsweise   zu  wechseln.
+
+Der  Grund,   weshalb  zwei  verschiedene  Darstellungsarten   existieren  und
+verwendet werden, liegt zum einen darin, dass gewisse Berechnungen automatisch
+die eine oder andere Darstellungsart  zur\"uckgeben, jedoch auch, dass je nach
+Situation der  Verst\"andlichkeit halber die eine  oder andere Darstellungsart
+bevorzugt wird.
+
+Bei der  bodekonformen Darstellung wie  in Gleichungen~\ref{eq:pi:bodekonform}
+und~\ref{eq:pid:bodekonform}   ist   die  \"Ubertragungsfunktion   leicht   zu
+interpretieren,  was ihren  Amplitduden- und  Frequenzgang betrifft.   Deshalb
+wird  die  bodekonforme  Darstellung  \"uberall dort  verwendet,  wo  mit  den
+Reglerwerten Berechnungen ausgef\"uhrt werden.
+
+Die reglerkonforme  Darstellung aus  den Gleichungen~\ref{eq:pi:reglerkonform}
+und~\ref{eq:pid:reglerkonform}  hingegen ist  so  aufgebaut,  dass die  Werte,
+welche  an  einem realen  Regler  einstellbar  sind, direkt  abgelesen  werden
+k\"onnen. Diese Darstellung  wird verwendet,  um die Reglerwerte  dem Benutzer
+zur Verf\"ugung zu stellen.
+
+Zudem   liegt   das   Ergebnis   der    Faustformeln   auch   immer   in   der
+reglerkonformen  Darstellung  vor. F\"ur  die  Umrechnung  zwischen  den  zwei
+Darstellungsarten  ergibt  sich  durch  einen  Koeffizientenvergleich  Tabelle
+\ref{tab:bode_regler_konform}.
+
+\begin{equation} \label{eq:pi:bodekonform}
+    H_{rpi} = K_{rk} \cdot \biggl[ \frac{1 + s \cdot T_{n}}{s \cdot T_{n}} \biggr]
+\end{equation}
+
+\begin{equation} \label{eq:pi:reglerkonform}
+    H_{rpi} = K_{rk} \cdot \biggl[ 1 + \frac{1}{s \cdot T_{nk}} \biggr]
+\end{equation}
+
+\begin{equation} \label{eq:pid:bodekonform}
+    H_{rpid} = K_{rk} \cdot \biggl[ \frac{(1 + s \cdot T_{nk}) \cdot (1 + s \cdot T_{vk}) }{ s \cdot T_{nk} } \biggr]
+\end{equation}
+
+\begin{equation} \label{eq:pid:reglerkonform}
+    H_{rpid} = K_{rk} \cdot \biggl[ 1 + \frac{1}{s \cdot T_n} + \frac{s \cdot T_v}{s \cdot T_p} \biggr]
+\end{equation}
 
 \begin{longtable}{l|ll}
     \toprule

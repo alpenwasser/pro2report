@@ -37,6 +37,7 @@
 \lstinputlisting[style=Matlab-editor-2]{mfiles/p2Sani.m}
 
 
+\clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{Umrechnung von reglerkonformer in bodekonforme Darstellung}
 % ---------------------------------------------------------------------------- %
@@ -139,6 +140,7 @@
 \lstinputlisting[style=Matlab-editor-2]{mfiles/p2Reglerkonf.m}
 
 
+\clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{utfController}
 % ---------------------------------------------------------------------------- %
@@ -224,6 +226,7 @@
 \lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffoppelt.m}
 
 
+\clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{Faustformel Rosenberg}
 % ---------------------------------------------------------------------------- %
@@ -283,6 +286,7 @@
 \lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffrosenberg.m}
 
 
+\clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{Faustformel Ziegler}
 % ---------------------------------------------------------------------------- %
@@ -338,6 +342,7 @@
 \subsubsection*{Matlab-Code}
 \lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffziegler.m}
 
+\clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{Faustformel Chien}
 % ---------------------------------------------------------------------------- %
@@ -425,6 +430,7 @@
 \lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffchien.m}
 
 
+\clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{diskDiff}
 % ---------------------------------------------------------------------------- %
@@ -466,6 +472,7 @@ zwei Arrays) an einem bestimmten Array-Index.
 \lstinputlisting[style=java]{java/diskDiff.java}
 
 
+\clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{schrittIfft}
 % ---------------------------------------------------------------------------- %
@@ -508,6 +515,7 @@ zwei Arrays) an einem bestimmten Array-Index.
 \lstinputlisting[style=java]{java/schrittIfft.java}
 
 
+\clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{overShootOptimisation}
 % ---------------------------------------------------------------------------- %
@@ -542,3 +550,73 @@ generierten Reglers.
 
 \subsubsection*{Java-Code}
 \lstinputlisting[style=java]{java/overshootoptimisation.java}
+
+
+\clearpage
+% ---------------------------------------------------------------------------- %
+\subsection{Berechnung von $T_{vk}$ und $T_{nk}$}
+% ---------------------------------------------------------------------------- %
+\label{app:algo:tnktvk}
+
+\code{calculateTnkTvk}    bestimmt    $T_{nk}$    und    $T_{vk}$. Kern    des
+Algorithmus  ist  die  Automatisierung   der  Berechnung  von  $\beta$  (siehe
+Anhang~\ref{app:beta} f\"ur die manuelle Rechnung);
+
+\subsubsection*{Input}
+
+\begin{tabular}{p{40mm}l}
+    Keine Eingabewerte &
+\end{tabular}
+
+\subsubsection*{Output}
+\begin{tabular}{p{40mm}l}
+    Keine R\"uckgabewerte &
+\end{tabular}
+
+\subsubsection*{Algorithmus}
+\begin{enumerate}
+        \item
+            Bestimmen der Steigung der Strecke bei Frequenz $\omega_{pid}$
+        \item
+            Unteren  Wert   f\"ur  $\beta$   festlegen: $10^{-12}$. Wert  muss
+            gr\"sser  als null,  aber  sehr  klein sein,  damit  der Rest  des
+            Algorithmus funktioniert.
+        \item
+            Obere Grenze f\"ur $\beta$ auf 1 legen.
+        \item
+            \"Uber 20 Iterationen folgende Arbeitsschritte ausf\"uhren:
+            \begin{enumerate}
+                \item
+                    Aktuellen Testwert f\"ur $\beta$ definieren: $\beta_{oben}
+                    - \beta_{unten} \cdot 0.5 + \beta_{unten}$.
+                \item
+                    Mit diesem  Wert f\"ur  $\beta$ nun $T_{nk}$  und $T_{vk}$
+                    berechnen gem\"ass Gleichung~\ref{eq:pid:beta:start}.
+                \item
+                    $T_{nk}$  und  $T_{vk}$   in  die  Reglergleichung  (siehe
+                    Gleichung~\ref{eq:pid:t_nk_t_vk_initial_results}) einsetzen.
+                    Man  beachte,   dass  der  Algorithmus   nicht  symbolisch
+                    rechnet, sondern mit  Werte-Arrays f\"ur die Frequenzachse
+                    und Funktionswerte der \"Ubertragungsfunktion.
+                \item
+                    Steigung    des   Phasengangs    des   Reglers    an   der
+                    Stelle  $\omega_{pid}$  bestimmen,  aufsummieren  mit  der
+                    Steigung  der  Strecke   (bereits  bekannt)  zur  Steigung
+                    des   Phasengangs   des    offenen   Regelkreises   (siehe
+                    Gleichung~\ref{eq:pid:phi_sum}).
+                \item
+                    Falls   die    Steigung   $\varphi_o$   an    der   Stelle
+                    $\omega_{pid}$  kleiner   ist  als   $-\frac{1}{2}$,  muss
+                    $\beta$ vergr\"ossert  werden.  In diesem Fall  die untere
+                    Grenze $\beta_{unten}$ auf  den aktuellen Testwert $\beta$
+                    setzen.
+                \item
+                    Falls   die    Steigung   $\varphi_o$   an    der   Stelle
+                    $\omega_{pid}$  gr\"osser  ist  als  $-\frac{1}{2}$,  muss
+                    $\beta$   verkleinert    werden. Daher   neue   Obergrenze
+                    $\beta_{oben}$ auf den aktuellen Testwert $\beta$ setzen.
+            \end{enumerate}
+\end{enumerate}
+
+\subsubsection*{Java-Code}
+\lstinputlisting[style=java]{java/calculateTnkTvk.java}

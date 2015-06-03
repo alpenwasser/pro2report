@@ -206,7 +206,7 @@ Regelkreis und deren Schrittantworten zusammengefasst werden:
         Der Regelkreis muss gen\"ugend ged\"ampft sein.
     \item
         Der   Regelkreis   muss   eine  bestimmte   station\"are   Genauigkeit
-        aufweisen: Das   bedeutet,    der   Regelfehler   e(t)    soll   f\"ur
+        aufweisen: Das   bedeutet,   der   Regelfehler   $e(t)$   soll   f\"ur
         $t\rightarrow\infty$ gegen null gehen.
     \item
         Der  Regelkreis muss  hinreichend  schnell sein:   Ist die  D\"ampfung
@@ -221,19 +221,30 @@ Regelkreis und deren Schrittantworten zusammengefasst werden:
 \end{enumerate}
 
 \subsubsection{Die Schrittantwort des geschlossenen Regelkreises}
-\todo{Bild Schrittantworten passend zu Aufz\"ahlung unten}
+
+\begin{figure}[h!, width=\pagewidth]
+    \begin{center}
+    \includegraphics[width=0.8\textwidth]{images/schrittantworten.png}
+    \caption{Schrittantworten verschiedener Charakteristiken}
+    \label{fig:stepresponse}
+    \end{center}
+\end{figure}
 
 Als Schrittantwort  eines geschlossenen  Regelkreises wird  das Ausgangssignal
 $y(t)$ bezeichnet. Im Zusammenhang mit  den Anforderungen an den geschlossenen
 Regelkreis, werden an die Schrittantwort folgende Forderungen gestellt:
 \begin{enumerate}
     \item
-    Die Schrittantwort eines stabilen Regelkreises darf nach dem Erreichen des
-    eingeschwungenen Zustand kein erneutes \"Uberschwingen auftreten.
+        Die Schrittantwort eines stabilen Regelkreises darf nach dem Erreichen
+        des eingeschwungenen  Zustand kein erneutes  \"Uberschwingen auftreten
+        (zu sehen in der braunen Kurve in Abbildung~\ref{fig:stepresponse}).
     \item
         Die  D\"ampfung  der  Schrittantwort  soll so  stark  sein,  dass  der
-        eingeschwungene Zustand m\"oglichst rasch  erreicht wird ohne dass das
-        \"Uberschwingen des Systems zu stark wird.
+        eingeschwungene  Zustand m\"oglichst  rasch erreicht  wird, ohne  dass
+        das  \"Uberschwingen  des  Systems  zu stark  wird. Eine  zu  langsame
+        Schrittantwort  ist in  Abbildung~\ref{fig:stepresponse}  in Form  der
+        gelben  Kurve dargestellt,  eine ideale  Schrittantwort ist  durch die
+        rote Kurve repr\"asentiert.
     \item
         Die   Schrittantwort  muss   f\"ur  ein   $t\rightarrow\infty$  gleich
         $y_{soll}$ sein.

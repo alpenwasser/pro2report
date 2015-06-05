@@ -1,5 +1,5 @@
 Das  Kernst\"uck  dieser Arbeit  und  des  zugeh\"origen Softwaretools  stellt
-die   so  genannte   ``Phasengang-Methode   zur  Reglerdimensionierung''   von
+die   so  genannte   ``Phasengangmethode   zur  Reglerdimensionierung''   von
 Jakob   Zellweger   dar~\cite{regelungstechnik:zellweger_short}. Diese   wurde
 urspr\"unglich  als  vereinfachte  grafische  Methode  zur  Approximation  der
 -20dB/Dek Methode erarbeitet und im Rahmen dieses Projektes in einem Java-Tool
@@ -16,28 +16,30 @@ Das Tool f\"uhrt grob vereinfacht folgende Schritte aus:
         Dimensionierung       des      Reglers       mittels      Faustformeln
         (Abschnitt~\ref{subs:faustformeln})
     \item
-        Dimensionierung      des      Reglers     durch      Phasengangmethode
+        Dimensionierung    des    Reglers    durch    die    Phasengangmethode
         (Abschnitte~\ref{subs:phasengang:pi} und~\ref{subs:phasengang:pid})
     \item
         Umrechung   der   Regler-Darstellung    zwischen   bodekonformer   und
         reglerkonformer Darstellung (Abschnitt~\ref{subs:bode_regler})
     \item
         Berechnung   der   Schrittantwort   des   geschlossenen   Regelkreises
-        (Abschnitt~\ref{subs:geschlossen})
+        (Abschnitt~\ref{subs:geschlossen})\todo{reference abschnitt anita}
 \end{itemize}
 
-Im  folgenden   Kapitel  wird  auf   diese  Punkte  genauer   eingegangen  und
-das  Vorgehen  anhand  eines  konkreten  Beispiels  rechnerisch  und  grafisch
-erl\"autert. Die Durchrechnung  der Phasengangmethode  orientiert sich  an den
-Rezepten, welche  im fachlichen Teil  des Pflichtenheftes dieses  Projektes zu
+Im   folgenden   Kapitel   wird   auf   diese   Punkte   genauer   eingegangen
+und   das    Vorgehen   anhand    eines   konkreten    Beispiels   rechnerisch
+und    grafisch   erl\"autert. Die    Durchrechnung   der    Phasengangmethode
+orientiert     sich     an     den     Rezepten,     welche     bereits     im
+fachlichen     Teil     des     Pflichtenheftes    dieses     Projektes     zu
 finden  sind~\cite{ref:pflichtenheft}. Genauere  Hintergrundinformationen  zur
 Phasengangmethode  selbst  sind  dem  Vorlesungs-Skript  von  J. Zellweger  zu
 entnehmen~\cite{regelungstechnik:zellweger_short}.
 
 Das  \"Uberschwingverhalten  kann  im  Software-Tool vom  Benutzer  auf  einen
 Zielwert  zwischen 0\%  und 30\%  eingestellt werden. Das  Tool optimiert  den
-resultierenden Regler dann entsprechend, um dieser Vorgabe m\"oglichst nahe zu
-komen.
+resultierenden Regler  dann entsprechend,  um dieser Vorgabe  m\"oglichst nahe
+zu  kommen. Dazu  wird die  Reglerverst\"arkung  $K_{rk}$  angepasst, bis  ein
+passendes Resultat erzielt ist.
 
 \clearpage
 \subsection{Frequenzgang der Regelstrecke}

@@ -52,7 +52,7 @@ if (bode ==1)
     subplot(2,1,1);
     loglog(omega_num,subs(A_s,omega,omega_num));
     title('Frequenzgang');
-    legend('Strecke');
+    legend('Strecke', 'Location','NorthWest');
     xlabel('Kreisfrequenz \omega [rad/s]');
     ylabel('Betrag [normiert]');
     hold on; grid on;
@@ -60,7 +60,7 @@ if (bode ==1)
     %Phasengang
     subplot(2,1,2);
     semilogx(omega_num,subs(phi_s,omega,omega_num));
-    legend('Strecke');
+    legend('Strecke', 'Location', 'NorthWest');
     xlabel('Kreisfrequenz \omega [rad/s]');
     ylabel('Phase [rad]');
     hold on, grid on;
@@ -130,17 +130,17 @@ if bode==1
     subplot(2,1,2);
     plot([omega_regler,omega_regler],[VERT_LOWER_LIMIT_PHASE,VERT_UPPER_LIMIT_PHASE],'--b'); % Phasengang blau
     if (reglertyp == 2)
-        legend('Strecke','\omega_{pi}');
+        legend('Strecke','\omega_{pi}','Location','Northwest');
     elseif (reglertyp == 3)
-        legend('Strecke','\omega_{pid}');
+        legend('Strecke','\omega_{pid}','Location','Northwest');
     end;
             
     subplot(2,1,1);
     plot([omega_regler,omega_regler],[VERT_LOWER_LIMIT_ABS,VERT_UPPER_LIMIT_ABS],'--b'); % Betragsplot blau
     if (reglertyp == 2)
-        legend('Strecke','\omega_{pi}');
+        legend('Strecke','\omega_{pi}','Location','Northwest');
     elseif (reglertyp == 3)
-        legend('Strecke','\omega_{pid}');
+        legend('Strecke','\omega_{pid}','Location','Northwest');
     end;
 end;
     
@@ -243,9 +243,9 @@ if (reglertyp == 3) %PID-Regler
         plot([1/t_nk,1/t_nk],[VERT_LOWER_LIMIT_ABS,VERT_UPPER_LIMIT_ABS],'--g');
         plot([1/t_vk,1/t_vk],[VERT_LOWER_LIMIT_ABS,VERT_UPPER_LIMIT_ABS],'--c');
         if (reglertyp == 2)
-            legend('Strecke','\omega_{pi}');
+            legend('Strecke','\omega_{pi}','Location','Northwest');
         elseif (reglertyp == 3)
-            legend('Strecke','\omega_{pid}');
+            legend('Strecke','\omega_{pid}','Location','Northwest');
         end;
     end;
 end;
@@ -256,17 +256,17 @@ if (bode==1)
     plot(omega_num,subs(phi_r,omega,omega_num),'g');
     plot(omega_num,subs(phi_o,omega,omega_num),'r');
     if (reglertyp == 2)
-        legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis');
+        legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis','Location','Northwest');
     elseif (reglertyp == 3)
-        legend('Strecke','\omega_{pid}','Regler','Offener Regelkreis');
+        legend('Strecke','\omega_{pid}','Regler','Offener Regelkreis','Location','Northwest');
     end;
     subplot(2,1,1);
     plot(omega_num,subs(A_r,omega,omega_num),'g');
     plot(omega_num,subs(A_o,omega,omega_num),'r');
     if (reglertyp == 2)
-        legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis');
+        legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis','Location','Northwest');
     elseif (reglertyp == 3)
-        legend('Strecke','\omega_{pid}','1/T_{nk}','1/T_{vk}','Regler','Offener Regelkreis');
+        legend('Strecke','\omega_{pid}','1/T_{nk}','1/T_{vk}','Regler','Offener Regelkreis','Location','Northwest');
     end;
 end;
 
@@ -316,16 +316,16 @@ if bode==1
     subplot(2,1,2);
     plot([omega_durchtritt,omega_durchtritt],[VERT_LOWER_LIMIT_PHASE,VERT_UPPER_LIMIT_PHASE],'--r');
    if (reglertyp == 2)
-        legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis','\omega_{d}');
+        legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis','\omega_{d}','Location','Northwest');
     elseif (reglertyp == 3)
-        legend('Strecke','\omega_{pid}','Regler','Offener Regelkreis','\omega_{d}');
+        legend('Strecke','\omega_{pid}','Regler','Offener Regelkreis','\omega_{d}','Location','Northwest');
     end;
     subplot(2,1,1);
     plot([omega_durchtritt,omega_durchtritt],[VERT_LOWER_LIMIT_ABS,VERT_UPPER_LIMIT_ABS],'--r');
    if (reglertyp == 2)
-        legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis','\omega_{d}');
+        legend('Strecke','\omega_{pi}','Regler','Offener Regelkreis','\omega_{d}','Location','Northwest');
     elseif (reglertyp == 3)
-        legend('Strecke','\omega_{pid}','1/T_{nk}','1/T_{vk}','Regler','Offener Regelkreis','\omega_{d}');
+        legend('Strecke','\omega_{pid}','1/T_{nk}','1/T_{vk}','Regler','Offener Regelkreis','\omega_{d}','Location','Northwest');
     end;
 end;
 

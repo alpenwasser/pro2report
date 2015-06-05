@@ -1,7 +1,7 @@
 Als  Ausgangspunkt  der  Reglerdimensionierung dient  die  Schrittantwort  der
 Strecke. Durch  Einzeichnen  der Wendetangente~\footnotemark[1]  ergeben  sich
 Schnittpunkte  der  Wendetangente mit  der  Zeitachse  $[T_u,0]$ und  mit  dem
-Zielwert  $[T_g+T_g,1]$.  Es  k\"onnen nun  also die  Verz\"ogerungszeit $T_u$
+Zielwert $[T_g+T_g,K_s]$.   Es k\"onnen nun also  die Verz\"ogerungszeit $T_u$
 und die  Anstiegszeit $T_g$  aus aus  Abbildung~\ref{fig:plant_step} abgelesen
 werden.
 
@@ -40,19 +40,17 @@ Ausmessen der Schrittantwort ergibt:
 Der  geschlossene   Regelkreis  soll  schlussendlich  maximal   etwa  $16.3\%$
 \"uberschwingen.
 
-Da die Reglerdimensionierung mit der Phasengangmethode vom \emph{Frequenzgang}
-einer   Strecke  ausgeht   und   nicht  von   deren  Schrittantwort,   besteht
-der   n\"achste   Schritt    nun   darin,   aus   den    obigen   Werten   den
-Frequenzgang   der   Strecke   zu   bestimmen. Dies   erledigt   die   Methode
-\code{p\_sani}\footnotemark[3],    welche   uns    die    Werte   f\"ur    die
-\"Ubertragungsfunktion  der  Strecke  liefert.
-  In unserem  Fall ergibt
-dies folgendes Polynom:
+Da  die  Reglerdimensionierung  mit  der  Phasengangmethode  vom  Frequenzgang
+einer  Strecke  ausgeht und  nicht  von  deren  Schrittantwort, wird  aus  den
+obigen  Werten  nun der  Frequenzgang  der  Strecke bestimmt.   Dies  erledigt
+die  Methode \code{p\_sani}\footnotemark[3],  welche uns  die Werte  f\"ur die
+\"Ubertragungsfunktion  der  Strecke liefert.   In  unserem  Fall ergibt  dies
+folgendes Polynom:
 
 \footnotetext[3]{%
     Die  Methode  \code{p\_sani}  wurde  zu  Beginn  des  Projektes  in  einer
-    Matlab-Implementation  zur Verf\"ugung  gestellt  und anschliessend  f\"ur
-    unser Tool in Java \"ubersetzt.
+    Matlab-Implementation  vom  Auftraggeber   zur  Verf\"ugung  gestellt  und
+    anschliessend f\"ur unser Tool in Java \"ubersetzt.
 
     Sie kann aus der Verz\"ogerungszeit, der Anstiegszeit und der Verst\"arkung
     der Strecke ein Polynom f\"ur deren \"Ubertragungsfunktion vom Grad 1 bis 8
@@ -87,5 +85,5 @@ lassen.
     \label{fig:plant_freq}
 \end{figure}
 
-Somit  ist  der Frequenzgang  der  Strecke  bekannt  und  man kann  mit  einer
-geeigneten Methode den Regler dimensionieren.
+Somit ist der Frequenzgang der Strecke bekannt und man hat alle erforderlichen
+Informationen, um den Regler mit der Phasengangmethode zu dimensionieren.

@@ -74,8 +74,7 @@ Es soll nun gelten:
 
 Da   $\frac{d\varphi_s}{d\omega}$  durch   die  Strecke   gegeben  und   somit
 unver\"anderlich ist, kann lediglich der Wert von $\frac{d\varphi_r}{d\omega}$
-angepasst     werden,     damit     $\frac{d\varphi_o}{d\omega}$     Gleichung
-\ref{eq:pid:dphi_o_target} erf\"ullt.
+angepasst werden, damit Gleichung~\ref{eq:pid:dphi_o_target} erf\"ullt wird.
 
 Dazu f\"uhrt man den Hilfsparameter $\beta$ ein, f\"ur den gilt:
 
@@ -103,7 +102,7 @@ unterhalb der Frequenz $\omega_{pid}$.
 }
 
 
-Will  man $\beta$  von Hand  berechnen, trifft  zuerst eine  ``vern\"unftige''
+Will man $\beta$ von Hand  berechnen, trifft man zuerst eine ``vern\"unftige''
 Annahme, zum Beispiel:
 
 \begin{equation} \label{eq:pid:beta:initial_value}
@@ -134,7 +133,7 @@ weiterrechnen zu k\"onnen.
 
 Von dieser Gleichung bestimmt man nun  den Phasengang und wertet danach dessen
 Ableitung an der Stelle $\omega = \omega_{pid}$ aus. Die zugeh\"orige Rechnung
-kann in Anhang~\ref{app:beta_manual_calculation} gefunden werden.
+kann in Anhang~\ref{app:beta} gefunden werden.
 
 \begin{gather} \label{eq:pid:phi_r_first_iteration}
     \begin{split}
@@ -165,7 +164,6 @@ Regelkreises die gew\"unschte N\"ahe zu $-\frac{1}{2}$ aufweist.
 Da die manuelle Iterierung dieses Prozesses enorm viel Zeit in Anspruch nimmt,
 bietet  sich  hier  eine  Automatisierung  an. Die  Berechnung  mittels  eines
 geeigneten Algorithmus in Matlab liefert schlussendlich folgendes Ergebnis:
-\todo{Allenfalls Matlab-Algo in Anhang und Verweis}
 
 \begin{gather} \label{eq:pid:beta_result}
     \begin{split}
@@ -178,7 +176,7 @@ geeigneten Algorithmus in Matlab liefert schlussendlich folgendes Ergebnis:
 Diese Werte sind in ebenfalls in~\ref{fig:pid:complete} eingetragen.
 
 Sollte  man  f\"ur  $\beta$  einen komplexen  Wert  erhalten,  wird  $\beta=1$
-gesetzt.\todo{Wie kann dies egtl. passieren?}
+gesetzt.
 
 
 \subsubsection{Durchtrittsfrequenz $\omega_d$}
@@ -209,7 +207,7 @@ bestimmten  provisorischen   \"Ubertragungsfunktion  des   Reglers  (Gleichung
     H_{o}(j\omega) = H_{rpid}(j\omega) \cdot H_s(j\omega)
 \end{equation}
 
-Nun wird  die Durchtrittsfrequenz $\omega_d$  bestimmt, an welcher  der offene
+Nun wird die  Durchtrittsfrequenz $\omega_d$ berechnet, an  welcher der offene
 Regelkreis eine  Verst\"arkung von $\SI{0}{\decibel} =  1$ aufweisen soll. Wie
 auch  beim  PI-Regler  werden  wir   hier  ein  \"Uberschwingen  von  $16.3\%$
 anstreben, womit gem\"ass Tabelle \ref{tab:phi_s} gilt:
@@ -274,7 +272,8 @@ erh\"alt.
 
 \subsubsection{Resultat}
 
-Somit ist der Regler vollst\"andig bestimmt und hat folgende \"Ubertragungsfunktion:
+Somit   ist  der   Regler   vollst\"andig  dimensioniert   und  hat   folgende
+\"Ubertragungsfunktion:
 
 \begin{equation} \label{eq:pid:result}
     H_{rpid}(s) = 1.83084 \cdot \biggl[ \frac{(1 + s \cdot \SI{5.3656}{\second} ) \cdot (1 + s \cdot \SI{0.4134}{\second} ) }{ s \cdot \SI{5.3656}{\second} } \biggr]

@@ -1,14 +1,103 @@
-Das Zusammenspiel der einzelnen Komponenten der Applikation wird im Folgenden anhand eines Beispiels erkl\"art.
-Beim Programmstart werden durch das Model drei \textit{closedLoops}
-(geschlossenen Regelkreise) f\"ur die Phasengang-Methode sowie vier weitere f\"ur die Faustformeln erzeugt. Jeder \textit{closedLoops} ist von Beginn an einem Berechnungstyp (Phasengang-Methode, Faustformel) zugewiesen. Er ist bereit, Daten aufzunehmen und zu verarbeiten.
-\"Uber die drei Eingabefelder $K_s$, $T_u$ und $T_g$ werden die Werte der vermessenen Regelstrecke durch den Benutzer eingegeben. Durch Dr\"ucken des Buttons „Berechnen“ werden die Eingaben durch den \textit{GUIController} auf Zul\"assigkeit \"uberpr\"uft. Erf\"ullen sie die erforderlichen Kriterien nicht, wird eine Benachrichtigung mit Hinweis auf den Fehler oberhalb des Buttons ausgegeben und die Berechnung nicht ausgel\"ost.
-Haben die Eingaben die \"Uberpr\"ufung durch den \textit{GUIController} bestanden, fragt dieser zus\"atzlich die aktuellen Werte/Zust\"ande der Slider f\"ur \"Uberschwingen und Optimierung sowie den Reglertyp auf dem GUI ab und leitet alle Daten mittels \textit{setData()} an das Model weiter. Dieses erzeugt einen Path (Strecke) aus den Eingabewerten. Das Model errechnet den Optimierungs-Offset und weist die Daten den entsprechenden \textit{closedLoops} der Phasengang-Methode sowie der Faustformeln mittels der\textit{setData()}  Methode zu. Jeder \textit{closedLoops} leitet die Daten an den zugeh\"origen Controller weiter, der die Reglerwerte berechnet. Zu Beginn betrachten wir den Regler nach Oppelt genauer.
-Die Klasse \textit{Oppelt}  erbt von der abstrakten Klasse Controller und besitzt somit alle setter- und getter-Methoden der Oberklasse. Als Input stehen die Informationen der Strecke sowie der Reglertyp (PI, PID) zur Verf\"ugung. Je nach gew\"ahltem Berechnungstyp werden die Reglerwerte „reglerkonform“ berechnet und gespeichert. Weiter werden die Werte in die „bodekonforme“ Darstellung umgerechnet und ebenfalls abgespeichert.
-Die Berechnungstypen Rosenberg, Chien/Hrones/Reswick (20%) sowie Chien/Hrones/Reswick (aperiod.) funktionieren analog dem Berechnungstyp Oppelt  und werden nicht weiter ausgef\"uhrt.
-Ein spezielles Augenmerk richten wir nun auf die Berechnung der Phasengang-Methode. Auch die Klasse \textit{phaseResponseMethod }  erbt von der Klasse Controller und bringt die bereits erw\"ahnten setter- und getter-Methoden mit. Die Input-Werte sind analog derjenigen der Faustformeln. Zus\"atzlich werden die Informationen zum \"Uberschwingen, der Optimierung sowie Tp in die Berechnung mit einbezogen und die gesetzten Input-Werte werden den lokalen Attributen zugewiesen. calculateOvershoot() wird ausgel\"ost und setzt das Attribut phiU, welches f\"ur das korrekte \"Uberschwingen ben\"otigt wird. Darauf folgend wird calculate() aufgerufen. Diese Methode berechnet anhand der Methode createOmegaAxis() die diskrete Omega-Achse in Abh\"angigkeit der Zeitkonstante der Regelstrecke. Die \"Ubertragungsfunktion in s der Regelstrecke wird f\"ur alle Punkte von Omega berechnet. calculateTnk() wird ausgel\"ost. Diese Methode berechnet Tnk und Tvk unter Zuhilfenahme der diskreten Werte nach dem Prinzip der Phasengang-Methode. Daraus resultiert die \"Ubertragungs-Funktion des Reglers. Falls Tp = 0 aus der Eingabe \"ubergeben wurde, so wird an dieser Stelle Tp berechnet. Krk wird gem\"ass der Phasengang-Methode mittels calculateKrk() berechnet. Zudem beinhaltet. die Methode calculateKrk() den Aufruf von calculateControllerConf() und setUTF(). calculateControllerConf transformiert die Werte in die „reglerkonforme“ Darstellung. setUTF() setzt die \"Ubertragungs-Funktion des Reglers.
-Im closedLoop wird nun die Methode calculate() ausgef\"uhrt, welche mittels calculateStepResponse() die Schrittanwort des geschlossenen Regelkreises berechnet. Falls es sich bei der Berechnung des Reglers um die Phasengang-Methode handelt, wird zus\"atzlich die overShootOptimization() aufgerufen. Diese Methode \"andert den Wert von Krk so lange, bis das gew\"unschte \"Uberschwingen erreicht wird.
-Sobald die Berechnungen aller \textit{closedLoops}abgeschlossen sind, wird im Model \textit{notifyObserver()} ausgel\"ost. Hiermit wird die View  dar\"uber informiert, dass \"Anderungen im Model vorgenommen wurden und die Methode \textit{update()} in den jeweiligen View-Unter-Klassen aufgerufen werden soll. Somit aktualisiert sich die View und die neu berechneten Regler-Werte sowie die Strecken-Ordnung werden ausgegeben und die Plot-Daten werden aktualisiert. Im Speziellen f\"ur die Phasengang-Methode, werden auch Start-Werte f\"ur $T_p$ gesetzt.
-Der Benutzer hat nun die M\"oglichkeit die Resultate der Phasengang-Methode weiter zu optimieren. \"Uber das Panel \textit{Optimierungen} stehen die Slider ’’\"Uberschwingen“ sowie ’’Optimierung“ zur Verf\"ugung. Das \"Uberschwingen kann in vorgegebenen Schritten in Prozenten bestimmt werden. Die Optimierung schiebt den Phasenrand bzw. den Regler-Knickpunkt in die positive sowie negative Richtung zugleich, und wird mittels zwei separaten Plots dargestellt. Weiter k\"onnen die Werte f\"ur $T_p$ nachtr\"aglich f\"ur jede der drei kurven individuell angepasst werden.
-Sobald einer der drei Parameter (\"Uberschwingen, Optimierung, $T_p$) ver\"andert wird, wird \"uber den \textit{GUIController} die jeweilige setter-Methode im Model aufgerufen. Das Model gibt die Daten an den jeweiligen \textit{closedLoop} weiter, der diese wiederum den Methoden der Phasengang-Methode weiterleitet. Sobald die neu berechneten Werte vorliegen wird \textit{notifyObservers()} aufgerufen und die View aktualisiert.
-Die Plots sowie die Optimierungs-Schaltfl\"achen sind nur dann sichtbar, wenn die CheckBox ’’Erweiter“ aktiviert ist. Durch deaktivieren dieser CheckBox, kann das Programm in einer Klein-Ansicht, ohne grafische Ausgabe, bedient werden. Die einzelnen Plots k\"onnen \"uber CheckBoxen unterhalb des Plot-Bereichs dazu- oder weggeschaltet werden.
-\"Uber den Button „L\"oschen“ k\"onnen alle Regler- sowie Plot-Daten gel\"oscht werden.
+Das Zusammenspiel der einzelnen Komponenten  der Applikation wird im Folgenden
+anhand eines Beispiels erkl\"art.
+
+Beim   Programmstart   werden   durch  das   Model   drei   \code{closedLoops}
+(geschlossenen Regelkreise)  f\"ur die  Phasengang-Methode sowie  vier weitere
+f\"ur  die Faustformeln  erzeugt. Jeder \code{closedLoops}  ist von  Beginn an
+einem  Berechnungstyp  (Phasengang-Methode,  Faustformel)  zugewiesen. Er  ist
+bereit, Daten aufzunehmen und zu verarbeiten.
+
+\"Uber die  drei Eingabefelder  $K_s$, $T_u$  und $T_g$  werden die  Werte der
+vermessenen Regelstrecke  durch den  Benutzer eingegeben. Durch  Dr\"ucken des
+Buttons  „Berechnen“ werden  die Eingaben  durch den  \code{GUIController} auf
+Zul\"assigkeit  \"uberpr\"uft. Erf\"ullen  sie  die  erforderlichen  Kriterien
+nicht,  wird eine  Benachrichtigung mit  Hinweis auf  den Fehler  oberhalb des
+Buttons ausgegeben und die Berechnung nicht ausgel\"ost.
+
+Haben  die   Eingaben  die  \"Uberpr\"ufung  durch   den  \code{GUIController}
+bestanden, fragt dieser zus\"atzlich die aktuellen Werte/Zust\"ande der Slider
+f\"ur \"Uberschwingen und  Optimierung sowie den Reglertyp auf dem  GUI ab und
+leitet  alle  Daten  mittels  \code{setData()}  an  das  Model  weiter. Dieses
+erzeugt einen  Path (Strecke) aus  den Eingabewerten. Das Model  errechnet den
+Optimierungs-Offset und weist die  Daten den entsprechenden \code{closedLoops}
+der  Phasengang-Methode  sowie  der Faustformeln  mittels  der\code{setData()}
+Methode  zu. Jeder \code{ClosedLoop}  leitet  die Daten  an den  zugeh\"origen
+Controller weiter, der die Reglerwerte berechnet. Zu Beginn betrachten wir den
+Regler nach Oppelt genauer.
+
+Die  Klasse \code{Oppelt}  erbt  von der  abstrakten Klasse  \code{Controller}
+und  besitzt  somit  alle  Setter-  und  Getter-Methoden  der  Oberklasse. Als
+Input  stehen die  Informationen der  Strecke  sowie der  Reglertyp (PI,  PID)
+zur  Verf\"ugung. Je nach  gew\"ahltem Berechnungstyp  werden die  Reglerwerte
+reglerkonform  berechnet  und  gespeichert. Weiter  werden die  Werte  in  die
+bodekonforme Darstellung umgerechnet und ebenfalls abgespeichert.\todo{ref abschnitt bode/regler}
+
+Die    Berechnungstypen   Rosenberg,    Chien/Hrones/Reswick   (20\%)    sowie
+Chien/Hrones/Reswick (aperiod.) funktionieren analog dem Berechnungstyp Oppelt
+und werden nicht weiter ausgef\"uhrt.
+
+Ein   spezielles  Augenmerk   richten   wir  nun   auf   die  Berechnung   der
+Phasengang-Methode. Auch  die   Klasse  \code{PhaseResponseMethod}   erbt  von
+der  Klasse  \code{Controller}  und  bringt die  bereits  erw\"ahnten  Setter-
+und   Getter-Methoden  mit. Die   Input-Werte  sind   analog  derjenigen   der
+Faustformeln. Zus\"atzlich  werden  die   Informationen  zum  \"Uberschwingen,
+der   Optimierung   sowie   $T_p$   in  die   Berechnung   miteinbezogen   und
+die   gesetzten  Input-Werte   werden  den   lokalen  Attributen   zugewiesen.
+\code{calculateOvershoot()}   wird   ausgel\"ost   und  setzt   das   Attribut
+\code{phiU},   welches   f\"ur   das   korrekte   \"Uberschwingen   ben\"otigt
+wird. Darauf   folgend  wird   \code{calculate()}  aufgerufen. Diese   Methode
+berechnet   anhand   der   Methode   \code{createOmegaAxis()}   die   diskrete
+Omega-Achse  in  Abh\"angigkeit  der  Zeitkonstanten  der  Regelstrecke.   Der
+Wert  der  \"Ubertragungsfunktion  der  Regelstrecke wird  f\"ur  alle  Punkte
+der Frequenzachse  ausgewertet. \code{calculateTnk()}  wird ausgel\"ost. Diese
+Methode  berechnet   $T_nk$  und  $T_vk$  unter   Zuhilfenahme  der  diskreten
+Werte   nach  dem   Prinzip  der   Phasengangmethode. Daraus  resultiert   die
+\"Ubertragungsfunktion  des   Reglers. Falls  $T_p   =  0$  aus   der  Eingabe
+\"ubergeben   wurde,  wird   an   dieser   Stelle  $T_p$   berechnet. $K_{rk}$
+wird    gem\"ass   der    Phasengangmethode   mittels    \code{calculateKrk()}
+berechnet. Zudem    beinhaltet   die    Methode   \code{calculateKrk()}    den
+Aufruf     von    \code{calculateControllerConf()}     und    \code{setUTF()}.
+\code{calculateControllerConf()} transformiert die Werte in die reglerkonforme
+Darstellung. \code{setUTF()} setzt die \"Ubertragungs-Funktion des Reglers.
+
+Im  \code{ClosedLoop} wird  nun die  Methode \code{calculate()}  ausgef\"uhrt,
+welche  mittels der  Methode \code{calculateStepResponse()}  die Schrittanwort
+des   geschlossenen   Regelkreises   berechnet. Falls    es   sich   bei   der
+Berechnungsmethode  des  Reglers  um   die  Phasengang-Methode  handelt,  wird
+zus\"atzlich \code{overShootOptimization()} aufgerufen. Diese Methode \"andert
+den Wert von $K_{rk}$ so  lange, bis das gew\"unschte \"Uberschwingen erreicht
+wird.
+
+Sobald die  Berechnungen aller  \code{ClosedLoops}abgeschlossen sind,  wird im
+\code{Model} \code{notifyObserver()} ausgel\"ost. Hiermit wird die \code{View}
+dar\"uber  informiert, dass  \"Anderungen im  \code{Model} vorgenommen  wurden
+und  die Methode  \code{update()} in  den jeweiligen  Unterklassen der  Klasse
+\code{View}aufgerufen werden soll. Somit aktualisiert sich die \code{View} und
+die neu  berechneten Reglerwerte. Die Streckenordnung wird  ausgegeben und die
+Plot-Daten  werden aktualisiert. Im  Fall  der  Phasengangmethode werden  auch
+Startwerte f\"ur $T_p$ gesetzt.
+
+Der Benutzer  hat nun die  M\"oglichkeit, die Resultate  der Phasengangmethode
+weiter  zu  optimieren. \"Uber  das   Panel  \code{Optimierungen}  stehen  die
+Slider  \emph{\"Uberschwingen} sowie  \emph{Optimierung} zur  Verf\"ugung. Das
+\"Uberschwingen  kann  in  vorgegebenen   Schritten  in  Prozenten  festgelegt
+werden. Die Optimierung  schiebt den Phasenrand bzw.  den Regler-Knickpunkt in
+die positive sowie negative Richtung zugleich, und wird mittels zwei separaten
+Plots dargestellt. Weiter k\"onnen die  Werte f\"ur $T_p$ nachtr\"aglich f\"ur
+jede der drei Kurven individuell angepasst werden.
+
+Sobald  einer   der  drei  Parameter  (\"Uberschwingen,   Optimierung,  $T_p$)
+ver\"andert  wird,   wird  \"uber   den  \code{GUIController}   die  jeweilige
+Setter-Methode im \code{Model} aufgerufen. Das  \code{Model} gibt die Daten an
+den jeweiligen \code{ClosedLoop}  weiter, der diese wiederum  den Methoden der
+Phasengang-Methode  weiterleitet. Sobald die  neu berechneten  Werte vorliegen
+wird \code{notifyObservers()} aufgerufen und die \code{View} aktualisiert.
+
+Die  Plots  sowie die  Optimierungs-Schaltfl\"achen  sind  nur dann  sichtbar,
+wenn  die CheckBox  \emph{Erweiter} aktiviert  ist. Durch Deaktivieren  dieser
+CheckBox  kann das  Programm  in einer  Klein-Ansicht  ohne grafische  Ausgabe
+bedient werden. Die  einzelnen Plots k\"onnen \"uber  CheckBoxen unterhalb des
+Plot-Bereichs dazu- oder weggeschaltet werden.
+
+\"Uber  den Button  \emph{L\"oschen}  k\"onnen alle  Regler- sowie  Plot-Daten
+gel\"oscht werden.

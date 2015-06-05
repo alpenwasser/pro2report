@@ -1,42 +1,42 @@
-Im Model wird f\"ur jede Berechnungsart, also entwerder f\"ur die Faustformeln
-oder die Phasengangmethode, Objekt des Typs \code{CloseLoop} erzeugt.
+Das  Model  beheimatet   alle  Daten  sowie  ein   Grossteil  der  Algorithmen
+(zus\"atzliche  Algorithmen sind  in  der Klasse  Calc  des Package  Utilities
+zu  finden). Das  Model  ist  observable  um ein  update()  aus  der  View  zu
+erm\"oglichen.
+
+\subsubsection*{Model}
+Die  Klasse  Model erzeugt  im  Konstruktor  f\"ur jede  Berechnungsart  einen
+\code{ClosedLoop}. Sie enth\"alt Setter-  und Getter-Methoden zur Verarbeitung
+der Daten in weiteren Klassen.
+
+\subsubsection*{ClosedLoop}
+In   der  Klasse   \code{ClosedLoop}   wird  \"uber   eine  Case-Abfrage   die
+jeweilige Berechnungsart der passende \code{Controller} erstellt. Zus\"atzlich
+beinhaltet  die Klasse  die  Methode  \code{calculate()}. Diese berechnet  zum
+einen die Schrittantwort mittels  \code{calculateStepResponse()} und f\"ur die
+optimiert f\"ur die  Phasengangmethode zus\"atzlich das \"Uberschwingverhalten
+mittels der Methode \code{overShootOptimazation()}.
 
 
 \subsubsection*{Controller}
-
-Der  Controller  bildet  die  Oberklasse   f\"ur  alle  Faustformeln  und  die
-Phasengangmehode. Sie  beinhaltet  die  abstrakte  Methode  \code{calculate()}
-sowie alle n\"otigen Getter und Setter.
-
+Die Klasse \code{Controller} bildet die  Oberklasse aller Faustformeln und der
+Phasengang-Methode. Sie  beinhaltet  die abstrakte  Klasse  \code{calculate()}
+sowie alle n\"otigen Setter- und Getter-Methoden.
 
 \subsubsection*{Faustformeln}
 
 \code{Chien20},   \code{ChienApper},   \code{Oppelt},   \code{Rosenberg}   und
-\code{ZieglerNichols} sind die Klassen  zu den zugeh\"origen Fausformeln.  Die
-abstrakte Methode  \code{calculate()} aus der Klasee  \code{Controller} ist in
-jeder dieser Klassen  implementiert. Sie liest die ben\"otigten  Werte aus der
-Strecke (Klasse  \code{Path}) aus  und f\"uhrt  die Berechnungen  gem\"ass der
-entsprechenden Faustformel aus.
-
-
-\subsubsection*{ClosedLoop}
-
-In  der  Klasee  \code{ClosedLoop}   wird  f\"ur  jede  Berechungsart  jeweils
-ein  \code{Controller}  erstellt. Auch  diese Klasse  enth\"alt  eine  Methode
-\code{calculate()}. In   dieser  wird   einerseits   f\"ur  alle   Rechenarten
-die  Berechung   der  Schrittantwort   mittels  \code{calculateStepResponse()}
-ausgel\"ost   und   f\"ur   die  Phasengangmethode   wird   zus\"atzlich   das
-\"Uberschwingverhalten durch \code{overShootOptimazation()} optimiert.
-
+\code{ZieglerNichols} sind  die Klassen  zu den  zugeh\"origen Fausformeln. In
+diesen  gibt   es  jeweils  eine   Methode  \code{calculate()},  in   der  die
+ben\"otigten  Werte  aus der  Klasse  \code{Path}  ausgelesen werden  und  die
+Berechnungen  mittels vorgegebenen  Fausformeln,  je  nach Controllertyp  (PI,
+PID), durchgef\"urt werden.
 
 \subsubsection*{PhaseRespsonseMethod}
 
-\todo{Dieser  Abschnitt  sollte  vermutlich nomals  Aufmerksamkeit  von  einem
-Experten zum Code erhalten.}
+In dieser Klasse wird die OmegaAchse  in Abh\"angigkeit vom Phasengang und des
+ben\"otigten Winkelbereiches erstellt.
 
-In dieser Klasse  wird die Frequenzachse in Abh\"angigkeit  vom Phasengang und
-des ben\"otigten Winkelbereiches erstellt.   Ausserdem finden wir verschiedene
-calculate Methoden.
+Ausserdem finden wir verschiedene calculate Merhoden.
 
 Einerseits  ist da  calculate()  , in  dieser  wird die  UTF  Strecke aus  der
 Strecke(path)  geholt  und  die  Omega-Achse  Methode  aufgeruffen. In  dieser
@@ -52,3 +52,16 @@ Klasse  auszul\"osen, calculatePhaseMargin()  bestimmt je  nach Reglertyp  den
 Phasenrand  und zum  schluss calculateOverShoot(),  hier wird  je nach  vorher
 berechnetem \"Uberschwingen, dem  Wert phiu einen der  4 vordefinierten static
 final Werte zugewiesen.
+
+
+
+\subsubsection*{Path}
+
+Hier  giebt es  ebenfalls  eine Methode  \code{calculate()},  die mittels  der
+Methode  \code{sani()} Methode  aus Utilities-Klasse  \code{Calc} die  Strecke
+ausrechnet.
+
+Die restlichen Klassen sind reine Getter- und Setter-Methoden.
+
+Die  Alghorithmen zu  diesen  Methoden finden  Sie  im Anhang.  \todo{Verweise
+Appendix}.

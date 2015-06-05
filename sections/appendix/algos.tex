@@ -11,8 +11,7 @@
 
 \subsubsection*{Output}
 \begin{tabular}{p{40mm}l}
-    $ n $ & Ordnung der Regelstrecke \\
-    $ T $ & Zeitkonstante
+    Array & \parbox[t][4em][s]{0.7\textwidth}{Array mit den Zeitkonstanten des Polynoms der \"Ubertragungsfunktion der Strecke}
 \end{tabular}
 
 \subsubsection*{Algorithmus}
@@ -20,17 +19,17 @@
     \item
         Ung\"ultige Eingaben warden abgefangen und ein Fehler zur\"uckgegeben.
     \item
-        L\"adt Werte f\"ur Tu und Tg.
+        L\"adt Werte f\"ur $T_u$ und $T_g$.
     \item
-        Erstellt 50 Werte zwischen 0 und 1 f\"ur ri.
+        Erstellt 50 Werte zwischen 0 und 1 f\"ur $r_i$.
     \item
         Bestimmt die Ordnung der Regelstrecke.
     \item
-        Spline f\"ur r und w
+        Spline f\"ur $r$ und $\omega$ \todo{Ja aber was heisst das nun?}
     \item
-        T(n) wird aus w*tg berechnet.
+        $T(n)$ wird aus $\omega \cdot T_g$ berechnet.
     \item
-        Umspeichern \& Sortieren
+        Umspeichern und Sortieren
 \end{enumerate}
 
 \subsubsection*{Matlab-Code}
@@ -53,9 +52,7 @@
 
 \subsubsection*{Output}
 \begin{tabular}{p{40mm}l}
-    $ T_{nk} $ & Nachstellzeit \\
-    $ T_{vk} $ & Vorhaltezeit \\
-    $ K_{rk} $ & Verst\"arkungsfaktor des Reglers
+    Array & \parbox[t][4em][s]{0.7\textwidth}{Array mit Nachstellzeit $ T_{nk} $, Vorhaltezeit $ T_{vk} $ und Verst\"arkungsfaktor $ K_{rk} $ des Reglers}
 \end{tabular}
 
 \subsubsection*{Algorithmus}
@@ -63,27 +60,11 @@
     \item
         W\"ahlt je nach Reglertyp die Umrechnungsformel.
     \item
-        Falls der I-Regler gew\"ahlt wird, gibt der Algorithmus einen Fehler zur\"uck, da der I-Regler nicht implementiert ist.
+        Falls  ein nicht  implementierter Reglertyp  gew\"ahlt wird,  wird ein
+        Fehler zur\"uckgegeben.
     \item
-        PI-Regler:
-        $T_{nk} = T_n$, $K_{rk} = K_r$, $T_{vk} = 0$
-    \item
-        F\"ur PID-Regler:
-        \begin{equation*}
-            \varepsilon =\frac{\sqrt{1-(4 \cdot T_n \cdot (T_v-T_p))}}{(T_n+T_p)^2}
-        \end{equation*}
-
-        \begin{equation*}
-            T_{nk} = \frac{(T_n+T_p) \cdot (1+\varepsilon)}{2}
-        \end{equation*}
-
-        \begin{equation*}
-            K_{rk} = \frac{K_r \cdot (\frac{1+T_p}{T_{nk}}) \cdot (1+\varepsilon)}{2}
-        \end{equation*}
-
-        \begin{equation*}
-            T_{vk} = \frac{(T_n+T_p)*(1+\varepsilon)}{2}
-        \end{equation*}
+        Berechnung             der            Reglerwerte             gem\"ass
+        Tabelle~\ref{tab:bode_regler_konform}.
 \end{enumerate}
 \subsubsection*{Matlab-Code}
 \lstinputlisting[style=Matlab-editor-2]{mfiles/p2Bodekonf.m}
@@ -105,9 +86,7 @@
 
 \subsubsection*{Output}
 \begin{tabular}{p{40mm}l}
-    $ T_n $ & Nachstellzeit \\
-    $ T_v $ & Vorhaltezeit \\
-    $ K_r $ & Verst\"arkungsfaktor des Reglers
+    Array & \parbox[t][4em][s]{0.7\textwidth}{Array mit Nachstellzeit $T_n$, Vorhaltezeit $T_v$ und Verst\"arkungsfaktor $K_r$ des Reglers}
 \end{tabular}
 
 \subsubsection*{Algorithmus}
@@ -115,25 +94,14 @@
     \item
         W\"ahlt je nach Reglertyp die Umrechnungsformel.
     \item
-        Falls der I-Regler gew\"ahlt wird, gibt der Algorithmus einen Fehler zur\"uck, da der I-Regler nicht implementiert ist.
+        Falls  ein nicht  implementierter Reglertyp  gew\"ahlt wird,  wird ein
+        Fehler zur\"uckgegeben.
     \item
         PI-Regler:
         $T_{n} = T_{nk}$, $K_{k} = K_{rk}$, $T_{v} = 0$
     \item
-       F\"ur PID-Regler:
-
-       \begin{equation*}
-           K_r= K_{rk} \cdot \frac{1+T_{vk}}{T_{nk}}
-       \end{equation*}
-
-       \begin{equation*}
-           T_n= T_{nk}+T_{vk}-T_p
-       \end{equation*}
-
-       \begin{equation*}
-           T_v = \frac{T_{nk} \cdot T_{vk}}{T_{nk}+T_{vk}-T_p)-T_p}
-       \end{equation*}
-
+        Berechnung             der            Reglerwerte             gem\"ass
+        Tabelle~\ref{tab:bode_regler_konform}.
 \end{enumerate}
 
 \subsubsection*{Matlab-Code}
@@ -157,9 +125,8 @@
 
 \subsubsection*{Output}
 \begin{tabular}{p{40mm}l}
-    Z\"ahler & Reeller Z\"ahler \\
-    Nenner   & Reeller Nenner
-\end{tabular}\todo{korrekt? Oder einfach reelle Koeffizienten?}
+    Array & Array mit reellem Z\"ahler und reellem Nenner
+\end{tabular}
 
 \subsubsection*{Algorithmus}
 \begin{enumerate}
@@ -172,7 +139,10 @@
 \subsubsection*{Matlab-Code}
 \lstinputlisting[style=Matlab-editor-2]{mfiles/p2UTFRegler.m}
 
+
+% ---------------------------------------------------------------------------- %
 \subsection{Faustformel Oppelt}
+% ---------------------------------------------------------------------------- %
 
 \subsubsection*{Input}
 
@@ -185,9 +155,7 @@
 
 \subsubsection*{Output}
 \begin{tabular}{p{40mm}l}
-    $ K_p $ & Proportionalit\"atsfaktor \\
-    $ T_n $ & Nachstellzeit \\
-    $ T_v $ & Vorhaltezeit
+    Array & \parbox[t][4em][s]{0.7\textwidth}{Array mit Proportionalit\"atsfaktor $ K_p $, Nachstellzeit $ T_n $ und Vorhaltezeit $ T_v $}
 \end{tabular}
 
 \subsubsection*{Algorithmus}
@@ -242,9 +210,7 @@
 
 \subsubsection*{Output}
 \begin{tabular}{p{40mm}l}
-    $ K_p $ & Proportionalit\"atsfaktor \\
-    $ T_n $ & Nachstellzeit \\
-    $ T_v $ & Vorhaltezeit
+    Array & \parbox[t][4em][s]{0.7\textwidth}{Array mit Proportionalit\"atsfaktor $ K_p $, Nachstellzeit $ T_n $ und Vorhaltezeit $ T_v $}
 \end{tabular}
 
 \subsubsection*{Algorithmus}
@@ -282,8 +248,8 @@
         \end{equation*}
 \end{enumerate}
 
-\subsubsection*{Matlab-Code}
-\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffrosenberg.m}
+%\subsubsection*{Matlab-Code}
+%\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffrosenberg.m}
 
 
 \clearpage
@@ -302,9 +268,7 @@
 
 \subsubsection*{Output}
 \begin{tabular}{p{40mm}l}
-    $ K_p $ & Proportionalit\"atsfaktor \\
-    $ T_n $ & Nachstellzeit \\
-    $ T_v $ & Vorhaltezeit
+    Array & \parbox[t][4em][s]{0.7\textwidth}{Array mit Proportionalit\"atsfaktor $ K_p $, Nachstellzeit $ T_n $ und Vorhaltezeit $ T_v $}
 \end{tabular}
 
 \subsubsection*{Algorithmus}
@@ -339,8 +303,8 @@
         \end{equation*}
 \end{enumerate}
 
-\subsubsection*{Matlab-Code}
-\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffziegler.m}
+%\subsubsection*{Matlab-Code}
+%\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffziegler.m}
 
 \clearpage
 % ---------------------------------------------------------------------------- %
@@ -359,9 +323,7 @@
 
 \subsubsection*{Output}
 \begin{tabular}{p{40mm}l}
-    $ K_p $ & Proportionalit\"atsfaktor \\
-    $ T_n $ & Nachstellzeit \\
-    $ T_v $ & Vorhaltezeit
+    Array & \parbox[t][4em][s]{0.7\textwidth}{Array mit Proportionalit\"atsfaktor $K_p$, Nachstellzeit $T_n$ und Vorhaltezeit $T_v$}
 \end{tabular}
 
 \subsubsection*{Algorithmus}
@@ -426,8 +388,8 @@
         \end{equation*}
 \end{enumerate}
 
-\subsubsection*{Matlab-Code}
-\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffchien.m}
+%\subsubsection*{Matlab-Code}
+%\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffchien.m}
 
 
 \clearpage
@@ -485,7 +447,7 @@ zwei Arrays) an einem bestimmten Array-Index.
 \begin{tabular}{p{40mm}l}
     Z\"ahler & Z\"ahler der \"Ubertragungsfunktion                             \\
     Nenner   & Nenner der \"Ubertragungsfunktion                               \\
-    Frequenz & Frequenz, bis zu der die Frequenzachse ausgewertet werden soll. \\
+    $f_s$    & Abstastfrequenz                                                 \\
     n        & Granulierung der Frequenzachse
 \end{tabular}
 
@@ -497,7 +459,7 @@ zwei Arrays) an einem bestimmten Array-Index.
 \subsubsection*{Algorithmus}
 \begin{enumerate}
     \item
-        Array mit f\"ur Frequenzachse generieren.
+        Array mit Frequenzachse generieren.
     \item
         Frequenzgang der \"Ubertragungsfunktion berechnen.
     \item
@@ -558,7 +520,7 @@ generierten Reglers.
 % ---------------------------------------------------------------------------- %
 \label{app:algo:tnktvk}
 
-\code{calculateTnkTvk}    bestimmt    $T_{nk}$    und    $T_{vk}$. Kern    des
+\code{calculateTnkTvk()}    bestimmt   $T_{nk}$    und   $T_{vk}$. Kern    des
 Algorithmus  ist  die  Automatisierung   der  Berechnung  von  $\beta$  (siehe
 Anhang~\ref{app:beta} f\"ur die manuelle Rechnung);
 

@@ -112,7 +112,7 @@
 
 \clearpage
 % ---------------------------------------------------------------------------- %
-\subsection{utfController}
+\subsection{\"Ubertragungsfunktion des Controllers (\code{utfController()})}
 \label{app:algo:utfcontroller}
 % ---------------------------------------------------------------------------- %
 
@@ -134,9 +134,14 @@
 \subsubsection*{Algorithmus}
 \begin{enumerate}
     \item
-        W\"ahlt je nach Reglertyp die korrekten Formeln.
+        W\"ahlt je nach Reglertyp die  korrekten Formeln, gibt Fehler zur\"uck
+        bei nicht implementiertem Regler.
     \item
-        \todo{Matrix}
+        PI-Regler: Zur\"uckgabe der Koeffizienten des Z\"ahler- und Nennerpolynoms
+        in bodekonformer Darstellung gem\"ass Gleichung ~\ref{eq:pi:bodekonform}.
+    \item
+        PID-Regler: Zur\"uckgabe der Koeffizienten des Z\"ahler- und Nennerpolynoms
+        in bodekonformer Darstellung gem\"ass Gleichung~\ref{eq:pid:bodekonform}.
 \end{enumerate}
 
 \subsubsection*{Matlab-Code}

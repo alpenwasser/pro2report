@@ -190,8 +190,8 @@
         \end{equation*}
 \end{enumerate}
 
-\subsubsection*{Matlab-Code}
-\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffoppelt.m}
+%\subsubsection*{Matlab-Code}
+%\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffoppelt.m}
 
 
 \clearpage
@@ -394,10 +394,10 @@
 
 \clearpage
 % ---------------------------------------------------------------------------- %
-\subsection{diskDiff}
+\subsection{Steigung einer Funktion}
 % ---------------------------------------------------------------------------- %
 
-\code{diskDiff} berechnet  die Steigung einer Funktion  (repr\"asentiert durch
+\code{diskDiff()} berechnet die Steigung einer Funktion (repr\"asentiert durch
 zwei Arrays) an einem bestimmten Array-Index.
 
 \subsubsection*{Input}
@@ -436,10 +436,10 @@ zwei Arrays) an einem bestimmten Array-Index.
 
 \clearpage
 % ---------------------------------------------------------------------------- %
-\subsection{schrittIfft}
+\subsection{Inverse Fast Fourier Transform}
 % ---------------------------------------------------------------------------- %
 
-\code{schrittIfft}   berechnet  die   Schrittantwort   im  Zeitbereich   einer
+\code{schrittIfft()}  berechnet   die  Schrittantwort  im   Zeitbereich  einer
 \"Ubertragungsfunktion. \todo{korrekt?}
 
 \subsubsection*{Input}
@@ -479,10 +479,10 @@ zwei Arrays) an einem bestimmten Array-Index.
 
 \clearpage
 % ---------------------------------------------------------------------------- %
-\subsection{overShootOptimisation}
+\subsection{Optimieren des \"Uberschwingens}
 % ---------------------------------------------------------------------------- %
 
-\code{overShootOptimisation}   optimiert    das   \"Uberschwingverhalten   des
+\code{overShootOptimisation()}   optimiert   das  \"Uberschwingverhalten   des
 generierten Reglers.
 
 \subsubsection*{Input}
@@ -503,11 +503,21 @@ generierten Reglers.
     \item
         Diesen Wert mit dem vom Benutzer gew\"unschten maximalen \"Uberschwingen vergleichen.
     \item
-        Falls   zu   starkes   \"Uberschwingen: Reglerverst\"arkung   $K_{rk}$
-        schrittweise reduzieren, bis gew\"unschtes Verhalten eingehalten wird.
-    \item
-        Falls   zu  schwaches   \"Uberschwingen: Reglerverst\"arkung  $K_{rk}$
-        schrittweise erh\"ohen, bis gew\"unschtes Verhalten eingehalten wird.
+        Die  Optimierung des  \"Uberschwingens  erfolgt  in zwei  Stufen: Eine
+        rasche, aber  grobe, erste Stufe,  und eine langsamere,  aber feinere,
+        zweite Stufe.   Dies erlaubt, rasch in  den gew\"unschten Wertebereich
+        zu kommen, ohne dass dabei das Endergebnis an Genauigkeit verliert. In
+        beiden Stufen ist das Konzept identisch:
+    \begin{enumerate}
+        \item
+            Falls  zu  starkes  \"Uberschwingen: Reglerverst\"arkung  $K_{rk}$
+            schrittweise reduzieren,  bis gew\"unschtes  Verhalten eingehalten
+            wird.
+        \item
+            Falls  zu schwaches  \"Uberschwingen: Reglerverst\"arkung $K_{rk}$
+            schrittweise  erh\"ohen, bis  gew\"unschtes Verhalten  eingehalten
+            wird.
+    \end{enumerate}
 \end{enumerate}
 
 \subsubsection*{Java-Code}

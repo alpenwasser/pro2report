@@ -1,0 +1,134 @@
+In  diesem  Projekt ist  im  speziellen  die Schrittantwort  de  geschlossenen
+Regelkreises von  Bedeutung. Um auf die  Schrittantwort zu gelangen  wurde der
+Weg \"uber die IFFT (Englisch:  \emph{Inverse Fast Fourier Transform}, inverse
+schnelle Fourier-Transformation)  gew\"ahlt, da diese relativ  einfach in Java
+zu implementieren ist.
+
+F\"ur diese Berechnung sind folgende Schritte notwendig:
+
+\begin{itemize}
+    \item
+        \"Ubertragungsfunktion des geschlossenen Regelkreises bilden
+    \item
+        bestimmen der Abstastfrequenz $f_s$ sowie der Anzahl zu berechnender Punkte.
+    \item
+        diskreten Frequenzgang berechnen
+    \item
+        Frequenzgang f\"ur die IFFT vorbereiten
+    \item
+        Frequenzgang mittels IFFT r\"ucktransformieren
+    \item
+        Schrittantwort aus der Impulsantwort bilden
+\end{itemize}
+
+
+% --------------------------------------------------------------------------- %
+\subsection{\"Ubertragungsfunktion des geschlossenne Regelkreises bilden}
+% --------------------------------------------------------------------------- %
+
+Da  die \"Ubertragungsfunktionen  des Reglers  sowie der  Regelstrecke bekannt
+sind,  kann aus  ihnen  die gesamte  \"Ubertragungsfunktion $H_g(s)$  gebildet
+werden. Dazu werden die jeweils die Z\"ahler- sowie die Nennerpolynome mittels
+diskreter  Faltung  zusammengef\"uhrt. Zus\"atzlich   muss  das  resultierende
+Z\"ahlerpolynom zum Nennerpolynom addiert werden.
+
+%FORMEL 5 VON ALBER MIT ZUS\"ATZLICH = ZAH_R** ZAH_S / (NEN_R**NEN_S + ZAH_R** ZAH_S)
+%BITEE B UND A IN ZAH BZW. NEN UMBENEN
+
+\begin{gather} \label{eq:fft:hg}
+    \begin{split}
+        H_g(s)  & = \frac{ZAH(s)}{NEN(s)} \\
+                & = \frac{ZAH_{Regler} \cdot ZAH_{Strecke}}{NEN_{Regler} \cdot NEN_{Strecke} + ZAH_{Regler} \cdot ZAH_{Strecke}}
+    \end{split}
+\end{gather}
+
+wobei die Z\"ahler- und Nennerpolynome folgende Form haben:
+
+\begin{align*}
+    ZAH_{Regler}  & = b_{R_1} s^n  + b_{R_2} s^{n-1}  + \dotsb  + b_{R_{n-1}}     ~|~ n \in  \mathbb{N} \\
+    ZAH_{Strecke} & = b_{S_1} s^k  + b_{S_2} s^{k-1}  + \dotsb  + b_{S_{k-1}}     ~|~ k \in  \mathbb{N}  \\
+    NEN_{Regler}  & = a_{R_1} s^m  + a_{R_2} s^{m-1}  + \dotsb  + a_{R_{m-1}}     ~|~ m \in  \mathbb{N}  \\
+    NEN_{Strecke} & = a_{S_1} s^l  + a_{S_2} s^{l-1}  + \dotsb  + a_{S_{l-1}}     ~|~ l \in  \mathbb{N}
+\end{align*}
+
+
+ --------------------------------------------------------------------------- %
+\subsection{Bestimmen der Abtastrate fs sowie der Anzahl zu berechnender Punkte.}
+% --------------------------------------------------------------------------- %
+F\"ur die Berechnung von $f_s$ durften  wir eine Methode verwenden, welche uns
+von  Prof. Dr. Richard Gut  zur  Verf\"ugung  gestellt wurde. Diese  berechnet
+$f_s$ anhand der Nullstellen des  Nennerpolynoms und ermittelt gleichzeitig in
+Abh\"angigkeit von  $f_s$ die Anzahl  $N$ zu berechnender Punkte,  welche eine
+Potenz von  2 bilden.\todo{Ist damit  gemeint, dass N immer  eine Zweierpotenz
+ist?} Daher wird an dieser Stelle nicht weider auf diesen Schritt eingegangen.
+
+\todo{Haben wir hier irgendeine referenzierbare Quelle? Andernfalls wird das
+etwas schrierig mit einem Verweis.}
+
+% --------------------------------------------------------------------------- %
+\subsection{Diskreten Frequenzgang berechnen}
+% --------------------------------------------------------------------------- %
+
+Nun  werden   f\"ur  $\omega$   genau  $N$   Werte  eingesetzt,   welche  sich
+geichm\"assig zwischen 0 und $f_s  \cdot \pi$ verteilen. Dadurch entsteht ein
+diskreter Frequenzgang $H_g[k]$ mit N Werten.
+
+\begin{equation*}
+    H_g[k] = H_g(s) ~|~ s=j \cdot k \cdot f_s,~k \in \mathbb{Z},~0 \leq k \leq N-1
+\end{equation*}
+\todo{1 over fs}
+
+
+% --------------------------------------------------------------------------- %
+\subsection{Frequenzgang f\"ur die inverse Fouriertransformation vorbereiten}
+% --------------------------------------------------------------------------- %
+Damit nach der Transformation in den Zeitbereich ein reelles Resultat vorliegt
+muss der diskrete Frequenzgang $Hg[k]$ folgende Symmetriebedingung erf\"ullen:
+
+\begin{equation*}
+    Hg[L-k]=Hg^*[k]  ~|~ 0 \leq k < L
+\end{equation*}
+\todo{Abklaeren, was L genau ist.}
+
+Deshalb  wird der  zweite Teil  von  $Hg[k]$ jeweils  durch die  entsprechende
+Konjugiert-Komplexe  $H^*[k]$ ersetzt.\todo{Wird  der  wirklich erstetzt  oder
+wird da erg\"anzt?}
+
+\todo{Beni muss noch null abkl\"aren}
+
+
+% --------------------------------------------------------------------------- %
+\subsection{Frequenzgang invers Fourier-transformieren}
+% --------------------------------------------------------------------------- %
+Die  diskrete inverse  Fourier-transformation wird  gem\"ass folgender  Formel
+durchgef\"uhrt:
+
+\begin{equation*}
+    \vec{h}=\text{ifft}(\vec{H})
+\end{equation*}
+
+\todo{Das sagt  ja eigentlich noch nicht  so viel aus, oder  ist damit einfach
+die Methode \code{ifft} gemeint?}
+
+In diesem Projekt  wird f\"ur diese Transformation  ein verbessertes Verfahren
+verwendet. Dieses erm\"oglicht  eine schnellere Berechnung durch  das Zerlegen
+der Punkte  in ihre Primfaktoren. Eine  genauere Erl\"auterung wird  an dieser
+Stelle nicht gemacht, da dieses Verfahren  in Matlab sowie in Java als fertige
+Funktion verf\"ugbar ist.
+
+\todo{EVENTUELL VERWEIS AUF APACHE LIBRARY 3.BLABLABLA}
+
+
+% --------------------------------------------------------------------------- %
+\subsection{Schrittantwort aus der Impulsantwort bilden}
+% --------------------------------------------------------------------------- %
+Aus  der  Impulsantwort $h[k]$  kann  nun  in  einem einfachen  Verfahren  die
+Schrittantwort  $y[k]$ gebildet  werden.  Dabei  entspricht jedes  Element der
+Schrittantwort  $y[k]$ der  Summe der  Elemente der  Impulsantwort $h[k]$  vom
+ersten  bis zum  k-ten Element.   Zus\"atzlich  wird die  zweite H\"alfte  der
+Impulsantwort  weggeschnitten,  um  die  zuvor  als  konjugert-komplexe  Werte
+hinzugef\"ugten \"Uberbleibsel zu eliminieren.
+
+\begin{equation*}
+    y[k]= \sum_{n=0}^k h[n] ~|~ 0 \leq k < \frac{L}{2}
+\end{equation*}

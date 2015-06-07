@@ -1,34 +1,117 @@
 Die  \emph{View} ist  aus  zwei \"ubergeordneten  Panels aufgebaut. Im  linken
-Panel befinden sich Ein- und  Ausgabefelder f\"ur numerische Werte, das rechte
-Panel  beheimtated die  Plots sowie  das Optimierungs-Panel  und kann  mittels
-Check-Box "erweiter" ein- und ausgeblendet werden.
+Panel  befinden  sich  Ein-  und Ausgabefelder  f\"ur  numerische  Werte,  das
+rechte  Panel  beheimtated  die  Plots  sowie  das  Optimierungs-Panel  (siehe
+Abbildung~\ref{fig:toolStartPI}).
 
-\todo{Image Gesamt-GUI}
+\begin{figure}[h!, width=\pagewidth]
+    \centering
+    \includegraphics[width=\textwidth]{images/toolStartPI.jpg}
+    \caption{Grundlegender Aufbau der Benutzeroberfl\"ache}
+    \label{fig:toolStartPI}
+\end{figure}
 
-\todo{Image Panel Schrittantwort vermessen}
+Das    rechte   Panel    kann   mittels    der   Check-Box    \emph{erweitert}
+(Abbildung~\ref{fig:toolStartPIDSmallErweitert})    ein-   und    ausgeblendet
+werden,       die      reduzierte       Benutzeroberfl\"ache      ist       in
+Abbildung~\ref{fig:toolStartPIDSmall} zu sehen.
 
+\begin{minipage}[t][][b]{0.45\textwidth}
+    \centering
 
-Im  Bereich 1  \todo{Image Referenzen}  werden die  Parameter der  vermessenen
-Strecke  eingegeben. Darunter  befinden  sich die  Schalftfl\"achen  zur  Wahl
-\todo{Image Butttons  PI-, PID-T1-Regler}  zwischen der  Dimensionierung eines
-PI- respektive eines PID-T1-Reglers.
+    \begin{minipage}[c][][b]{\textwidth}
+        \includegraphics[width=\textwidth]{images/toolStartPIDSmall.jpg}
+        \captionof{figure}{Benutzeroberfl\"ache reduziert auf linkes Panel}
+        \label{fig:toolStartPIDSmall}
+    \end{minipage}
 
-Das   Panel    \emph{Reglerwerte}   dient   der   Ausgabe    der   berechneten
-Reglerwerte  der   verschiedenen  Berechnungsmethoden. Ebenfalls   kann  f\"ur
-die  Phasengang-Methode,   sofern  ein  PID-Regler  dimensioniert   wird,  die
-Zeitkonstante  $T_p$  \todo{Check:  korrekter  Begriff}  spezifiziert  werden.
-\todo{Image Panel Phasengangmethode}
+    \begin{minipage}[c][][b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/toolStartPIDSmallErweitert.jpg}
+        \captionof{figure}{Checkbox zum Zu- und Wegschalten des rechten Haupt-Panels}
+        \label{fig:toolStartPIDSmallErweitert}
+    \end{minipage}
 
-Das Optimierungs-Panel  beinhaltet zwei  Slider zur Eingabe  des gew\"unschten
-\"Uberschwingens   respektive   f\"ur   die  Optimierung   des   Reglers   der
-Phasengang-Methode.
+\end{minipage}
+\begin{minipage}[t][][b]{0.45\textwidth}
+    \centering
+    \begin{minipage}[c][][b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/toolStartPIDSmallSchrittantwort.jpg}
+        \captionof{figure}{Bereich zum Eingeben der Streckenparameter}
+        \label{fig:toolStartPIDSmallSchrittantwort}
+    \end{minipage}
 
-Unterhalb des  Optimierungs-Panels werden  die Plots der  mittels Faustformeln
-und Phasengangmethode errechneten Schrittantworten graphisch ausgegeben. Diese
-k\"onnen   mittels  Check-Boxen   zu-  und   weggeschaltet  werden. Zu   jeder
-Faustformel wird die zugeh\"orige Schrittantwort abgebildet. Die Resultate der
-Phasengangmethode  werden durch  drei Kurven  dargestellt. Eine Kurve  benutzt
-den  Standardwert des  Phasenrands gem\"ass  Zellweger \todo{Einf\"ugen  Wert,
-Referenz}, die beiden anderen Kurven basieren auf Benutzereingaben f\"ur einen
-oberen  und  unteren  Offset  des Phasenrandes  der  \"uber  den  Schiebregler
-\emph{Optimierung} eingestellt werden kann.
+    \begin{minipage}[c][][b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/toolStartPIDSmallButtons.jpg}
+        \captionof{figure}{Auswahl zwischen PI- und PID-Regler}
+        \label{fig:toolStartPIDSmallButtons}
+    \end{minipage}
+
+    \begin{minipage}[c][][b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/toolStartPIDSmallRegler.jpg}
+        \captionof{figure}{Ausgabewerte des dimensionierten Reglers}
+        \label{fig:toolStartPIDSmallRegler}
+    \end{minipage}
+
+\end{minipage}
+
+Im             Bereich             \emph{Schrittantwort             vermessen}
+(Abbildung~\ref{fig:toolStartPIDSmallSchrittantwort}) werden die Parameter der
+vermessenen  Strecke eingegeben. Darunter  befinden sich  die Schalftfl\"achen
+zur   Wahl   zwischen  der   Dimensionierung   eines   PI-  respektive   eines
+PID-T1-Reglers (Abbildung~\ref{fig:toolStartPIDSmallButtons}).
+
+Das  Panel   \emph{Reglerwerte}  (Abbildung~\ref{fig:toolStartPIDSmallRegler})
+dient   der   Ausgabe   der    berechneten   Reglerwerte   der   verschiedenen
+Berechnungsmethoden. Ebenfalls  kann f\"ur  die Phasengangmethode,  sofern ein
+PID-Regler dimensioniert wird, die  Zeitkonstante $T_p$ spezifiziert werden.
+
+Das  Optimierungs-Panel  (Abbildung~\ref{fig:optimierungen}  )beinhaltet  zwei
+Slider  zur  Eingabe  des   gew\"unschten  \"Uberschwingens  respektive  f\"ur
+die  Optimierung   des  Reglers  der  Phasengang-Methode. \"Uber   den  Slider
+\emph{Optimierung} kann der Phasenrand beeinflusst werden.
+
+\begin{figure}[h!, width=\pagewidth]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/tool20UeberschwingenPIDOptimierungen.jpg}
+    \caption{Slider im Optimierungs-Panel}
+    \label{fig:optimierungen}
+\end{figure}
+
+\begin{figure}[h!, width=\pagewidth]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/tool20UeberschwingenPIDPlots.jpg}
+    \caption{Plots der Schrittantworten, PID-Regler berechnet nach Phasengangmethode, 20\% \"Uberschwingen}
+    \label{fig:tool20Plots}
+\end{figure}
+
+Unterhalb   des    Optimierungs-Panels   werden   die   Plots    der   mittels
+Faustformeln     und     Phasengangmethode    errechneten     Schrittantworten
+graphisch    ausgegeben   (Abbildung~\ref{fig:tool20Plots}). Diese    k\"onnen
+mittels    Check-Boxen     zu-    und    weggeschaltet     werden. Zu    jeder
+Faustformel     wird     die    zugeh\"orige     Schrittantwort     abgebildet
+(Abbildung~\ref{fig:toolFaustFormeln}).
+
+Die Resultate der Phasengangmethode werden durch drei Kurven dargestellt. Eine
+Kurve   benutzt   den   Standardwert  des   Phasenrands   gem\"ass   Zellweger
+\todo{Einf\"ugen  Wert,  Referenz}, die  beiden  anderen  Kurven basieren  auf
+Benutzereingaben f\"ur  einen oberen und  unteren Offset des  Phasenrandes der
+\"uber den Schiebregler \emph{Optimierung} eingestellt werden kann.
+
+\begin{figure}[h!, width=\pagewidth]
+    \centering
+    \includegraphics[width=\textwidth]{images/toolStartFaustFormeln.jpg}
+    \caption{Plots der Schrittantworten nach Faustformeln}
+    \label{fig:toolFaustFormeln}
+\end{figure}
+
+\begin{figure}[h!, width=\pagewidth]
+    \centering
+    \includegraphics[width=\textwidth]{images/tool2UeberschwingenOptimierungPID.jpg}
+    \caption{Plots der Schrittantworten nach Phasengangmethode, PID-Regler, 2\% \"Uberschwingen}
+    \label{fig:tool2UberschwingenPID}
+\end{figure}
+
+\clearpage

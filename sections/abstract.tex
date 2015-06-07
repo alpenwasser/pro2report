@@ -1,27 +1,34 @@
 In  der   Regelungstechnik  ist   die  korrekte  Dimensionierung   der  Regler
-grundlegend. Die  zu  regelnde Strecke  kann  nur  durch richtig  eingestellte
-Regelwerte wie gew\"unscht ver\"andert werden.
+essentiell. Die  zu  regelnde  Strecke  kann nur  durch  richtig  eingestellte
+Regelwerte wie gew\"unscht beeinflusst werden. 
+ 
 
-Dieses  Projekt hat  sich zum  Ziel  gesetzt ein  Softwaretool zu  entwickeln,
-welches  aus  den  eingegebenen  Streckenwerten $K_s$,  $T_u$  und  $T_g$  PI-
-und  PID-Regler  dimensioniert. Das Tool  berechnet  die  Reglerwerte mit  der
+Dieses  Projekt  hat sich  zum  Ziel  gesetzt,  eine Software  zu  entwickeln,
+welche  aus   den eingegebenen Streckenwerten  $K_s$,  $T_u$  und   $T_g$  PI-
+und  PID-Regler  dimensioniert. Das  Tool  berechnet die  Reglerwerte mit  der
 sogenannten   Phasengangmethode,  welche   von  Jakob   Zellweger,  ehemaliger
-Dozent  der   Fachhochschule  Nordwestschweiz,  stammt. Diese   Methode  wurde
-urspr\"unglich f\"ur die graphische  Auswertung des Phasengangs entwickelt und
-durch  Handarbeit mit  Geodreieck und  Bleistift angewendet. Das  Softwaretool
-erm\"oglicht  die  bew\"ahrte  Methode  effizient  durch  ein  automatisiertes
-Verfahren anzuwenden.
+Dozent   der  Fachhochschule   Nordwestschweiz, stammt. Diese  Methode   wurde
+urspr\"unglich  f\"ur die  graphische  Auswertung  des Phasengangs  entwickelt
+und  durch Handarbeit mit  Geodreieck und  Bleistift angewendet. Die  Software
+erm\"oglicht,  die  bew\"ahrte  Methode  effizient durch  ein  automatisiertes
+Verfahren anzuwenden.
+ 
 
-Das  entwickelte Softwaretool  simuliert  neben  den berechneten  Reglerwerten
-auch  die Schrittantwort  des  geschlossenen Regelkreises. Zus\"atzlich  wurde
-die   Berechnung  dreier   g\"angigen   Faustformeln  mit   implementiert. Zum
-Vergleich  k\"onnen die  Schrittantworten  der Faustformeln  im gleichen  Plot
-angezeigt  werden.   F\"ur  die  Phasengangmethode  werden  gleichzeitig  drei
-Graphen  abgebildet. Einer   mit  der   Standart-Reglerknickfrequenz  gem\"ass
-Phasengangmethode und zwei weitere welche sich in der Reglerknickfrequenz um ±
-10° unterscheiden.
+Das  entwickelte   Softwaretool simuliert  neben  den berechneten Reglerwerten
+auch die    Schrittantwort des     geschlossenen    Regelkreises. Zus\"atzlich
+wurde      die       Berechnung      dreier       g\"angiger      Faustformeln
+implementiert. Zum Vergleich k\"onnen die Schrittantworten der Faustformeln im
+gleichen Plot angezeigt werden.
+
+
+F\"ur die Phasengangmethode werden gleichzeitig drei Graphen abgebildet. Einer
+mit   der   Standard-Reglerknickfrequenz    gem\"ass   Phasengangmethode   und
+zwei weitere, welche sich im  Vorzeichen unterscheiden und manuell einstellbar
+sind.
+ 
 
 Zus\"atzlich  kann die  Reglerknickfrequenz  und  das \"Uberschwingen  mittels
-Schiebregler manuell  ver\"andert werden. Dies erm\"oglicht die  im Vergleich,
-zu  der urspr\"unglichen  Handarbeit, enorm  hohe Geschwindigkeit. Somit  wird
-eine Echtzeit Optimierung der bestehenden Phasengangmethode get\"atigt.
+eines   Schiebereglers  manuell   ver\"andert  werden. Dies   erm\"oglicht  im
+Vergleich zu  der  urspr\"unglichen  Ausf\"uhrung  der  Phasengangmethode  per
+Hand  enorme  Zeitersparnisse.   Somit  wird  eine  Optimierung  der  mit  der
+Phasengangmethode erzielten Ergebnisse in Echtzeit m\"oglich.

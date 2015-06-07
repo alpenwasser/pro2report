@@ -47,7 +47,7 @@
     $ T_n $        & Nachstellzeit \\
     $ T_p $        & Periodendauer \\
     $ K_r $        & Verst\"arkungsfaktor des Reglers \\
-      Reglertyp    & Typ des Reglers (P, PI, PID)
+    Reglertyp      & Reglertyp (PI, PID)
 \end{tabular}
 
 \subsubsection*{Output}
@@ -70,6 +70,7 @@
 \lstinputlisting[style=Matlab-editor-2]{mfiles/p2Bodekonf.m}
 
 
+\clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{Umrechnung von bodekonformer in reglerkonforme Darstellung}
 \label{app:algo:boderegler}
@@ -79,10 +80,10 @@
 
 \begin{tabular}{p{40mm}l}
     $ T_p  $ & Periodendauer \\
-    $ T{nk} $ & Nachstellzeit \\
-    $ T{vk} $ & Vorhaltezeit \\
-    $ K{rk} $ & Verst\"arkungsfaktor des Reglers \\
-      Reglertyp   & Reglertyp (P, PI, PID)
+    $ T_{nk} $ & Nachstellzeit \\
+    $ T_{vk} $ & Vorhaltezeit \\
+    $ K_{rk} $ & Verst\"arkungsfaktor des Reglers \\
+      Reglertyp   & Reglertyp (PI, PID)
 \end{tabular}
 
 \subsubsection*{Output}
@@ -112,6 +113,7 @@
 \clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{utfController}
+\label{app:algo:utfcontroller}
 % ---------------------------------------------------------------------------- %
 
 \subsubsection*{Input}
@@ -121,7 +123,7 @@
     $ T_{nk} $     & Nachstellzeit \\
     $ T_{vk} $     & Vorhaltezeit \\
     $ K_{rk} $     & Verst\"arkungsfaktor des Reglers \\
-      Reglertyp    & Reglertyp (P, PI, PID)
+      Reglertyp    & Reglertyp (PI, PID)
 \end{tabular}
 
 \subsubsection*{Output}
@@ -141,8 +143,10 @@
 \lstinputlisting[style=Matlab-editor-2]{mfiles/p2UTFRegler.m}
 
 
+\clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{Faustformel Oppelt}
+\label{app:algo:oppelt}
 % ---------------------------------------------------------------------------- %
 
 \subsubsection*{Input}
@@ -151,7 +155,7 @@
     $ T_p $        & Verzugszeit \\
     $ T_u $        & Anstiegszeit \\
     $ K_s $        & Verst\"arkung der Strecke \\
-      Reglertyp    & Reglertyp (P, PI, PID)
+      Reglertyp    & Reglertyp (PI, PID)
 \end{tabular}
 
 \subsubsection*{Output}
@@ -198,6 +202,7 @@
 \clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{Faustformel Rosenberg}
+\label{app:algo:rosenberg}
 % ---------------------------------------------------------------------------- %
 
 \subsubsection*{Input}
@@ -206,7 +211,7 @@
     $ T_p $        & Verzugszeit \\
     $ T_u $        & Anstiegszeit \\
     $ K_s $        & Verst\"arkung der Strecke \\
-      Reglertyp    & Reglertyp (P, PI, PID)
+      Reglertyp    & Reglertyp (PI, PID)
 \end{tabular}
 
 \subsubsection*{Output}
@@ -256,6 +261,7 @@
 \clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{Faustformel Ziegler}
+\label{app:algo:ziegler}
 % ---------------------------------------------------------------------------- %
 
 \subsubsection*{Input}
@@ -264,7 +270,7 @@
     $ T_p $        & Verzugszeit \\
     $ T_u $        & Anstiegszeit \\
     $ K_s $        & Verst\"arkung der Strecke \\
-      Reglertyp   & Reglertyp (P, PI, PID)
+      Reglertyp   & Reglertyp (PI, PID)
 \end{tabular}
 
 \subsubsection*{Output}
@@ -310,6 +316,7 @@
 \clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{Faustformel Chien}
+\label{app:algo:chien}
 % ---------------------------------------------------------------------------- %
 
 \subsubsection*{Input}
@@ -318,7 +325,7 @@
     $ T_p $             & Verzugszeit \\
     $ T_u $             & Anstiegszeit \\
     $ K_s $             & Verst\"arkung der Strecke \\
-      Reglertyp         & Reglertyp (P, PI, PID) \\
+      Reglertyp         & Reglertyp (PI, PID) \\
     \"Uberschwingen     & Flag f\"ur \"Uberschwingeng %\TODO{specifics $
 \end{tabular}
 
@@ -396,6 +403,7 @@
 \clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{Steigung einer Funktion}
+\label{app:algo:slope}
 % ---------------------------------------------------------------------------- %
 
 \code{diskDiff()} berechnet die Steigung einer Funktion (repr\"asentiert durch
@@ -438,6 +446,7 @@ zwei Arrays) an einem bestimmten Array-Index.
 \clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{Inverse Fast Fourier Transform}
+\label{app:algo:ifft}
 % ---------------------------------------------------------------------------- %
 
 \code{schrittIfft()}  berechnet   die  Schrittantwort  im   Zeitbereich  einer
@@ -529,8 +538,8 @@ generierten Reglers.
 \clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{Berechnung von $T_{vk}$ und $T_{nk}$}
-% ---------------------------------------------------------------------------- %
 \label{app:algo:tnktvk}
+% ---------------------------------------------------------------------------- %
 
 \code{calculateTnkTvk()}    bestimmt   $T_{nk}$    und   $T_{vk}$. Kern    des
 Algorithmus  ist  die  Automatisierung   der  Berechnung  von  $\beta$  (siehe

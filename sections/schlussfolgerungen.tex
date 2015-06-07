@@ -1,26 +1,40 @@
-\todo{ganz \"uberarbeiten}
-% was laeuft, was laeuft nicht, was kann verbessert werden
-Das   Projekt   wurde   erfolgreich   abgeschlossen  und   alle   Punkte   des
-urspr\"unglichen   Auftrages  erf\"ullt. Aus   den   Eingabewerten  wird   das
-dynamische Verhalten  des geschlossenen  Regelkreises berechnet  und graphisch
-dargestellt. Einige Erweiterungen wurden eingebaut,  sodass man den Regler mit
-der Phasengangmethode dimensioniert und zus\"atzlich.\todo{Satz abgebrochen}
+%  was laeuft,  was  laeuft  nicht, was  kann  verbessert  werden Das  Projekt
+wurde  erfolgreich abgeschlossen: Das  Tool  ist  funktionst\"uchtig und  alle
+Punkte  des  urspr\"unglichen  Auftrages  sowie  einige  der  im  Verlauf  des
+Projekts  dazugekommenen optionalen  Anforderungen  wurden erf\"ullt. Aus  den
+Eingabewerten  wird das  dynamische Verhalten  des geschlossenen  Regelkreises
+berechnet und graphisch  dargestellt.  Die Erweiterungen {\color{red}{\emph{Ist
+Erweiterungen hier korrekt? War das Dimensionieren  des Reglers anhand der PGM
+nicht  Grundvoraussetzung  des  Projekts?}}} erm\"oglichen  das  Dimensionieren
+des   Reglers   anhand  der   Phasengangmethode   und   die  Optimierung   der
+Reglerwerte {\color{red}{\emph{Dies  scheint mir  die Erweiterung  zu sein. Wenn
+ich das falsch in Erinnerung habe, sorry.}}}.
 
+Die vor  der Erweiterung des Auftrags {\color{red}{\emph{Vielleicht ganz kurz,
+allenfalls  in Fussnote,  erl\"autern, was  hier genau  passiert ist. So  ganz
+ohne  Kontext  von  der  Erweiterung   des  Auftrags  zu  reden,  scheint  mir
+etwas  verwirrend, ausser  wir  erw\"ahnen es  sonst noch  irgendwo? Ansonsten
+vielleicht einfach die Auftragserweiterung weglassen und lediglich erw\"ahnen,
+dass  gewisse   anfangs  geplante   Elemente  nicht  mehr   notwendig  sind.}}}
+optional geplanten  graphischen Ausgaben  des Amplitudengangs und  der Strecke
+sowie  die   Schiebregler  f\"ur   das  Ver\"andern  der   Reglerwerte  wurden
+weggelassen. Urspr\"unglich  waren diese  geplant, um  das Dimensionieren  des
+Reglers zu erleichtern und die Eingabewerte graphisch darzustellen.
 
-Die vor der  Erweiterung des Auftrags optional  geplanten graphischen Ausgaben
-des Amplitudengangs der  Strecke sowie die Schiebregler  f\"ur das Ver\"andern
-der Reglerwerte wurden  weggelassen. Der Grund f\"ur diesen  Entscheid war die
-M\"oglichkeit,  durch  die  hohe  Rechenleistung den  Regler  in  Echtzeit  zu
-optimieren, womit diese Funktionen \"uberfl\"ussig wurden.\todo{Wieso wird der
-Amplitudengang der Strecke \"uberfl\"ussig durch Echtzeigoptimierung?}
+Da die  Algorithmen zur  Reglerdimensionierung jedoch so  implementiert werden
+konnten, dass eine Optimierung des Reglers in Echtzeit m\"oglich wurde, wurden
+diese Zusatzelemente \"uberf\"ussig.
 
+Alternativ kann  die Schrittantwort mit zwei  Schiebereglern manuell optimiert
+werden. Durch  das  Ver\"andern  des gew\"unschten  \"Uberschwingens  und  das
+Einstellen der Optimierung kann die Kurve von Hand angepasst werden.
 
-Alternativ kann  die Schrittantwort  mit zwei Schiebreglern  manuell optimiert
-werden. Durch  das Ver\"andern  des  \"Uberschwingens und  das Einstellen  der
-Optimierung kann die Kurve per  Hand angepasst werden.  Als Erweiterung w\"are
-es  m\"oglich,  die  Streckenwerte  auszugegeben  und  die  Strecke  graphisch
-zur\"uckgegeben wird. Das  automatische Einlesen  der Streckenwerte  aus einer
-graphisch Form k\"onnte hinzugef\"ugt werden. Das Tool w\"urde an die eingelesene
-Kurve die Wendetangente legen und  die Werte ablesen. Das Ablesen k\"onnte mit
-der Monte-Carlo-Studie verfeinert werden.\todo{Wenn  wir das schon erw\"ahnen,
-sollte man nicht auch erkl\"aren, was das ist?}
+Als  Erweiterung  w\"are  es  m\"oglich, die  Streckenwerte  auszugegeben  und
+die   Strecke  graphisch   zur\"uckzugeben. Das   automatische  Einlesen   der
+Streckenwerte  aus einer  graphisch  Form  k\"onnte hinzugef\"ugt  werden. Das
+Tool  w\"urde  an  die  eingelesene  Kurve die  Wendetangente  legen  und  die
+Werte  ablesen. Das Ablesen  k\"onnte  mit  der Monte-Carlo-Studie  verfeinert
+werden.{\color{red}{\emph{Regelungstechniker  m\"ogen  das  vielleicht  kennen,
+aber wir haben  ja auch bei den absoluten Grundlagen  angefangen zu erkl\"aren
+in vorhergehenden  Kapiteln. Jemand, der  diese Einf\"hrung  ben\"otigt, weiss
+wohl kaum, was dies ist. Allenfalls einfach Verweis auf eine Quelle?}}}

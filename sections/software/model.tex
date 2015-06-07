@@ -1,67 +1,95 @@
-Das  Model  beheimatet   alle  Daten  sowie  ein   Grossteil  der  Algorithmen
-(zus\"atzliche  Algorithmen sind  in  der Klasse  Calc  des Package  Utilities
-zu  finden). Das  Model  ist  observable  um ein  update()  aus  der  View  zu
+Die Model-Klassen  beheimaten alle Daten  sowie den Grossteil  der Algorithmen
+(zus\"atzliche Algorithmen,  die von den Model-Klassen  verwendet werden, sind
+in  der  Klasse  \code{Calc}  des  Package  \code{Utilities}  zu  finden). Das
+\code{Model}  ist   observable,  um  das  Aktualisieren   der  \code{View}  zu
 erm\"oglichen.
 
 \subsubsection*{Model}
-Die  Klasse  Model erzeugt  im  Konstruktor  f\"ur jede  Berechnungsart  einen
-\code{ClosedLoop}. Sie enth\"alt Setter-  und Getter-Methoden zur Verarbeitung
-der Daten in weiteren Klassen.
+Wie   im   Klassendiagramm   ersichtlich  \todo{Verweis}erzeugt   die   Klasse
+\code{Model} im Konstruktor f\"ur jede  Berechnungsart eine Instanz der Klasse
+\code{ClosedLoop}. Das \code{Model} hat ein  Objekt der Klasse \code{Path} und
+\"ubergibt dieses an den \code{ClosedLoop}. Das \code{Model} enth\"alt Setter-
+und Getter-Methoden  zur Verarbeitung der Daten  mittels weiterer Klassen. Das
+\code{Model} nutzt  die M\"oglichkeit \code{notifyObservers()}  aufzurufen, um
+\code{update()} auf der \code{View} zu bewirken.
+
 
 \subsubsection*{ClosedLoop}
-In   der  Klasse   \code{ClosedLoop}   wird  \"uber   eine  Case-Abfrage   die
-jeweilige Berechnungsart der passende \code{Controller} erstellt. Zus\"atzlich
-beinhaltet  die Klasse  die  Methode  \code{calculate()}. Diese berechnet  zum
-einen die Schrittantwort mittels  \code{calculateStepResponse()} und f\"ur die
-optimiert f\"ur die  Phasengangmethode zus\"atzlich das \"Uberschwingverhalten
-mittels der Methode \code{overShootOptimazation()}.
+Die    Instanzen   der    Klasse   \code{ClosedLoop}    repr\"asentieren   die
+geschlossenen  Regelkreise. Sie  kennen   ihren  Berechnungstyp  und  besitzen
+einen  Regler. Im  Konstruktor  wird  je  nach  Berechnungsart  ein  passender
+\code{Controller}   instanziiert. Zus\"atzlich  beinhaltet   die  Klasse   die
+Methode  \code{calculate()}. Diese   berechnet  f\"ur   alle  Berechnungsarten
+die    Schrittantwort    mittels   \code{calculateStepResponse()}.F\"ur    die
+Phasengangmethode   wird  zus\"atzlich   das  \"Uberschwingverhalten   mittels
+\code{overShootOptimazation()} optimiert (siehe Anhang~\ref{app:algo:oversh}).
+Zudem   sind   diverse   Setter-  und   Getter-Methoden   Bestandteil   dieser
+Model-Klasse.
 
 
 \subsubsection*{Controller}
-Die Klasse \code{Controller} bildet die  Oberklasse aller Faustformeln und der
-Phasengang-Methode. Sie  beinhaltet  die abstrakte  Klasse  \code{calculate()}
-sowie alle n\"otigen Setter- und Getter-Methoden.
+Der  \code{Controller}  bildet  die  Oberklasse  aller  Faustformeln  und  der
+Phasengangmethode. Er beinhaltet die abstrakte Klasse \code{calculate()} sowie
+alle n\"otigen Setter- und Getter-Methoden um Werte zu setzten und auszulesen.
 
-\subsubsection*{Faustformeln}
 
-\code{Chien20},   \code{ChienApper},   \code{Oppelt},   \code{Rosenberg}   und
-\code{ZieglerNichols} sind  die Klassen  zu den  zugeh\"origen Fausformeln. In
-diesen  gibt   es  jeweils  eine   Methode  \code{calculate()},  in   der  die
-ben\"otigten  Werte  aus der  Klasse  \code{Path}  ausgelesen werden  und  die
-Berechnungen  mittels vorgegebenen  Fausformeln,  je  nach Controllertyp  (PI,
-PID), durchgef\"urt werden.
+\subsubsection*{Chien20}
+Die  Klasse   \code{Chien20}  stellt   die  Algorithmen  zur   Berechnung  der
+Reglerwerte   gem\"ass  der   Faustformel   Chien/Hrones/Reswick  (20\%)   zur
+Verf\"ugung,  erbt   von  \code{Controller},   instanziiert  und   setzt  eine
+\"Ubertragungsfunktion.
 
-\subsubsection*{PhaseRespsonseMethod}
 
-In dieser Klasse wird die OmegaAchse  in Abh\"angigkeit vom Phasengang und des
-ben\"otigten Winkelbereiches erstellt.
+\subsubsection*{ChienApper}
+Die  Klasse  \code{ChienApper}  stellt  die  Algorithmen  zur  Berechnung  der
+Reglerwerte  gem\"ass   der  Faustformel   Chien/Hrones/Reswick  (aperiodisch)
+zur  Verf\"ugung,  erbt von  \code{Controller},  instanziiert  und setzt  eine
+\"Ubertragungsfunktion.
 
-Ausserdem finden wir verschiedene calculate Merhoden.
 
-Einerseits  ist da  calculate()  , in  dieser  wird die  UTF  Strecke aus  der
-Strecke(path)  geholt  und  die  Omega-Achse  Methode  aufgeruffen. In  dieser
-wird Sie  Abh\"angigkeit vom  Phasengang und des  ben\"otigten Winkelbereiches
-erstellt.
+\subsubsection*{Oppelt}
+Die Klasse \code{Oppelt} stellt die Algorithmen zur Berechnung der Reglerwerte
+gem\"ass der  Faustformel Oppelt zur Verf\"ugung,  erbt von \code{Controller},
+instanziiert und setzt eine \"Ubertragungsfunktion.
 
-Anschlissend werden die Werte f\"ur Hs und phiS berehnet.
 
-Andererseits  sind  da die  Methoden,  calculateTnvTnk()  um  Tnk und  Tnv  zu
-berechnen, calculateKrk um Krk zu berechnen, calculatecontrollerConf() um eine
-umrechung  von Bodekonformen  Werten  zu Reglerkonformen  Werten  in der  calc
-Klasse  auszul\"osen, calculatePhaseMargin()  bestimmt je  nach Reglertyp  den
-Phasenrand  und zum  schluss calculateOverShoot(),  hier wird  je nach  vorher
-berechnetem \"Uberschwingen, dem  Wert phiu einen der  4 vordefinierten static
-final Werte zugewiesen.
+\subsubsection*{Rosenberg}
+Die  Klasse  \code{Rosenberg}  stellt   die  Algorithmen  zur  Berechnung  der
+Reglerwerte  gem\"ass  der Faustformel  Rosenberg  zur  Verf\"ugung, erbt  von
+\code{Controller}, instanziiert und setzt eine \"Ubertragungsfunktion.
 
+
+\subsubsection*{PhaseResponseMethod}
+Die Klasse  \code{PhaseResponseMethod} stellt  die Algorithmen  zur Berechnung
+der Reglerwerte  gem\"ass der Phasengangmethode zur  Verf\"ugung. Sie erbt von
+der Klasse \code{Controller} und bringt  all deren Setter- und Getter-Methoden
+mit.
+
+\"Uber  die  \"uberladene  Methode  \code{setData()}  werden  die  Input-Werte
+gesetzt. Dabei wird die Methode \code{calculateOverShoot()}, die das f\"ur die
+Berechnung  des  korrekten  \"Uberschwingens ben\"otigt  Attribut  \code{phiU}
+setzt,    ausgel\"ost. Zus\"atzlich   wird    \code{calculate()}   aufgerufen.
+\code{calculate()}  berechnet  anhand   der  Methode  \code{createOmegaAxis()}
+die   diskrete  Frequenzachse   in   Abh\"angigkeit   der  Zeitkonstante   der
+Regelstrecke. Die \"Ubertragungsfunktion in s der Regelstrecke wird f\"ur alle
+Punkte von \code{omega} berechnet.
+
+\code{calculateTnk()}  wird ausgel\"ost  und berechnet  $T_{nk}$ und  $T_{vk}$
+unter   Zuhilfenahme  der   diskreten   Werte.  \code{calculateTnk()}   l\"ost
+wiederum   \code{calculateKrk()}  zur   Berechnung   von   $K_{rk}$  aus   und
+ruft   zudem   \code{calculateControllerConf()}   und   \code{setUTF()}   auf.
+\code{calculateControllerConf()} transformiert die Werte in die reglerkonforme
+Darstellung  (siehe  Anhang~\ref{app:algo:boderegler}). \code{setUTF()}  setzt
+die \"Ubertragungs-Funktion des Reglers.
 
 
 \subsubsection*{Path}
+Die   Klasse  \code{Path}   berechnet  in   der  Methode   \code{calculate()},
+unter   Zuhilfenahme  der   Sani-Methode  (\code{Calc.sani()}),   die  Strecke
+(\code{Path}). Sie besitzt  eine Instanz  der Klasse \code{UTF}  sowie Setter-
+und Getter-Methoden zum Setzen und Auslesen von Werten.
 
-Hier  giebt es  ebenfalls  eine Methode  \code{calculate()},  die mittels  der
-Methode  \code{sani()} Methode  aus Utilities-Klasse  \code{Calc} die  Strecke
-ausrechnet.
 
-Die restlichen Klassen sind reine Getter- und Setter-Methoden.
-
-Die  Alghorithmen zu  diesen  Methoden finden  Sie  im Anhang.  \todo{Verweise
-Appendix}.
+\subsubsection*{UTF}
+Setzt  und speichert  die  \"Ubertragungsfunktion. Diese  kann \"uber  diverse
+Getter- und Setter-Methoden ausgelesen bzw. geschrieben werden.

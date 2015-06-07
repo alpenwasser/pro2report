@@ -1,36 +1,39 @@
 % Ausgangslage
-Im   Rahmen  des   Projektes  soll   ein  Tool   entwickelt  werden,   welches
-einen   PI-  respektive   einen   PID-Regler  mittels   der  von   Prof. Jakob
-Zellweger    entwickelten   Phasengangmethode~\ref{regelungstechnik:zellweger}
-dimensioniert. Zum Vergleich  soll der entsprechende Regler  ebenfalls mittels
-verschiedener Faustformeln berechnet werden.
+Im Rahmen  des Projektes soll  ein Tool  entwickelt werden, welches  einen PI-
+respektive  einen  PID-Regler mittels  der  von  Jakob Zellweger  entwickelten
+Phasengangmethode dimensioniert. Zum  Vergleich soll der  entsprechende Regler
+ebenfalls mittels verschiedener Faustformeln berechnet werden.
 
 % Anforderungen
 Die Phasengangmethode ist eine graphische Methode, die bis anhin mit Stift und
 Papier  durchgef\"uhrt wurde. Folglich  ist die  Ausf\"uhrung zeitaufw\"andig,
 speziell   wenn   Schrittantworten   mit   unterschiedlichen   Parameterwerten
-durchgespielt werden sollen. Zudem kann das \"Uberschwingen nur grob gew\"ahlt
+durchgespielt werden sollen, zudem kann das \"Uberschwingen nur grob gew\"ahlt
 werden. Das Tool  soll ausgehend  von drei  Parametern aus  der Schrittantwort
 der  Strecke  (Verst\"arkung  $K_s$,  Anstiegszeit  $T_g$,  Verz\"ogerungszeit
 $T_u$)  mittels   der  Phasengangmethode  m\"oglichst   ideale  Regelparameter
-berechnen  sowie  die  Schrittantwort  des  darauf  basierenden  geschlossenen
+berechnen,  sowie  die  Schrittantwort des  darauf  basierenden  geschlossenen
 Regelkreises graphisch darstellen. Die  Benutzeroberfl\"ache der Software soll
 intuitiv  sein, sodass  sich  auch  mit dem  Thema  nicht eingehend  vertraute
 Regelungstechniker einfach zurechtfinden.
 
 % Umsetzung
 Die  erforderlichen  Algorithmen  wurden   zuerst  in  Matlab  als  Prototypen
-implementiert und anschliessend in Java \"ubersetzt.  Um optimale Wartbarkeit,
-\"Ubersichtlichkeit und  Modularit\"at des  Codes zu gew\"ahrleisten,  ist die
-Software gem\"ass \emph{Model-View-Controllern}-Pattern aufgebaut.
+implementiert   und  anschliessend   vollst\"andig  in   Java  konvertiert. Um
+optimale  Wartbarkeit,  \"Ubersichtlichkeit  und Modularit\"at  des  Codes  zu
+gew\"ahrleisten,  ist  die  Software gem\"ass  Model  View-Controllern-Pattern
+aufgebaut.
 
 % Ergebnisse
-Nach der Implementierung  in Matlab wurde klar, dass die  Berechnung durch die
-hohe Rechenleistung  sehr schnell  durchgef\"uhrt werden  kann und  somit eine
-Dimensionierung des geschlossenen Regelkreises anhand dieser Methode von Herrn
-Zellweger m\"oglich ist.\todo{Mehr Inhalt in diesem Abschnitt}
+Nach  der Implementierung  in Matlab  wurde  klar, dass  die Berechnung  durch
+die  hohe Rechenleistung  sehr schnell  durchgef\"uhrt werden  kann und  somit
+eine  Dimensionierung des  geschlossenen  Regelkreises  anhand dieser  Methode
+von  Zellweger  m\"oglich  ist. Die  Schrittantworten  k\"onnen  zur  Echtzeit
+angezeigt werden. Diese  M\"oglichkeit wurde  genutzt indem  zwei Schiebregler
+implementiert wurden. Durch einen kann das \"Uberschwingen manuell eingestellt
+werden kann und mit dem anderen wird die Kurve optimiert.
 
 % Aufbau des Berichts
-Der  Bericht gliederte  sich in  zwei Teile: Der  ersten Teil  erl\"autert die
-theoretischen  Grundlagen und  darauf  aufbauend stellt  der  zweite Teil  der
-Aufbau der Software dar.\todo{Mehr Inhalt in diesem Abschnitt}
+Der Bericht gliedert sich in drei Teile: Die ersten zwei Teile erl\"autern die
+theoretischen Grundlagen,  der zweite Teil  besch\"aftigt sich mit  dem Aufbau
+der Software.

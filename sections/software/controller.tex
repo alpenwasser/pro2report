@@ -1,6 +1,15 @@
-Der   \emph{Controller}  ist   verantwortlich  f\"ur   die  Steueraufgaben. Da
-\emph{Regler}   \"ubersetzt  auf   Englisch   \emph{Controller}  ist,   heisst
-die  generische   Reglerklasse  in  unserer   Software  \code{Controller}. Die
-Klasse,  welche   die  die   Rolle  des   \emph{Controller}  im   Kontext  von
+Regler  heisst \"ubersetzt  auf Englisch  \emph{Controller}. Aus diesem  Grund
+heisst die generische Reglerklasse  in unserer Software \code{Controller}. Die
+Klasse,   welche   die   Rolle   des   \emph{Controllers}   im   Kontext   von
 \emph{Model-View-Controller} wahrnimmt, heisst  daher \code{GUIController}, um
 Namenskonflikte zu vermeiden.
+
+
+Der \code{GUIController} dient als  Schnittstelle zwischen der \code{View} und
+dem  \code{Model}. Werden  Eingaben auf  der  \code{View}  durch den  Benutzer
+gemacht, wird  der \code{GUIController}  dar\"uber informiert. Er  pr\"uft die
+Daten  auf  Zul\"assigkeit  und   leitet  berechnungsrelevante  Daten,  sofern
+sie  die  Pr\"ufung bestanden  haben,  an  das \code{Model}  zur  Verarbeitung
+weiter. Zus\"atzlich  \"ubernimmt der  \code{GUIController} die  Steuerung der
+\code{View}, indem  er Objekte  ein- und ausblendet  sowie Meldungen/Warnungen
+\"uber die \code{View} ausgibt.

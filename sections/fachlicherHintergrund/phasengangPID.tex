@@ -1,4 +1,6 @@
+% ---------------------------------------------------------------------------- %
 \subsubsection*{Ziel}
+% ---------------------------------------------------------------------------- %
 Das Ziel ist  die Bestimmung der Parameter $K_{rk}$, $T_{nk}$  und $T_{vk}$ in
 der \"Ubertragungsfunktion des Reglers:
 
@@ -7,11 +9,14 @@ der \"Ubertragungsfunktion des Reglers:
 \end{equation}
 
 
-\subsubsection{Bestimmung der Reglerfrequenz $\omega_{pid}$}
+% ---------------------------------------------------------------------------- %
+\subsubsection{Bestimmung der Reglerfrequenz $\mathbf{\boldsymbol{\omega}_{pid}}$}
+% ---------------------------------------------------------------------------- %
 
 Analog  zum PI-Regler  wird  zuerst  im Phasengang  der  Strecke die  Frequenz
 $\omega_{pid}$  bestimmt,  f\"ur  welche   die  Phase  einen  bestimmten  Wert
-aufweist, nur wird hier $-135\degree$ benutzt~\footnotemark[7]:
+aufweist,  aber   im  Unterschied   zum  PI-Regler  wird   hier  $-135\degree$
+benutzt\footnotemark[7]:
 
 \begin{equation} \label{eq:pid:phi_s}
     \varphi_s(\omega_{pid}) = -135 \degree
@@ -29,15 +34,17 @@ In unserem Beispiel ergibt dies:
     \omega_{pid} = \SI{0.6714}{\per\second}
 \end{equation}
 
-Eine       grafische        \"Uberpr\"ufung       kann        anhand       von
+Eine       graphische       \"Uberpr\"ufung        kann       anhand       von
 Abbildung~\ref{fig:pid:complete} durchgef\"uhrt werden.
 
 
+% ---------------------------------------------------------------------------- %
 \subsubsection{Steigung des Phasengangs bei der Reglerfrequenz}
+% ---------------------------------------------------------------------------- %
 
-Anschliessend wird  die Steigung des  Phasengangs $\varphi_s$ der  Strecke bei
-der  Frequenz  $\omega_{pid}$  bestimmt. Ausgangspunkt  daf\"ur  ist  die  von
-\code{p\_sani} bestimmte  \"Ubertragungsfunktion der Strecke  (siehe Gleichung
+Anschliessend   wird   die   Steigung    des   Phasengangs   $\varphi_s$   der
+Strecke  bei  der   Frequenz  $\omega_{pid}$  bestimmt. Ausgangspunkt  daf\"ur
+ist   die    \"Ubertragungsfunktion   der   Regelstrecke    (siehe   Gleichung
 \ref{eq:transfer:plant}).
 
 \begin{equation} \label{eq:transfer:plant:derivative}
@@ -48,7 +55,9 @@ der  Frequenz  $\omega_{pid}$  bestimmt. Ausgangspunkt  daf\"ur  ist  die  von
 \todo{Einheit \"uberpr\"ufen}
 
 
-\subsubsection{Hilfsparameter $\beta$}
+% ---------------------------------------------------------------------------- %
+\subsubsection{Hilfsparameter $\boldsymbol{\beta}$}
+% ---------------------------------------------------------------------------- %
 
 Zwischen  den Steigungen  der Phasen  des offenen  Regelkreises ($\varphi_o$),
 der  Strecke  ($\varphi_s$)  und   des  Reglers  ($\varphi_r$)  gilt  gem\"ass
@@ -86,7 +95,7 @@ Dazu f\"uhrt man den Hilfsparameter $\beta$ ein, f\"ur den gilt:
     \end{split}
 \end{gather}
 
-Wie in Abbildung ~\ref{fig:pid:complete} gesehen werden kann~\footnotemark[8],
+Wie in Abbildung  ~\ref{fig:pid:complete} gesehen werden kann\footnotemark[8],
 liegen  die   beiden  Frequenzen  $\frac{1}{T_{vk}}$   und  $\frac{1}{T_{nk}}$
 symmetrisch um  den Faktor $\beta$ respektive  $\frac{1}{\beta}$ oberhalb bzw.
 unterhalb der Frequenz $\omega_{pid}$.
@@ -161,7 +170,7 @@ Regelkreises   an    der   Stelle  $\omega_{pid}$,   folglich   muss   $\beta$
 Werten  f\"ur  $\beta$  solange  wiederholt,  bis  die  Steigung  des  offenen
 Regelkreises die gew\"unschte N\"ahe zu $-\frac{1}{2}$ aufweist.
 
-Da die manuelle Iterierung dieses Prozesses enorm viel Zeit in Anspruch nimmt,
+Da die manuelle Iteration dieses Prozesses  enorm viel Zeit in Anspruch nimmt,
 bietet  sich  hier  eine  Automatisierung  an. Die  Berechnung  mittels  eines
 geeigneten Algorithmus in Matlab liefert schlussendlich folgendes Ergebnis:
 
@@ -173,13 +182,19 @@ geeigneten Algorithmus in Matlab liefert schlussendlich folgendes Ergebnis:
     \end{split}
 \end{gather}
 
-Diese Werte sind in ebenfalls in~\ref{fig:pid:complete} eingetragen.
+Diese Werte sind ebenfalls in Abbildung~\ref{fig:pid:complete} eingetragen.
 
 Sollte  man  f\"ur  $\beta$  einen komplexen  Wert  erhalten,  wird  $\beta=1$
 gesetzt.
 
+Die zur  Bestimmung von $\beta$,  $T_{vk}$ und $T_{nk}$  benutzten Algorithmen
+sind    in     Anhang~\ref{app:algo:slope}    respektive~\ref{app:algo:tnktvk}
+dokumentiert.
 
-\subsubsection{Durchtrittsfrequenz $\omega_d$}
+
+% ---------------------------------------------------------------------------- %
+\subsubsection{Durchtrittsfrequenz $\mathbf{\boldsymbol{\omega}_d}$}
+% ---------------------------------------------------------------------------- %
 
 Als  letzte Unbekannte  verbleibt  die Verst\"arkung  $K_{rk}$. Wie auch  beim
 PI-Regler ist zum Finden  der Verst\"arkung die Durchtrittsfrequenz $\omega_d$
@@ -225,7 +240,9 @@ Nachrechnung mittels Matlab ergibt:
 \end{equation}
 
 
-\subsubsection{Bestimmung der Reglerverst\"arkung $K_{rk}$}
+% ---------------------------------------------------------------------------- %
+\subsubsection{Bestimmung der Reglerverst\"arkung $\mathbf{K_{rk}}$}
+% ---------------------------------------------------------------------------- %
 
 Im letzten  Schritt wird  nun der Amplitudengang  des offenen  Regelkreises an
 der  Stelle $\omega_d$  gleich 1  gesetzt  und diese  Gleichung nach  $K_{rk}$
@@ -270,7 +287,10 @@ Womit man f\"ur die Verst\"arkung den Wert
 
 erh\"alt.
 
+
+% ---------------------------------------------------------------------------- %
 \subsubsection{Resultat}
+% ---------------------------------------------------------------------------- %
 
 Somit   ist  der   Regler   vollst\"andig  dimensioniert   und  hat   folgende
 \"Ubertragungsfunktion:
@@ -292,4 +312,3 @@ Frequenzg\"ange und Frequenzen eingetragen.
     }
     \label{fig:pid:complete}
 \end{figure}
-\clearpage

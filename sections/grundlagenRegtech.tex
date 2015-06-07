@@ -1,4 +1,6 @@
+% ---------------------------------------------------------------------------- %
 \subsection{Die Steuerung}
+% ---------------------------------------------------------------------------- %
 
 Unter einer Steuerung  versteht man eine offen Wirkungskette  wie in Abbildung
 \ref{fig:Steuerung},   dass  heisst   die  Wirkglieder   sind  ketten\"ahnlich
@@ -14,7 +16,11 @@ und es k\"onnen keine Korrekturen vorgenommen werden.
     \label{fig:Steuerung}
 \end{figure}
 
+
+% ---------------------------------------------------------------------------- %
 \subsection{Der geschlossene Regelkreis}
+\label{subs:grundl:geschlossenerRegelkreis}
+% ---------------------------------------------------------------------------- %
 Die      Aufgabe     eines      geschlossenen     Regelkreises      (Abbildung
 \ref{fig:geschlossenerRegelkreis})  ist  es,   einen  vorgegeben  Sollwert  zu
 erreichen und diesen  auch bei St\"orungen aufrecht  zu erhalten. Dabei sollen
@@ -76,7 +82,10 @@ Regelkreis und seinen Schrittantworten zusammengefasst werden:
         in den stabilen Zustand (vgl. 1.) zu regeln.
 \end{enumerate}
 
-\subsubsection{Die Schrittantwort des geschlossenen Regelkreises}
+
+% ---------------------------------------------------------------------------- %
+\subsubsection*{Die Schrittantwort des geschlossenen Regelkreises}
+% ---------------------------------------------------------------------------- %
 
 \begin{figure}[h!, width=\pagewidth]
     \begin{center}
@@ -113,7 +122,16 @@ Forderungen gestellt:
         \ref{fig:stepresponse} zeigt eine zu langsame Schrittantwort.
 \end{enumerate}
 
+Die  Berechnung   der  Schrittantwort  des  geschlossenen   Regelkreises  wird
+in  unserem   Tool  mittels  der  inversen   schnellen  Fourier-Transformation
+durchgef\"uhrt, genauere  Informationen dazu sind in  Anhang~\ref{app:fft} und
+Anhang~\ref{app:algo:ifft} zu finden.
+
+
+% ---------------------------------------------------------------------------- %
 \subsection{Regelstrecke}
+% ---------------------------------------------------------------------------- %
+
 In  der  Regelungstechnik  wird  die  zu  regelnde  Strecke  als  Regelstrecke
 bezeichnet. Die  zu   regelnde  Strecke   ist  zum  Beispiel   die  Temperatur
 im  Raum  oder  die  Luftfeuchtigkeit  in  der  Sauna. Die  Regelstrecke  wird
@@ -155,7 +173,10 @@ $K_p<1$ wirkt $K_p$ nicht mehr verst\"arkend sondern abschw\"achend.
 \end{figure}
 
 
+% ---------------------------------------------------------------------------- %
 \subsubsection*{Strecken mit Totzeit}
+% ---------------------------------------------------------------------------- %
+
 \"Andert  sich  die  Stellgr\"osse,  wirkt sich  diese  \"Anderung  bei  einer
 Strecke  mit Totzeit  erst  nach  einer gewissen  Zeit  auf die  Regelgr\"osse
 aus. Mit $T_t$  wird das  Mass der Totzeit  gekennzeichnet. Im Blockschaltbild
@@ -175,7 +196,10 @@ periodisch \"andern.
 \end{figure}
 
 
+% ---------------------------------------------------------------------------- %
 \subsubsection*{I-Regelstrecke}
+% ---------------------------------------------------------------------------- %
+
 Die  I-Regelstrecke  antwortet  auf eine  Stellgr\"ossen\"anderung  mit  einer
 fortw\"ahrenden \"Anderung in steigende oder fallende Richtung. Die Begrenzung
 dieses   Vorganges  ist   mit  den   systembedingten  Schranken   gegeben. Die
@@ -191,7 +215,10 @@ Verhalten sinnbildlich.
 \end{figure}
 
 
+% ---------------------------------------------------------------------------- %
 \subsection{Regler}
+% ---------------------------------------------------------------------------- %
+
 Die Aufgabe  eines Reglers  besteht darin  die zu  regelnde Strecke  mit einem
 Stellsignal  so  zu  beeinflussen,  dass der  Wert  der  Regelgr\"osse  gleich
 dem  Wert  der F\"uhrungsgr\"osse  entspricht. Der  Regler  besteht aus  einem
@@ -204,7 +231,10 @@ Es wird zwischen P-, I- und D-Regler unterschieden.
 In diesem Projekt werden die PI- und PID-Regler, welche Kombinationen der oben
 genannten Regler sind, behandelt.
 
+
+% ---------------------------------------------------------------------------- %
 \subsubsection{PI-Regler}
+% ---------------------------------------------------------------------------- %
 Der  PI-Regler   besteht  aus  einer   Parallelschaltung  von  einem   P-  und
 einem  I-Regler (Abb.\ref{fig:PIRegler}). Durch  diese Kombination  werden die
 Nachteile  beider  Regler  aufgehoben   und  die  Vorteile  (schnell,  stabil)
@@ -226,7 +256,10 @@ Abbildung \ref{fig:PIRegler2} dargestellt.
 \end{figure}
 
 
+% ---------------------------------------------------------------------------- %
 \subsubsection{PID-Regler}
+% ---------------------------------------------------------------------------- %
+
 Wird    dem    PI-Regler    ein    D-Anteil    parallel    geschaltet    (Abb.
 \ref{fig:PRDRegler1}), entsteht  der PID-Regler. Der  PID-Regler ist  ein sehr
 oft verwendeter  Regler, da durch  den D-Anteil die Regelgr\"osse  rascher den

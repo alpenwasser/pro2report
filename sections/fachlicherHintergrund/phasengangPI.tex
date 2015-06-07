@@ -31,7 +31,9 @@ Tabelle~\ref{tab:terms}  fasst  die  h\"aufig verwendeten  Begriffe  in  einer
 \end{longtable}
 
 
+% ---------------------------------------------------------------------------- %
 \subsubsection*{Ziel}
+% ---------------------------------------------------------------------------- %
 Das  Ziel ist  die  Bestimmung  der Parameter  $K_{rk}$  und  $T_{nk}$ in  der
 \"Ubertragungsfunktion des Reglers:
 
@@ -40,12 +42,14 @@ Das  Ziel ist  die  Bestimmung  der Parameter  $K_{rk}$  und  $T_{nk}$ in  der
 \end{equation}
 
 
-\subsubsection{Bestimmung der Reglerfrequenz $\omega_{pi}$}
+% ---------------------------------------------------------------------------- %
+\subsubsection{Bestimmung der Reglerfrequenz $\mathbf{\boldsymbol{\omega}_{pi}}$}
+% ---------------------------------------------------------------------------- %
 
 Zuerst  wird  im  Phasengang  der  Strecke  gem\"ass  Formel~\ref{eq:pi:phi_s}
 die     Frequenz     $\omega_{pi}$      bestimmt,     f\"ur     welche     die
 Phase     der    Strecke     $-90\degree$     betr\"agt,    ersichtlich     in
-Abbildung~\ref{fig:pi:omega_pi}~\footnotemark[4].
+Abbildung~\ref{fig:pi:omega_pi}\footnotemark[4].
 
 \begin{equation} \label{eq:pi:phi_s}
     \varphi_s(\omega_{pi}) = -90 \degree
@@ -61,7 +65,8 @@ Abbildung~\ref{fig:pi:omega_pi}~\footnotemark[4].
 \begin{figure}[h! width=\pagewidth]
     \includegraphics[width=\textwidth]{images/piStreckeOmegaPI.png}
     \caption{%
-        $\omega_{pi}$ eingetragen (vertikale gestrichelte Linie).
+        Amplituden- und  Phasengang der Strecke mit  $\omega_{pi}$ eingetragen
+        (vertikale gestrichelte Linie).
     }
     \label{fig:pi:omega_pi}
 \end{figure}
@@ -75,8 +80,9 @@ $\SI{0.3}{\per\second}$. Die Kontrollrechnung mittels Matlab ergibt:
 \end{equation}
 
 
-\clearpage
-\subsubsection{Bestimmung von $T_{nk}$}
+% ---------------------------------------------------------------------------- %
+\subsubsection{Bestimmung von $\mathbf{T_{nk}}$}
+% ---------------------------------------------------------------------------- %
 Damit kann nun $T_{nk}$ direkt berechnet werden\footnotemark[5]:
 
 \begin{equation} \label{eq:pi:omega_pi}
@@ -91,14 +97,16 @@ Damit kann nun $T_{nk}$ direkt berechnet werden\footnotemark[5]:
 }
 
 
-\subsubsection{Bestimmung der Durchtrittsfrequenz $\omega_d$}
+% ---------------------------------------------------------------------------- %
+\subsubsection{Bestimmung der Durchtrittsfrequenz $\mathbf{\boldsymbol{\omega}_d}$}
+% ---------------------------------------------------------------------------- %
 
 Die   Durchtrittsfrequenz  ist   die   Frequenz,  bei   der  die   betrachtete
 \"Ubertragungsfunktion $H(j\omega)$ eine Verst\"arkung von $\SI{0}{\decibel} =
 1$  aufweist. In der  Phasengangmethode soll  sie so  festgelegt werden,  dass
 der  offene  Regelkreis  Gleichung~\ref{eq:phi_o} erf\"ullt. Dabei  ist  f\"ur
 $\varphi_s$ abh\"angig  vom gew\"unschten \"Uberschwingverhalten ein  Wert aus
-Tabelle~\ref{tab:phi_s}  auszuw\"ahlen~\footnotemark[6].   Nach dem  Festlegen
+Tabelle~\ref{tab:phi_s}  auszuw\"ahlen\footnotemark[6].   Nach dem  Festlegen
 der Durchtrittsfrequenz  wird dann  im n\"achsten Abschnitt  die Verst\"arkung
 des Reglers noch angepasst.
 
@@ -203,9 +211,11 @@ Dies ergibt:
 \end{equation}
 
 
-\subsubsection{Bestimmung der Reglerverst\"arkung $K_{rk}$}
+% ---------------------------------------------------------------------------- %
+\subsubsection{Bestimmung der Reglerverst\"arkung $\mathbf{K_{rk}}$}
+% ---------------------------------------------------------------------------- %
 
-Im  letzten  Schritt  muss  nun  wie im  vorherigen  Abschnitt  erw\"ahnt  die
+Im  letzten  Schritt  muss  nun, wie im  vorherigen  Abschnitt  erw\"ahnt, die
 Verst\"arkung  $K_{rk}$   des  Reglers   noch  angepasst  werden,   damit  der
 offene   Regelkreis  bei   der  angestrebten   Durchtrittsfrequenz  $\omega_d$
 auch  effektiv  eine Verst\"arkung  von  1  aufweist.  Dazu  wird  $j\omega_d$
@@ -251,8 +261,9 @@ erh\"alt:
 \end{equation}
 
 
-\clearpage
+% ---------------------------------------------------------------------------- %
 \subsubsection{Resultat}
+% ---------------------------------------------------------------------------- %
 
 Somit ist der PI-Regler vollst\"andig bestimmt und hat folgende Form:
 

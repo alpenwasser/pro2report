@@ -18,22 +18,36 @@ intuitiv  sein, sodass  sich  auch  mit dem  Thema  nicht eingehend  vertraute
 Regelungstechniker einfach zurechtfinden.
 
 % Umsetzung
-Die  erforderlichen  Algorithmen  wurden   zuerst  in  Matlab  als  Prototypen
-implementiert   und  anschliessend   vollst\"andig  in   Java  konvertiert. Um
-optimale  Wartbarkeit,  \"Ubersichtlichkeit  und Modularit\"at  des  Codes  zu
-gew\"ahrleisten,  ist  die  Software gem\"ass  Model  View-Controllern-Pattern
-aufgebaut.
+Die    erforderlichen    Algorithmen    wurden   zuerst    in    Matlab    als
+Prototypen   implementiert    und   anschliessend   vollst\"andig    in   Java
+konvertiert. Um  optimale Wartbarkeit,  \"Ubersichtlichkeit und  Modularit\"at
+des    Codes     zu    gew\"ahrleisten,    ist    die     Software    gem\"ass
+\emph{Model-View-Controller}-Pattern aufgebaut.
 
 % Ergebnisse
-Nach  der Implementierung  in Matlab  wurde  klar, dass  die Berechnung  durch
-die  hohe Rechenleistung  sehr schnell  durchgef\"uhrt werden  kann und  somit
-eine  Dimensionierung des  geschlossenen  Regelkreises  anhand dieser  Methode
-von  Zellweger  m\"oglich  ist. Die  Schrittantworten  k\"onnen  zur  Echtzeit
-angezeigt werden. Diese  M\"oglichkeit wurde  genutzt indem  zwei Schiebregler
-implementiert wurden. Durch einen kann das \"Uberschwingen manuell eingestellt
-werden kann und mit dem anderen wird die Kurve optimiert.
+Nach der Implementierung  in Matlab wurde klar, dass die  Berechnung durch die
+hohe Rechenleistung  sehr schnell  durchgef\"uhrt werden  kann und  somit eine
+Dimensionierung des geschlossenen Regelkreises anhand dieser Methode m\"oglich
+ist. Die  Schrittantworten  k\"onnen   zur  Echtzeit  angezeigt  werden. Diese
+M\"oglichkeit   wurde   genutzt,   indem  zwei   Schieberegler   implementiert
+wurden. Durch einen  kann das  \"Uberschwingen manuell eingestellt  werden und
+mit  dem anderen  kann die  Form der  Kurve der  Schrittantwort weiter  an das
+gew\"unschte Ziel angepasst werden.
 
 % Aufbau des Berichts
-Der Bericht gliedert sich in drei Teile: Die ersten zwei Teile erl\"autern die
-theoretischen Grundlagen,  der zweite Teil  besch\"aftigt sich mit  dem Aufbau
-der Software.
+Der  Bericht   gliedert  sich  in   drei  Hauptteile: In  einem   ersten  Teil
+werden  einige   theoretische  Grundlagen  der   Regelungstechnik  erl\"autert
+(Abschnitt~\ref{sec:grundlagenRegtech}).
+
+Abschnitt~\ref{sec:fachlicher_hintergrund}  geht genauer  auf die  eigentliche
+Dimensionierung  von Reglern  ein, indem  ein PI-  und ein  PID-Regler mittels
+Faustformeln  und Phasengangmethode  f\"ur eine  Beispielstrecke dimensioniert
+werden. Die  Ergebnisse   werden  auch   mit  den  Resultaten   unseres  Tools
+verglichen.
+
+In    Abschnitt~\ref{sec:software}    wird    der    Aufbau    der    Software
+erkl\"art;   wichtige  Algorithmen   sind   dabei  in   Anhang~\ref{app:algos}
+genauer   dokumentiert. Dabei   werden   die  Benutzeroberfl\"ache   und   das
+innere   Zusammenspiel  der   verschiedenen   Module   der  Software   genauer
+betrachtet. Ebenfalls  sind  in   Abschnitt~\ref{sec:test}  einige  Worte  zum
+Testverfahren zu finden.

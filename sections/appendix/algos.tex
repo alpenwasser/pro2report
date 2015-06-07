@@ -1,5 +1,6 @@
 % ---------------------------------------------------------------------------- %
 \subsection{Sani}
+\label{app:sani}
 % ---------------------------------------------------------------------------- %
 
 \subsubsection*{Input}
@@ -39,6 +40,7 @@
 \clearpage
 % ---------------------------------------------------------------------------- %
 \subsection{Umrechnung von reglerkonformer in bodekonforme Darstellung}
+\label{app:algo:regbode}
 % ---------------------------------------------------------------------------- %
 
 \subsubsection*{Input}
@@ -331,7 +333,7 @@
     $ T_u $             & Anstiegszeit \\
     $ K_s $             & Verst\"arkung der Strecke \\
       Reglertyp         & Reglertyp (PI, PID) \\
-    \"Uberschwingen     & Flag f\"ur \"Uberschwingeng %\TODO{specifics $
+    \"Uberschwingen     & Flag f\"ur \"Uberschwingeng
 \end{tabular}
 
 \subsubsection*{Output}
@@ -455,7 +457,7 @@ zwei Arrays) an einem bestimmten Array-Index.
 % ---------------------------------------------------------------------------- %
 
 \code{schrittIfft()}  berechnet   die  Schrittantwort  im   Zeitbereich  einer
-\"Ubertragungsfunktion. \todo{korrekt?}
+\"Ubertragungsfunktion.
 
 \subsubsection*{Input}
 
@@ -548,7 +550,8 @@ generierten Reglers.
 
 \code{calculateTnkTvk()}    bestimmt   $T_{nk}$    und   $T_{vk}$. Kern    des
 Algorithmus  ist  die  Automatisierung   der  Berechnung  von  $\beta$  (siehe
-Anhang~\ref{app:beta} f\"ur die manuelle Rechnung);
+Anhang~\ref{app:beta}  f\"ur die  manuelle  Rechnung). Dazu wird  auch die  in
+Anhang~\ref{app:algo:slope} beschriebene Methode \code{diskDiff()} benutzt.
 
 \subsubsection*{Input}
 

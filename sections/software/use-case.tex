@@ -1,5 +1,7 @@
 Das Zusammenspiel der einzelnen Komponenten  der Applikation wird im Folgenden
-anhand eines Beispiels erkl\"art.
+anhand  eines   Beispiels  erkl\"art. Die  hier   dargelegten  Zusammenh\"ange
+k\"onnen   auch   gut   im   Klassendiagramm   (Anhang~\ref{app:classdiagram})
+betrachtet werden.
 
 Beim   Programmstart   werden   durch  das   Model   drei   \code{closedLoops}
 (geschlossenen Regelkreise)  f\"ur die  Phasengang-Methode sowie  vier weitere
@@ -60,22 +62,22 @@ Aufruf     von    \code{calculateControllerConf()}     und    \code{setUTF()}.
 \code{calculateControllerConf()} transformiert die Werte in die reglerkonforme
 Darstellung. \code{setUTF()} setzt die \"Ubertragungs-Funktion des Reglers.
 
-Im  \code{ClosedLoop} wird  nun die  Methode \code{calculate()}  ausgef\"uhrt,
-welche  mittels der  Methode \code{calculateStepResponse()}  die Schrittanwort
-des   geschlossenen   Regelkreises   berechnet. Falls    es   sich   bei   der
-Berechnungsmethode  des  Reglers  um   die  Phasengang-Methode  handelt,  wird
-zus\"atzlich \code{overShootOptimization()} aufgerufen. Diese Methode \"andert
-den Wert von $K_{rk}$ so  lange, bis das gew\"unschte \"Uberschwingen erreicht
-wird.
+Im    \code{ClosedLoop}    wird    nun    die    Methode    \code{calculate()}
+ausgef\"uhrt,  welche   mittels  der   Methode  \code{calculateStepResponse()}
+die   Schrittanwort  des   geschlossenen   Regelkreises  berechnet. Falls   es
+sich  bei  der  Berechnungsmethode   des  Reglers  um  die  Phasengang-Methode
+handelt,  wird  zus\"atzlich \code{overShootOptimization()}  (dokumentiert  in
+Anhang~\ref{app:algo:oversh}) aufgerufen. Diese Methode  \"andert den Wert von
+$K_{rk}$ so lange, bis das gew\"unschte \"Uberschwingen erreicht wird.
 
-Sobald die  Berechnungen aller  \code{ClosedLoops}abgeschlossen sind,  wird im
-\code{Model} \code{notifyObserver()} ausgel\"ost. Hiermit wird die \code{View}
-dar\"uber  informiert, dass  \"Anderungen im  \code{Model} vorgenommen  wurden
-und  die Methode  \code{update()} in  den jeweiligen  Unterklassen der  Klasse
-\code{View}aufgerufen werden soll. Somit aktualisiert sich die \code{View} und
-die neu  berechneten Reglerwerte. Die Streckenordnung wird  ausgegeben und die
-Plot-Daten  werden aktualisiert. Im  Fall  der  Phasengangmethode werden  auch
-Startwerte f\"ur $T_p$ gesetzt.
+Sobald die  Berechnungen aller \code{ClosedLoops} abgeschlossen  sind, wird im
+\code{Model}  die  Methode \code{notifyObserver()}  ausgel\"ost. Hiermit  wird
+die  \code{View}  dar\"uber  informiert,  dass  \"Anderungen  im  \code{Model}
+vorgenommen  wurden   und  die  Methode  \code{update()}   in  den  jeweiligen
+Unterklassen der Klasse  \code{View}aufgerufen werden soll. Somit aktualisiert
+sich die \code{View} und  die neu berechneten Reglerwerte. Die Streckenordnung
+wird  ausgegeben   und  die   Plot-Daten  werden  aktualisiert. Im   Fall  der
+Phasengangmethode werden auch Startwerte f\"ur $T_p$ gesetzt.
 
 Der Benutzer  hat nun die  M\"oglichkeit, die Resultate  der Phasengangmethode
 weiter  zu  optimieren. \"Uber  das   Panel  \code{Optimierungen}  stehen  die
@@ -94,7 +96,7 @@ Phasengang-Methode  weiterleitet. Sobald die  neu berechneten  Werte vorliegen
 wird \code{notifyObservers()} aufgerufen und die \code{View} aktualisiert.
 
 Die  Plots  sowie die  Optimierungs-Schaltfl\"achen  sind  nur dann  sichtbar,
-wenn  die CheckBox  \emph{Erweiter} aktiviert  ist. Durch Deaktivieren  dieser
+wenn die  CheckBox \emph{erweitert}  aktiviert ist. Durch  Deaktivieren dieser
 CheckBox  kann das  Programm  in einer  Klein-Ansicht  ohne grafische  Ausgabe
 bedient werden. Die  einzelnen Plots k\"onnen \"uber  CheckBoxen unterhalb des
 Plot-Bereichs dazu- oder weggeschaltet werden.

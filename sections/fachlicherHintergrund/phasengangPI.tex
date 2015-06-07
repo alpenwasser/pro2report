@@ -46,7 +46,7 @@ Das  Ziel ist  die  Bestimmung  der Parameter  $K_{rk}$  und  $T_{nk}$ in  der
 \subsubsection{Bestimmung der Reglerfrequenz $\mathbf{\boldsymbol{\omega}_{pi}}$}
 % ---------------------------------------------------------------------------- %
 
-Zuerst  wird  im  Phasengang  der  Strecke  gem\"ass  Formel~\ref{eq:pi:phi_s}
+Zuerst  wird im  Phasengang der  Strecke gem\"ass  Gleichung~\ref{eq:pi:phi_s}
 die     Frequenz     $\omega_{pi}$      bestimmt,     f\"ur     welche     die
 Phase     der    Strecke     $-90\degree$     betr\"agt,    ersichtlich     in
 Abbildung~\ref{fig:pi:omega_pi}\footnotemark[4].
@@ -57,7 +57,7 @@ Abbildung~\ref{fig:pi:omega_pi}\footnotemark[4].
 
 \footnotetext[4]{%
     Der  Winkel  stellt  keinen   endg\"ultigen  Wert  dar. Dieser  wurde  von
-    Jakob  Zellweger  fixiert, um  eine  grafische  Evaluation \"uberhaupt  zu
+    Jakob  Zellweger  fixiert, um  eine  graphische  Evaluation \"uberhaupt  zu
     erm\"oglichen. Durch Anpassung dieses Wertes kann je nach Regelstrecke das
     Regelverhalten weiter optimiert werden.
 }
@@ -106,9 +106,9 @@ Die   Durchtrittsfrequenz  ist   die   Frequenz,  bei   der  die   betrachtete
 1$  aufweist. In der  Phasengangmethode soll  sie so  festgelegt werden,  dass
 der  offene  Regelkreis  Gleichung~\ref{eq:phi_o} erf\"ullt. Dabei  ist  f\"ur
 $\varphi_s$ abh\"angig  vom gew\"unschten \"Uberschwingverhalten ein  Wert aus
-Tabelle~\ref{tab:phi_s}  auszuw\"ahlen\footnotemark[6].   Nach dem  Festlegen
-der Durchtrittsfrequenz  wird dann  im n\"achsten Abschnitt  die Verst\"arkung
-des Reglers noch angepasst.
+Tabelle~\ref{tab:phi_s} auszuw\"ahlen\footnotemark[6].  Nach dem Festlegen der
+Durchtrittsfrequenz  (in unserem  Beispiel $16.3\%$)  wird dann  im n\"achsten
+Abschnitt die Verst\"arkung des Reglers noch angepasst.
 
 \footnotetext[6]{%
     Die  Werte f\"ur  $\varphi_s$  aus  Tabelle~\ref{tab:phi_s} stellen  keine
@@ -138,8 +138,8 @@ des Reglers noch angepasst.
     \label{tab:phi_s}
 \end{longtable}
 
-Um  Gleichung~\ref{eq:phi_o}  auswerten  zu   k\"onnen,  wird  der  Phasengang
-des    \emph{offenen    Regelkreises}    ben\"otigt. Dazu    wird    der    in
+Um    Gleichung~\ref{eq:phi_o}    auswerten     zu    k\"onnen,    wird    der
+Phasengang   des   offenen   Regelkreises   ben\"otigt. Dazu   wird   der   in
 Gleichung~\ref{eq:pi:omega_pi}    erhaltene    Wert    f\"ur    $T_{nk}$    in
 die   \"Ubertragungsfunktion    des   Reglers   (Gleichung~\ref{eq:pi:target})
 eingesetzt. $K_{rk}$  ist  noch  unbekannt,  hat aber  auf  die  Phase  keinen
@@ -185,13 +185,13 @@ identifiziert werden.
 \end{gather}
 
 
-Von  besonderem  Interesse  ist  der  Phasengang  $\varphi_o(j\omega)$  dieser
-\"Ubertragungsfunktion. Wie   Anfangs   spezifiziert,    soll   ein   maximals
+Von   besonderem    Interesse   ist   der    Phasengang   $\varphi_o(j\omega)$
+dieser  \"Ubertragungsfunktion. Wie  Anfangs  festgelegt,  soll  ein  maximals
 \"Uberschwingen  von   ca. $16.3\%$  angestrebt  werden. Dazu   muss  gem\"ass
 Tabelle~\ref{tab:phi_s}  die Durchtrittsfrequenz  $\omega_d$ gefunden  werden,
 an  welcher der  offene  Regelkreis eine  Phase  von $-128.5\degree$  aufweist
-(Gleichung~\ref{eq:phi_o}). In   Abbildung~\ref{fig:pi:omega_d}    kann   dies
-grafisch verifiziert werden.
+(Gleichung~\ref{eq:phi_o}). In   Abbildung~\ref{fig:pi:omega_d}   kann   diese
+Beziehung graphisch verifiziert werden.
 
 \begin{figure}[h! width=\pagewidth]
     \includegraphics[width=\textwidth]{images/piOffenerRegelkreisPhasengang.png}
@@ -205,7 +205,7 @@ grafisch verifiziert werden.
     \label{fig:pi:omega_d}
 \end{figure}
 
-Dies ergibt:
+Dies ergibt f\"ur die Durchtrittsfrequenz:
 \begin{equation} \label{eq:pi:omega_d}
     \omega_d = \SI{0.2329}{\per\second}
 \end{equation}

@@ -1,5 +1,5 @@
 Die Software wurde nach dem \emph{MVC-Pattern} aufgebaut. Somit wurde auch das
-\emph{Obersever/Obeservable}-Prinzip  eingebunden. Das Klassendiagramm  ist in
+\emph{Obersever/Observable}-Prinzip  eingebunden. Das  Klassendiagramm ist  in
 Anhang~\ref{app:classdiagram} zu finden.
 
 In   der    Klasse   \code{Application}    werden   das    \code{Model},   der
@@ -9,11 +9,12 @@ verkn\"upft. Dem   \code{GUIcontroller}   wird   das  \code{Model}   und   der
 auf  der   \code{View}  direkt   an  den   \code{GUIController}  weitergegeben
 werden. Dieser wiederum kann direkten Einfluss auf das \code{Model} nehmen.
 
-Die  \code{View}  wird  als   Observer  von  \code{Model}  registriert. Sobald
-im  \code{Model}  \code{notifyObservers()}  ausgel\"ost   wird,  wird  in  der
-\code{View} die Methode \code{update()}  aufgerufen und das ganze \code{Model}
-als Objekt \"ubergeben. Die  \code{View} kann nun die  gew\"unschten Daten aus
-dem \code{Model} auslesen und f\"ur die Darstellung verwenden.
+Die  \code{View} wird  als  Observer von  \code{Model} registriert. Sobald  im
+\code{Model} die Ausl\"osung der Methode \code{notifyObservers()} erfolgt ist,
+wird  in  der  \code{View}  die Methode  \code{update()}  aufgerufen  und  das
+ganze  \code{Model}  als  Objekt  \"ubergeben. Die \code{View}  kann  nun  die
+gew\"unschten Daten  aus dem \code{Model}  auslesen und f\"ur  die Darstellung
+verwenden.
 
 Die ganze  Applikation basiert auf  einem JFrame, auf welchem  die \code{View}
 platziert wird.

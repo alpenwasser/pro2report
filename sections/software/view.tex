@@ -5,7 +5,7 @@ Abbildung~\ref{fig:toolStartPI}).
 
 \begin{figure}[h!, width=\pagewidth]
     \centering
-    \includegraphics[width=\textwidth]{images/toolStartPI.jpg}
+    \includegraphics[width=0.9\textwidth]{images/toolStartPI.jpg}
     \caption{Grundlegender Aufbau der Benutzeroberfl\"ache}
     \label{fig:toolStartPI}
 \end{figure}
@@ -71,7 +71,7 @@ PID-Regler dimensioniert wird, die  Zeitkonstante $T_p$ spezifiziert werden.
 Das  Optimierungs-Panel  (Abbildung~\ref{fig:optimierungen}  )beinhaltet  zwei
 Slider  zur  Eingabe  des   gew\"unschten  \"Uberschwingens  respektive  f\"ur
 die  Optimierung   des  Reglers  der  Phasengang-Methode. \"Uber   den  Slider
-\emph{Optimierung} kann der Phasenrand beeinflusst werden.
+\emph{Optimierung} kann $\varphi_r$ beeinflusst werden.
 
 \begin{figure}[h!, width=\pagewidth]
     \centering
@@ -95,24 +95,23 @@ Faustformel     wird     die    zugeh\"orige     Schrittantwort     abgebildet
 (Abbildung~\ref{fig:toolFaustFormeln}).
 
 Die Resultate der Phasengangmethode werden durch drei Kurven dargestellt. Eine
-Kurve   benutzt   den   Standardwert  des   Phasenrands   gem\"ass   Zellweger
+Kurve   benutzt  den   Standardwert  f\"ur   $\varphi_r$  gem\"ass   Zellweger
 ($-90\degree$  f\"ur PI-Regler,  $-135\degree$ f\"ur  PID-Regler), die  beiden
 anderen Kurven  basieren auf Benutzereingaben  f\"ur einen oberen  und unteren
-Offset  des  Phasenrandes  der   \"uber  den  Schiebregler  \emph{Optimierung}
+Offset  von  $\varphi_r$,  der   \"uber  den  Schiebregler  \emph{Optimierung}
 eingestellt werden kann.
+
+Es   ist   ebenfalls   m\"oglich,   die   dargestellten   Plots   als   Bilder
+zu   speichern;   die    in   Abschnitt~\ref{subs:tool:results}   abgebildeten
+Beispiele   (Abbildungen~\ref{fig:comparisonPI015},~\ref{fig:comparisonPID015}
+und~\ref{fig:comparisonPID002optimisations} auf Seite~\pageref{fig:comparisonPI015})
+wurden mit unserem Tool erstellt und exportiert.
 
 \begin{figure}[h!, width=\pagewidth]
     \centering
     \includegraphics[width=\textwidth]{images/toolStartFaustFormeln.jpg}
     \caption{Plots der Schrittantworten nach Faustformeln}
     \label{fig:toolFaustFormeln}
-\end{figure}
-
-\begin{figure}[h!, width=\pagewidth]
-    \centering
-    \includegraphics[width=\textwidth]{images/tool2UeberschwingenOptimierungPID.jpg}
-    \caption{Plots der Schrittantworten nach Phasengangmethode, PID-Regler, 2\% \"Uberschwingen}
-    \label{fig:tool2UberschwingenPID}
 \end{figure}
 
 \clearpage

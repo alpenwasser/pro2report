@@ -70,7 +70,7 @@ geichm\"assig zwischen 0  und $f_s \cdot \pi$  verteilen. Dadurch entsteht ein
 diskreter Frequenzgang $H_g[k]$ mit $\frac{N}{2}$ Werten.
 
 \begin{equation*}
-    H_g[k] = H_g(s) ~|~ s=j \cdot \frac{f_s \cdot \pi}{\frac{N}{2} - 1} \cdot k, 0 \leq k < \frac{N}{2}
+    H_g[k] = H_g(s) ~|~ s=j \cdot \frac{f_s \cdot \pi}{\frac{N}{2} - 1} \cdot k \land 0 \leq k < \frac{N}{2} \land k \in \mathbb{N}_0
 \end{equation*}
 
 
@@ -82,7 +82,7 @@ muss der diskrete Frequenzgang $H_g[k]$ folgende Symmetriebedingung erf\"ullen
 ($L$ ist die L\"ange des Arrays $H_g$):
 
 \begin{equation*}
-    H_g[L-k]=H_g^*[k]  ~|~ 0 \leq k \leq L
+    H_g[L-k]=H_g^*[k]  ~|~ 0 \leq k \leq L \land k \in \mathbb{N}_0
 \end{equation*}
 
 Deshalb  wird $H_g[\frac{N}{2}]  = 0$  gesetzt  und zweite  Teil von  $H_g[k]$
@@ -95,13 +95,13 @@ Die  diskrete inverse  Fourier-transformation wird  gem\"ass folgender  Formel
 durchgef\"uhrt:
 
 \begin{equation*}
-    \vec{h}=\text{ifft}(\vec{H})
+    h[k]  = \frac{1}{N}  \cdot \displaystyle\sum_{n=0}^{N-1}  H[n] \cdot
+    e^{j 2\pi \cdot \frac{n \cdot k}{N}} | 0 \leq k < N \land k \in \mathbb{N}_0
 \end{equation*}
-\todo{Formel}
 
-Die  in diesem  Projekt verwendetete  inverse schnelle  Fourier-Transformation
-ist   ein  verbessertes   Verfahren  der   oben  erkl\"akrten   IFFT.   Dieses
-erm\"oglicht eine schnellere Berechnung durch  das Zerlegen der Punkte in ihre
+Die in diesem Projekt verwendetete inverse schnelle Fourier-Transformation ist
+ein  verbessertes Verfahren  der oben  erkl\"arten IFFT.   Dieses erm\"oglicht
+eine   schnellere  Berechnung   durch  das   Zerlegen  der   Punkte  in   ihre
 Primfaktoren. Eine genauere Erl\"auterung wird an dieser Stelle nicht gemacht,
 da dieses Verfahren  in Matlab sowie in Java als  fertige Funktion verf\"ugbar
 ist.
@@ -118,5 +118,5 @@ Impulsantwort  weggeschnitten,  um  die  zuvor  als  konjugert-komplexe  Werte
 hinzugef\"ugten \"Uberbleibsel zu eliminieren.
 
 \begin{equation*}
-    y[k]= \sum_{n=0}^k h[n] ~|~ 0 \leq k < \frac{L}{2}
+    y[k]= \sum_{n=0}^k h[n] ~|~ 0 \leq k < \frac{L}{2} \land k \in \mathbb{N}_0
 \end{equation*}

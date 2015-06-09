@@ -1,8 +1,8 @@
 % ---------------------------------------------------------------------------- %
 \subsubsection*{Ziel}
 % ---------------------------------------------------------------------------- %
-Das Ziel ist  die Bestimmung der Parameter $K_{rk}$, $T_{nk}$  und $T_{vk}$ in
-der \"Ubertragungsfunktion des Reglers:
+Das  Ziel  dieses  Abschnittes  ist die  Bestimmung  der  Parameter  $K_{rk}$,
+$T_{nk}$ und $T_{vk}$ in der \"Ubertragungsfunktion des Reglers:
 
 \begin{equation} \label{eq:pid:target}
     H_{rpid} = K_{rk} \cdot \biggl[ \frac{(1 + s \cdot T_{nk}) \cdot (1 + s \cdot T_{vk}) }{ s \cdot T_{nk} } \biggr]
@@ -14,7 +14,7 @@ der \"Ubertragungsfunktion des Reglers:
 % ---------------------------------------------------------------------------- %
 
 Analog  zum PI-Regler  wird  zuerst  im Phasengang  der  Strecke die  Frequenz
-$\omega_{pid}$  bestimmt,  f\"ur  welche   die  Phase  einen  bestimmten  Wert
+$\omega_{pid}$  bestimmt,  f\"ur  welche  die  Phase  einen  definierten  Wert
 aufweist,  aber   im  Unterschied   zum  PI-Regler  wird   hier  $-135\degree$
 benutzt\footnotemark[7]:
 
@@ -35,7 +35,8 @@ In unserem Beispiel ergibt dies:
 \end{equation}
 
 Eine       graphische       \"Uberpr\"ufung        kann       anhand       von
-Abbildung~\ref{fig:pid:complete} durchgef\"uhrt werden.
+Abbildung~\ref{fig:pid:complete}      auf     Seite~\pageref{fig:pid:complete}
+durchgef\"uhrt werden.
 
 
 % ---------------------------------------------------------------------------- %
@@ -43,14 +44,15 @@ Abbildung~\ref{fig:pid:complete} durchgef\"uhrt werden.
 % ---------------------------------------------------------------------------- %
 
 Anschliessend   wird   die   Steigung    des   Phasengangs   $\varphi_s$   der
-Strecke  bei  der   Frequenz  $\omega_{pid}$  bestimmt. Ausgangspunkt  daf\"ur
+Strecke  bei  der  Frequenz  $\omega_{pid}$  berechnet. Ausgangspunkt  daf\"ur
 ist   die    \"Ubertragungsfunktion   der   Regelstrecke    (siehe   Gleichung
 \ref{eq:transfer:plant}).
 
 \begin{equation} \label{eq:transfer:plant:derivative}
     \frac{d\varphi_s}{d\omega} \biggr \rvert_{\omega=\omega_{pid}}
         = \frac{d(arg(H_s(j\omega)))}{d\omega} \biggr \rvert_{\omega=\omega_{pid}}
-        = \SI{-1.5124}{\second}
+        %= \SI{-1.5124}{\second}
+        = -1.5124
 \end{equation}
 \todo{Einheit \"uberpr\"ufen}
 
@@ -72,12 +74,13 @@ Da die Ableitung eine lineare Funktion ist, gilt somit auch:
     \frac{d\varphi_o}{d\omega} = \frac{d\varphi_s}{d\omega} + \frac{d\varphi_r}{d\omega}
 \end{equation}
 
-Diese Beziehungen  k\"onnen auch  gut in Abbildung  \ref{fig:pid:complete} von
-Hand \"uberpr\"uft werden.
+Diese  Beziehungen  k\"onnen   auch  gut  in  Abbildung~\ref{fig:pid:complete}
+(Seite~\pageref{fig:pid:complete}) von Hand \"uberpr\"uft werden.
 
 Es soll nun gelten:
 
 \begin{equation} \label{eq:pid:dphi_o_target}
+    %\frac{d\varphi_o}{d\omega} \biggr \rvert_{\omega=\omega_{pid}} = \SI{- \frac{1}{2}}{\second}
     \frac{d\varphi_o}{d\omega} \biggr \rvert_{\omega=\omega_{pid}} = - \frac{1}{2}
 \end{equation}
 
@@ -95,7 +98,7 @@ Dazu f\"uhrt man den Hilfsparameter $\beta$ ein, f\"ur den gilt:
     \end{split}
 \end{gather}
 
-Wie in Abbildung  ~\ref{fig:pid:complete} gesehen werden kann\footnotemark[8],
+Wie in  Abbildung~\ref{fig:pid:complete} gesehen  werden kann\footnotemark[8],
 liegen  die   beiden  Frequenzen  $\frac{1}{T_{vk}}$   und  $\frac{1}{T_{nk}}$
 symmetrisch um  den Faktor $\beta$ respektive  $\frac{1}{\beta}$ oberhalb bzw.
 unterhalb der Frequenz $\omega_{pid}$.
@@ -118,7 +121,7 @@ Annahme, zum Beispiel:
     \beta = 0.5
 \end{equation}
 
-Mit  diesem Startwert  bestimmt  man nun  $T_{nk}$  und ${T_{vk}}$:
+Mit diesem Startwert berechnet man nun $T_{nk}$ und ${T_{vk}}$:
 
 \begin{gather} \label{eq:pid:t_nk_t_vk_initial_results}
     \begin{split}
@@ -127,9 +130,9 @@ Mit  diesem Startwert  bestimmt  man nun  $T_{nk}$  und ${T_{vk}}$:
     \end{split}
 \end{gather}
 
-Die  somit  erhaltenen  Werte   setzt  man  in  Gleichung  \ref{eq:pid:target}
-ein,   zusammen   mit   dem    Wert   f\"ur   $\omega_{pid}$   aus   Gleichung
-\ref{eq:pid:omega_pid}. Da  $K_{rk}$   noch  unbekannt   ist,  aber   auf  den
+Die   somit   erhaltenen    Werte   setzt   man   zusammen    mit   dem   Wert
+f\"ur  $\omega_{pid}$   aus  Gleichung  \ref{eq:pid:omega_pid}   in  Gleichung
+\ref{eq:pid:target}  ein.   Da  $K_{rk}$  noch unbekannt  ist,  aber  auf  den
 Phasengang  keinen  Einfluss   hat,  setzt  man  vorerst  $K_{rk}   =  1$,  um
 weiterrechnen zu k\"onnen.
 
@@ -187,7 +190,7 @@ Diese Werte sind ebenfalls in Abbildung~\ref{fig:pid:complete} eingetragen.
 Sollte  man  f\"ur  $\beta$  einen komplexen  Wert  erhalten,  wird  $\beta=1$
 gesetzt.
 
-Die zur  Bestimmung von $\beta$,  $T_{vk}$ und $T_{nk}$  benutzten Algorithmen
+Die zur  Berechnung von $\beta$,  $T_{vk}$ und $T_{nk}$  benutzten Algorithmen
 sind    in     Anhang~\ref{app:algo:slope}    respektive~\ref{app:algo:tnktvk}
 dokumentiert.
 

@@ -34,8 +34,8 @@ Tabelle~\ref{tab:terms}  fasst  die  h\"aufig verwendeten  Begriffe  in  einer
 % ---------------------------------------------------------------------------- %
 \subsubsection*{Ziel}
 % ---------------------------------------------------------------------------- %
-Das  Ziel ist  die  Bestimmung  der Parameter  $K_{rk}$  und  $T_{nk}$ in  der
-\"Ubertragungsfunktion des Reglers:
+Das  Ziel dieses  Abschnittes ist  die Bestimmung  der Parameter  $K_{rk}$ und
+$T_{nk}$ in der \"Ubertragungsfunktion des Reglers:
 
 \begin{equation} \label{eq:pi:target}
     H_{rpi} = K_{rk} \cdot \biggl[ 1 + \frac{1}{s \cdot T_{nk}} \biggr]
@@ -105,10 +105,10 @@ Die   Durchtrittsfrequenz  ist   die   Frequenz,  bei   der  die   betrachtete
 \"Ubertragungsfunktion $H(j\omega)$ eine Verst\"arkung von $\SI{0}{\decibel} =
 1$  aufweist. In der  Phasengangmethode soll  sie so  festgelegt werden,  dass
 der  offene  Regelkreis  Gleichung~\ref{eq:phi_o} erf\"ullt. Dabei  ist  f\"ur
-$\varphi_s$ abh\"angig  vom gew\"unschten \"Uberschwingverhalten ein  Wert aus
+$\varphi_s$, abh\"angig vom gew\"unschten \"Uberschwingverhalten, ein Wert aus
 Tabelle~\ref{tab:phi_s} auszuw\"ahlen\footnotemark[6].  Nach dem Festlegen der
-Durchtrittsfrequenz  (in unserem  Beispiel $16.3\%$)  wird dann  im n\"achsten
-Abschnitt die Verst\"arkung des Reglers noch angepasst.
+Durchtrittsfrequenz (in  unserem Beispiel werden wir  $16.3\%$ anstreben) wird
+dann im n\"achsten Abschnitt die Verst\"arkung des Reglers noch angepasst.
 
 \footnotetext[6]{%
     Die  Werte f\"ur  $\varphi_s$  aus  Tabelle~\ref{tab:phi_s} stellen  keine
@@ -152,9 +152,8 @@ Einfluss und wird somit vorerst einfach auf 1 gesetzt.
     \end{split}
 \end{gather}
 
-Daraus    kann    nun    der    Frequenzgang    des    offenen    Regelkreises
-(\"Ubertragungsfunktion $H_o$,  Amplitudengang $A_o$,  Phasengang $\varphi_o$)
-identifiziert werden.
+Daraus kann nun der Frequenzgang  $H_o$ des offenen Regelkreises identifiziert
+werden.
 
 \begin{gather} \label{eq:pi:h_open}
     \begin{split}
@@ -186,7 +185,7 @@ identifiziert werden.
 
 
 Von   besonderem    Interesse   ist   der    Phasengang   $\varphi_o(j\omega)$
-dieser  \"Ubertragungsfunktion. Wie  Anfangs  festgelegt,  soll  ein  maximals
+dieser   \"Ubertragungsfunktion. Wie  oben   festgelegt,  soll   ein  maximals
 \"Uberschwingen  von   ca. $16.3\%$  angestrebt  werden. Dazu   muss  gem\"ass
 Tabelle~\ref{tab:phi_s}  die Durchtrittsfrequenz  $\omega_d$ gefunden  werden,
 an  welcher der  offene  Regelkreis eine  Phase  von $-128.5\degree$  aufweist

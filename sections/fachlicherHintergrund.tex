@@ -1,5 +1,5 @@
 Das  Kernst\"uck  dieser Arbeit  und  des  zugeh\"origen Softwaretools  stellt
-die   so   genannte   ``Phasengangmethode  zur   Reglerdimensionierung''   von
+die   sogenannte   \emph{Phasengangmethode  zur   Reglerdimensionierung}   von
 Jakob   Zellweger   dar~\cite{regelungstechnik:zellweger_short}. Diese   wurde
 urspr\"unglich  als  vereinfachte  grafische  Methode  zur  Approximation  der
 -20dB/Dek-Methode erarbeitet und im Rahmen dieses Projektes in einem Java-Tool
@@ -23,7 +23,7 @@ Das Tool f\"uhrt grob vereinfacht folgende Schritte aus:
         reglerkonformer Darstellung (Abschnitt~\ref{subs:bode_regler})
     \item
         Berechnung   der   Schrittantwort   des   geschlossenen   Regelkreises
-        (Abschnitt~\ref{subs:grundl:geschlossenerRegelkreis})
+        (Abschnitt~\ref{subs:fft})
 \end{itemize}
 
 Im   folgenden   Kapitel   wird   auf   diese   Punkte   genauer   eingegangen
@@ -35,11 +35,13 @@ finden  sind~\cite{ref:pflichtenheft}. Genauere  Hintergrundinformationen  zur
 Phasengangmethode  selbst  sind  dem  Vorlesungs-Skript  von  J. Zellweger  zu
 entnehmen~\cite{regelungstechnik:zellweger_short}.
 
-Das  \"Uberschwingverhalten  kann  im  Software-Tool vom  Benutzer  auf  einen
-Zielwert zwischen  $0.1\%$ und  $30\%$ eingestellt werden. Das  Tool optimiert
-den  resultierenden Regler  dann entsprechend,  um dieser  Vorgabe m\"oglichst
-nahe zu kommen. Dazu wird  die Reglerverst\"arkung $K_{rk}$ solange angepasst,
-bis ein passendes Resultat erreicht ist.
+Bei der  Dimensionierung eines  Reglers mittels Phasengangmethode  erlaubt das
+Tool dem Benutzer, das \"Uberschwingen auf einen Zielwert zwischen $0.1\%$ und
+$30\%$ einzustellen. Es  optimiert den resultierenden Regler  entsprechend, um
+dieser Vorgabe  m\"oglichst nahe zu kommen. Dazu  wird die Reglerverst\"arkung
+$K_{rk}$ solange  angepasst, bis  ein passendes Resultat  erreicht ist. Dieser
+direkte Eingriff  folgt aus  der Erkenntnis,  dass in  der Berechnung  mit der
+Phasengangmethode das \"Uberschwingen nur von $K_{rk}$ abh\"angt.
 
 \clearpage
 \subsection{Frequenzgang der Regelstrecke}

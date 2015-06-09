@@ -11,18 +11,39 @@ Die   im   Pflichtenheft   optional  geplanten,   graphischen   Ausgaben   des
 Amplitudengangs und der Strecke sowie  die Schieberegler f\"ur das Ver\"andern
 der  Reglerwerte wurden  weggelassen. Diese Zus\"atze  wurden geplant,  um das
 Dimensionieren  des  Reglers zu  erleichtern  und  die Eingabewerte  graphisch
-darzustellen. Der  Grund f\"ur  den Entscheid,  diese zus\"atzlichen  Ausgaben
+darzustellen. Der  Grund f\"ur  den Entscheid,  diese zus\"atzlichen  Features
 wegzulassen, war die M\"oglichkeit durch die hohe Rechenleistung den Regler in
-Echtzeit zu optimieren, womit die Funktionen \"uberfl\"ussig wurden.
+Echtzeit  automatisiert zu  optimieren, womit  die Funktionen  \"uberfl\"ussig
+wurden.
 
 
 Alternativ kann  die Schrittantwort mit zwei  Schiebereglern manuell optimiert
 werden. Durch  das Ver\"andern  des  \"Uberschwingens und  das Einstellen  der
-Optimierung kann die Kurve von  Hand angepasst werden.  Als Erweiterung w\"are
-es m\"oglich die  Streckenwerte auszugeben und die  Strecke graphisch zur\"uck
-zu geben. Das  automatische Einlesen  der Streckenwerte aus  einer graphischen
-Form k\"onnte hinzugef\"ugt werden. Das Tool  w\"urde an die eingelesene Kurve
-die Wendetangente  legen und die  Werte ablesen. Das Ablesen k\"onnte  mit der
-Monte-Carlo-Studie verfeinert werden. Die Monte-Carlo-Studie ist ein Verfahren
-aus  der  Wahrscheinlichkeitsrechung, welche  aus  einer  endlichen Schar  von
-Kurven die numerisch wahrscheinlichste L\"osung findet.
+Optimierung kann die Kurve von  Hand angepasst werden.
+
+
+Eine m\"oglicher  Bereich, in dem zus\"atzliche  Features implementiert werden
+k\"onnten,  ist  die Auswertung  und  Analyse  der Strecke. Es  k\"onnten  die
+Kennzahlen  der  \"Ubertragungsfunktion  der Strecke  zur\"uckgegeben  werden,
+zusammen mit einer graphischen Darstellung der Strecke.
+
+
+Einen  bedeutenden   Zusatznutzen  w\"urde  auch  das   automatische  Einlesen
+der  Streckenwerte   aus  einer  graphischen  Darstellung   bringen. Das  Tool
+w\"urde   an   die   eingelesene   Kurve   selbst\"andig   die   Wendetangente
+legen   und  die   zuge\"origen  Kennwerte   auslesen. Das  Ablesen   k\"onnte
+mit  der   Monte-Carlo-Studie  verfeinert   werden  (ein  Verfahren   aus  der
+Wahrscheinlichkeitsrechung, welches  aus einer endlichen Schar  von Kurven die
+numerisch wahrscheinlichste L\"osung findet).
+
+
+Das  Vergleichen  der  Resultate  von verschiedenen  PI-  und  PID-Reglern  im
+gleichen Plot ist  momentan noch nicht m\"oglich, w\"are  sicherlich aber auch
+n\"utzlich.
+
+
+Weiter  w\"are  eine  automatische   Anpassung  der  Werte  f\"ur  $\varphi_s$
+denkbar   (siehe  dazu   Gleichungen~\ref{eq:pi:phi_s}  und~\ref{eq:pid:phi_s}
+auf   Seite~\pageref{eq:pi:phi_s}    respektive~\pageref{eq:pid:phi_s}   sowie
+die   zugeh\"origen   Fussnoten~\footnotemark[4]   und~\footnotemark[7]). Auch
+zus\"atzliche Reglertypen k\"onnten noch implementiert werden.

@@ -70,7 +70,7 @@ PID-Regler dimensioniert wird, die  Zeitkonstante $T_p$ spezifiziert werden.
 
 Das  Optimierungs-Panel  (Abbildung~\ref{fig:optimierungen}  )beinhaltet  zwei
 Slider  zur  Eingabe  des   gew\"unschten  \"Uberschwingens  respektive  f\"ur
-die  Optimierung   des  Reglers  der  Phasengang-Methode. \"Uber   den  Slider
+die  Optimierung   des  Reglers  der  Phasengangmethode. \"Uber   den  Slider
 \emph{Optimierung} kann $\varphi_r$ beeinflusst werden.
 
 \begin{figure}[h!, width=\pagewidth]
@@ -87,31 +87,25 @@ die  Optimierung   des  Reglers  der  Phasengang-Methode. \"Uber   den  Slider
     \label{fig:tool20Plots}
 \end{figure}
 
-Unterhalb   des    Optimierungs-Panels   werden   die   Plots    der   mittels
-Faustformeln     und     Phasengangmethode    errechneten     Schrittantworten
-graphisch    ausgegeben   (Abbildung~\ref{fig:tool20Plots}). Diese    k\"onnen
-mittels    Check-Boxen     zu-    und    weggeschaltet     werden. Zu    jeder
-Faustformel     wird     die    zugeh\"orige     Schrittantwort     abgebildet
-(Abbildung~\ref{fig:toolFaustFormeln}).
+Unterhalb des  Optimierungs-Panels werden  die Plots der  mittels Faustformeln
+und  Phasengangmethode   errechneten  Schrittantworten   graphisch  ausgegeben
+(Abbildung~\ref{fig:tool20Plots}). Diese  k\"onnen   mittels  Check-Boxen  zu-
+und   weggeschaltet  werden   (Bereich  entlang   des  unteren   Bildrands  in
+Abbildung~\ref{fig:tool20Plots}).
 
 Die Resultate der Phasengangmethode werden durch drei Kurven dargestellt. Eine
 Kurve   benutzt  den   Standardwert  f\"ur   $\varphi_r$  gem\"ass   Zellweger
 ($-90\degree$  f\"ur PI-Regler,  $-135\degree$ f\"ur  PID-Regler), die  beiden
 anderen Kurven  basieren auf Benutzereingaben  f\"ur einen oberen  und unteren
 Offset  von  $\varphi_r$,  der   \"uber  den  Schiebregler  \emph{Optimierung}
-eingestellt werden kann.
+eingestellt       werden       kann. Das       Ergebnis       kann       unter
+anderem      in     Abbildung~\ref{fig:comparisonPID002optimisations}      auf
+Seite~\pageref{fig:comparisonPI015} gesehen werden.
 
 Es   ist   ebenfalls   m\"oglich,   die   dargestellten   Plots   als   Bilder
 zu   speichern;   die    in   Abschnitt~\ref{subs:tool:results}   abgebildeten
 Beispiele   (Abbildungen~\ref{fig:comparisonPI015},~\ref{fig:comparisonPID015}
 und~\ref{fig:comparisonPID002optimisations} auf Seite~\pageref{fig:comparisonPI015})
 wurden mit unserem Tool erstellt und exportiert.
-
-\begin{figure}[h!, width=\pagewidth]
-    \centering
-    \includegraphics[width=\textwidth]{images/toolStartFaustFormeln.jpg}
-    \caption{Plots der Schrittantworten nach Faustformeln}
-    \label{fig:toolFaustFormeln}
-\end{figure}
 
 \clearpage

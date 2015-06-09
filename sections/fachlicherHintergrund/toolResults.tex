@@ -17,12 +17,12 @@ Schrittantworten    der   zugeh\"origen    geschlossenen   Regelkreise    sind
 in    den    Abbildungen~\ref{fig:comparisonPI015},~\ref{fig:comparisonPID015}
 und~\ref{fig:comparisonPID002optimisations} zu sehen.
 
-\begin{longtable}{p{50mm}rrrrr}
+\begin{longtable}{p{85mm}rrrrr}
     \toprule
 
     %\multicolumn{3}{l}{\large{\textsc{Auftragsanalyse und Hintergrundinformationen}}} \\
 
-    Faustformel
+    Berechnungsmethode
     &
     \multicolumn{2}{l}{PI-Regler}
     &
@@ -49,7 +49,7 @@ und~\ref{fig:comparisonPID002optimisations} zu sehen.
 
     % CONTENT HERE ---------------------------------------------------------- %
 
-    \pbox{45mm}{Chiens, Hrones, Reswick \\ \small{\textbf{(0\% \"Uberschwingen)}} \\~\cite{ref:chiens_tsn},~\cite{ref:chiens_wiki}}
+    \pbox{84mm}{Chiens, Hrones, Reswick (manuell) \\ \small{\textbf{(0\% \"Uberschwingen)}}~\cite{ref:chiens_tsn},~\cite{ref:chiens_wiki}}
     &
     $\SI{10.68}{\second}$
     &
@@ -62,9 +62,24 @@ und~\ref{fig:comparisonPID002optimisations} zu sehen.
     $2.43$
     \\
 
-    \addlinespace[1em]
+    \addlinespace[0.5em]
 
-    \pbox{45mm}{Chiens, Hrones, Reswick \small{\textbf{(20\% \"Uberschwingen)}} \\~\cite{ref:chiens_tsn},~\cite{ref:chiens_wiki}}
+    \pbox{84mm}{Chiens, Hrones, Reswick (Software) \\ \small{\textbf{(0\% \"Uberschwingen)}}}
+    &
+    $\SI{10.68}{\second}$
+    &
+    $1.42$
+    &
+    $\SI{8.9}{\second}$
+    &
+    $\SI{0.55}{\second}$
+    &
+    $2.43$
+    \\
+
+    \addlinespace[0.5em]
+
+    \pbox{84mm}{Chiens, Hrones, Reswick (manuell) \\ \small{\textbf{(20\% \"Uberschwingen)}}~\cite{ref:chiens_tsn},~\cite{ref:chiens_wiki}}
     &
     $\SI{8.9}{\second}$
     &
@@ -77,9 +92,24 @@ und~\ref{fig:comparisonPID002optimisations} zu sehen.
     $3.84$
     \\
 
-    \addlinespace[1em]
+    \addlinespace[0.5em]
 
-    Oppelt~\cite{ref:op_ros_zieg}
+    \pbox{84mm}{Chiens, Hrones, Reswick (Software) \\ \small{\textbf{(20\% \"Uberschwingen)}}}
+    &
+    $\SI{8.9}{\second}$
+    &
+    $2.43$
+    &
+    $\SI{12.02}{\second}$
+    &
+    $\SI{0.517}{\second}$
+    &
+    $3.84$
+    \\
+
+    \addlinespace[0.5em]
+
+    Oppelt (manuell)~\cite{ref:op_ros_zieg}
     &
     $\SI{3.3}{\second}$
     &
@@ -92,9 +122,24 @@ und~\ref{fig:comparisonPID002optimisations} zu sehen.
     $4.85$
     \\
 
-    \addlinespace[1em]
+    \addlinespace[0.5em]
 
-    Rosenberg~\cite{ref:op_ros_zieg}
+    Oppelt (Software)
+    &
+    $\SI{3.3}{\second}$
+    &
+    $3.24$
+    &
+    $\SI{2.20}{\second}$
+    &
+    $\SI{0.462}{\second}$
+    &
+    $4.85$
+    \\
+
+    \addlinespace[0.5em]
+
+    Rosenberg (manuell)~\cite{ref:op_ros_zieg}
     &
     $\SI{3.63}{\second}$
     &
@@ -107,10 +152,24 @@ und~\ref{fig:comparisonPID002optimisations} zu sehen.
     $4.85$
     \\
 
-    \addlinespace[1em]
+    \addlinespace[0.5em]
 
+    Rosenberg (Software)
+    &
+    $\SI{3.63}{\second}$
+    &
+    $3.68$
+    &
+    $\SI{2.20}{\second}$
+    &
+    $\SI{0.495}{\second}$
+    &
+    $4.85$
+    \\
 
-    \pbox{70mm}{Phasengangmethode, \small{von Hand} \\ \small{\textbf{(16.3\% \"Uberschwingen)}} \\}
+    \addlinespace[0.5em]
+
+    \pbox{84mm}{Phasengangmethode (manuell) \\ \small{\textbf{(16.3\% \"Uberschwingen)}} \\}
     &
     $\SI{3.29}{\second}$
     &
@@ -123,9 +182,9 @@ und~\ref{fig:comparisonPID002optimisations} zu sehen.
     $1.83$
     \\
 
-    \addlinespace[1em]
+    \addlinespace[0.5em]
 
-    \pbox{70mm}{Phasengangmethode, \small{Software} \\ \small{\textbf{(15\% \"Uberschwingen)}} \\}
+    \pbox{84mm}{Phasengangmethode (Software) \\ \small{\textbf{(15\% \"Uberschwingen)}} \\}
     &
     $\SI{3.29}{\second}$
     &
@@ -138,9 +197,9 @@ und~\ref{fig:comparisonPID002optimisations} zu sehen.
     $1.78$
     \\
 
-    \addlinespace[1em]
+    \addlinespace[0.5em]
 
-    \pbox{70mm}{Phasengangmethode, \small{Software} \\ $\varphi_r$ Standard \\ \small{\textbf{(2\% \"Uberschwingen)}} \\}
+    \pbox{84mm}{Phasengangmethode (Software, $\varphi_r$ Standard) \\ \small{\textbf{(2\% \"Uberschwingen)}} \\}
     &
     $\SI{3.29}{\second}$
     &
@@ -153,9 +212,9 @@ und~\ref{fig:comparisonPID002optimisations} zu sehen.
     $0.76$
     \\
 
-    \addlinespace[1em]
+    \addlinespace[0.5em]
 
-    \pbox{70mm}{Phasengangmethode, \small{Software} \\ Optimierungen positiv \\ \small{\textbf{(2\% \"Uberschwingen)}} \\}
+    \pbox{84mm}{Phasengangmethode (Software, Optimierungen positiv) \\ \small{\textbf{(2\% \"Uberschwingen)}} \\}
     &
     $\SI{7.50}{\second}$
     &
@@ -168,9 +227,9 @@ und~\ref{fig:comparisonPID002optimisations} zu sehen.
     $2.70$
     \\
 
-    \addlinespace[1em]
+    \addlinespace[0.5em]
 
-    \pbox{70mm}{Phasengangmethode, \small{Software} \\ Optimierungen negativ \\ \small{\textbf{(2\% \"Uberschwingen)}} \\}
+    \pbox{84mm}{Phasengangmethode (Software, Optimierungen negativ) \\ \small{\textbf{(2\% \"Uberschwingen)}} \\}
     &
     $\SI{1.62}{\second}$
     &
@@ -183,7 +242,7 @@ und~\ref{fig:comparisonPID002optimisations} zu sehen.
     $0.76$
     \\
 
-    \addlinespace[1em]
+    \addlinespace[0.5em]
 
 
     \bottomrule

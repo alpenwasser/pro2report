@@ -231,6 +231,52 @@ Es wird zwischen P-, I- und D-Regler unterschieden.
 In diesem Projekt werden die PI- und PID-Regler, welche Kombinationen der oben
 genannten Regler sind, behandelt.
 
+% ---------------------------------------------------------------------------- %
+\subsubsection{P-Regler}
+% ---------------------------------------------------------------------------- %
+Der  P-Regler regelt  der  Stellgr\"osse $x$  proportional zur  Regeldifferenz
+$e$. Aus  diesem  Grund reagiert  der  P-Regler  ohne Verz\"ogerung  auf  eine
+Ausgangs\"anderung. Das  Proportionale Verhalten  ist in  seinem Blockdiagramm
+(Abb.\ref{fig:PRegler}) dargestellt.
+
+\begin{figure}[h!, width=\pagewidth]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/PRegler}
+    \caption{Blockschaltbild des P-Reglers}
+    \label{fig:PRegler}
+\end{figure}
+
+% ---------------------------------------------------------------------------- %
+\subsubsection{I-Regler}
+% ---------------------------------------------------------------------------- %
+Der  I-Regler ist  ein integrierender  Regler, welcher  Regelabweichungunen zu
+jedem  Betriebspunkt ausregelt. Die  Steigung  des I-Reglers  h\"angt von  der
+Regleabweichung  und  der  Integrierzeit  $T_i$ ab. Hier  gilt  die  Regel: Je
+gr\"osser die Integierzeit,  je langsamer steigt die  Kurve. Das Verhalten des
+I-Reglers ist in sinem Blockschaltbild (Abb.\ref{fig:IRegler}) dargestellt.
+
+\begin{figure}[h!, width=\pagewidth]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/IRegler}
+    \caption{Blockschaltbild des I-Reglers}
+    \label{fig:IRegler}
+\end{figure}
+
+% ---------------------------------------------------------------------------- %
+\subsubsection{D-Regler}
+% ---------------------------------------------------------------------------- %
+Der Differentialregler bildet seine  Stellgr\"osse $x$ aus der Geschwindigkeit
+der  \"Anderung  der Regeldifferenz. Aus  diesem  Grund  erzeugt der  D-Regler
+auch  bei  kleiner Reglerdifferenz  eine  grosse  Stellamplitude und  reagiert
+schneller als  der P-Regler. Dieses  Verhalten wird in  seinem Blockschaltbild
+(Abb.\ref{fig:DRegler}) symbolisch dargestellt.
+
+\begin{figure}[h!, width=\pagewidth]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/DRegler}
+    \caption{Blockschaltbild des D-Reglers}
+    \label{fig:DRegler}
+\end{figure}
 
 % ---------------------------------------------------------------------------- %
 \subsubsection{PI-Regler}

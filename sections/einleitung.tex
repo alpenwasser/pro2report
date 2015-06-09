@@ -8,46 +8,43 @@ ebenfalls mittels verschiedener Faustformeln berechnet werden.
 Die Phasengangmethode ist eine graphische Methode, die bis anhin mit Stift und
 Papier  durchgef\"uhrt wurde. Folglich  ist die  Ausf\"uhrung zeitaufw\"andig,
 speziell   wenn   Schrittantworten   mit   unterschiedlichen   Parameterwerten
-durchgespielt werden sollen, zudem kann das \"Uberschwingen nur grob gew\"ahlt
-werden. Das Tool  soll ausgehend  von drei  Parametern aus  der Schrittantwort
-der  Strecke  (Verst\"arkung  $K_s$,  Anstiegszeit  $T_g$,  Verz\"ogerungszeit
-$T_u$)  mittels   der  Phasengangmethode  m\"oglichst   ideale  Regelparameter
-berechnen,  sowie  die  Schrittantwort des  darauf  basierenden  geschlossenen
-Regelkreises graphisch darstellen. Die  Benutzeroberfl\"ache der Software soll
-intuitiv  sein, sodass  sich  auch  mit dem  Thema  nicht eingehend  vertraute
-Regelungstechniker einfach zurechtfinden.
+durchgespielt werden sollen. Zudem kann das \"Uberschwingen nur grob gew\"ahlt
+werden. Das Tool soll ausgehend von drei Parametern aus der Schrittantwort der
+Strecke  (Verst\"arkung $K_s$,  Verz\"ogerungszeit $T_u$,  Anstiegszeit $T_g$)
+mittels  der Phasengangmethode  m\"oglichst  ideale Regelparameter  berechnen,
+sowie  die Schrittantwort  des darauf  basierenden geschlossenen  Regelkreises
+graphisch  darstellen. Die  Benutzeroberfl\"ache  der Software  soll  intuitiv
+sein,  sodass  sich auch  mit  dem  Thema nicht  vertraute  Regelungstechniker
+einfach zurechtfinden.
 
 % Umsetzung
 Die    erforderlichen    Algorithmen    wurden   zuerst    in    Matlab    als
 Prototypen   implementiert    und   anschliessend   vollst\"andig    in   Java
-konvertiert. Um  optimale Wartbarkeit,  \"Ubersichtlichkeit und  Modularit\"at
+\"ubersetzt. Um  optimale Wartbarkeit,  \"Ubersichtlichkeit und  Modularit\"at
 des    Codes     zu    gew\"ahrleisten,    ist    die     Software    gem\"ass
 \emph{Model-View-Controller}-Pattern aufgebaut.
 
 % Ergebnisse
-Nach der Implementierung  in Matlab wurde klar, dass die  Berechnung durch die
-hohe Rechenleistung  sehr schnell  durchgef\"uhrt werden  kann und  somit eine
-Dimensionierung des geschlossenen Regelkreises anhand dieser Methode m\"oglich
-ist. Die  Schrittantworten  k\"onnen   zur  Echtzeit  angezeigt  werden. Diese
-M\"oglichkeit   wurde   genutzt,   indem  zwei   Schieberegler   implementiert
-wurden. Durch den  einen kann das \"Uberschwingen  manuell eingestellt werden,
-der andere erlaubt das weitere Anpassen  der Form der Kurve der Schrittantwort
-an das gew\"unschte Ziel.
+Nach  der Implementierung  in Matlab  wurde  klar, dass  die Berechnung  durch
+die  hohe Rechenleistung  sehr schnell  durchgef\"uhrt werden  kann und  somit
+eine Berechnung  des Verhaltens  des geschlossenen Regelkreises  anhand dieser
+Methode  m\"oglich ist. Die  Schrittantworten k\"onnen  in Echtzeit  angezeigt
+werden. Damit er\"offneten sich neue  M\"oglichkeiten, was dazu benutzt wurde,
+zwei  Schieberegler  zur Anpassung  des  dimensionierten  Reglers in  Echtzeit
+zu  implementieren. Mit  dem  einen   kann  das  gew\"unschte  \"Uberschwingen
+spezifiziert  werden,  der  andere   Schieber  dient  zur  weiteren  Anpassung
+der  Kurvenform des  geschlossenen  Regelkreises gem\"ass  den W\"unschen  des
+Benutzers.
 
 % Aufbau des Berichts
-Der  Bericht   gliedert  sich  in   drei  Hauptteile: In  einem   ersten  Teil
-werden  einige   theoretische  Grundlagen  der   Regelungstechnik  erl\"autert
-(Abschnitt~\ref{sec:grundlagenRegtech}).
-
-Abschnitt~\ref{sec:fachlicher_hintergrund}  geht genauer  auf die  eigentliche
+Der      Bericht      gliedert      sich      in      drei      Hauptteile: In
+einem     ersten     Teil     werden    einige     theoretische     Grundlagen
+der   Regelungstechnik    erl\"autert   (Kapitel~\ref{sec:grundlagenRegtech}).
+Kapitel~\ref{sec:fachlicher_hintergrund}  geht  genauer  auf  die  eigentliche
 Dimensionierung  von Reglern  ein, indem  ein PI-  und ein  PID-Regler mittels
 Faustformeln  und Phasengangmethode  f\"ur eine  Beispielstrecke dimensioniert
-werden. Die  Ergebnisse   werden  auch   mit  den  Resultaten   unseres  Tools
-verglichen.
-
-In    Abschnitt~\ref{sec:software}    wird    der    Aufbau    der    Software
-erkl\"art;   wichtige  Algorithmen   sind   dabei  in   Anhang~\ref{app:algos}
-genauer   dokumentiert. Dabei   werden   die  Benutzeroberfl\"ache   und   das
-innere   Zusammenspiel  der   verschiedenen   Module   der  Software   genauer
-betrachtet. Ebenfalls  sind  in   Abschnitt~\ref{sec:test}  einige  Worte  zum
-Testverfahren zu finden.
+werden.    Kapitel~\ref{sec:software}   und~\ref{sec:test}   beschreiben   die
+Software  und  die  zugeh\"origen  Testverfahren;  wichtige  Algorithmen  sind
+dabei   in   Anhang~\ref{app:algos}   genauer  dokumentiert. Es   werden   die
+Benutzeroberfl\"ache  und  das  Zusammenspiel  der  verschiedenen  Module  der
+Software genauer betrachtet.

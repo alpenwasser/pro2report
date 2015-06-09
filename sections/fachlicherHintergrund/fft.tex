@@ -1,0 +1,122 @@
+In  diesem  Projekt ist  im  speziellen  die Schrittantwort  de  geschlossenen
+Regelkreises von  Bedeutung. Um auf die  Schrittantwort zu gelangen  wurde der
+Weg \"uber die IFFT (Englisch:  \emph{Inverse Fast Fourier Transform}, inverse
+schnelle Fourier-Transformation)  gew\"ahlt, da diese relativ  einfach in Java
+zu implementieren ist.
+
+F\"ur diese Berechnung sind folgende Schritte notwendig:
+
+\begin{itemize}
+    \item
+        \"Ubertragungsfunktion des geschlossenen Regelkreises bilden
+    \item
+        bestimmen der Abstastfrequenz $f_s$ sowie der Anzahl zu berechnender Punkte.
+    \item
+        diskreten Frequenzgang berechnen
+    \item
+        Frequenzgang f\"ur die IFFT vorbereiten
+    \item
+        Frequenzgang mittels IFFT r\"ucktransformieren
+    \item
+        Schrittantwort aus der Impulsantwort bilden
+\end{itemize}
+
+
+% --------------------------------------------------------------------------- %
+\subsubsection*{\"Ubertragungsfunktion des geschlossenen Regelkreises bilden}
+% --------------------------------------------------------------------------- %
+
+Da  die \"Ubertragungsfunktionen  des Reglers  sowie der  Regelstrecke bekannt
+sind,  kann aus  ihnen  die gesamte  \"Ubertragungsfunktion $H_g(s)$  gebildet
+werden. Dazu  werden jeweils  die Z\"ahler-  sowie die  Nennerpolynome mittels
+diskreter  Faltung  zusammengef\"uhrt. Zus\"atzlich   muss  das  resultierende
+Z\"ahlerpolynom zum Nennerpolynom addiert werden.
+
+\begin{gather} \label{eq:fft:hg}
+    \begin{split}
+        H_g(s)  & = \frac{ZAH(s)}{NEN(s)} \\
+                & = \frac{ZAH_{Regler} \cdot ZAH_{Strecke}}{NEN_{Regler} \cdot NEN_{Strecke} + ZAH_{Regler} \cdot ZAH_{Strecke}}
+    \end{split}
+\end{gather}
+
+wobei die Z\"ahler- und Nennerpolynome folgende Form haben:
+
+\begin{align*}
+    ZAH_{Regler}  & = b_{R_1} s^n  + b_{R_2} s^{n-1}  + \dotsb  + b_{R_{n-1}}     ~|~ n \in  \mathbb{N} \\
+    ZAH_{Strecke} & = b_{S_1} s^k  + b_{S_2} s^{k-1}  + \dotsb  + b_{S_{k-1}}     ~|~ k \in  \mathbb{N}  \\
+    NEN_{Regler}  & = a_{R_1} s^m  + a_{R_2} s^{m-1}  + \dotsb  + a_{R_{m-1}}     ~|~ m \in  \mathbb{N}  \\
+    NEN_{Strecke} & = a_{S_1} s^l  + a_{S_2} s^{l-1}  + \dotsb  + a_{S_{l-1}}     ~|~ l \in  \mathbb{N}
+\end{align*}
+
+
+ --------------------------------------------------------------------------- %
+\subsubsection*{Bestimmen der Abtastrate fs sowie der Anzahl zu berechnender Punkte.}
+% --------------------------------------------------------------------------- %
+F\"ur die Berechnung von $f_s$ durften  wir eine Methode verwenden, welche uns
+von  Prof. Dr. Richard Gut  zur  Verf\"ugung  gestellt wurde. Diese  berechnet
+$f_s$ anhand der Nullstellen des  Nennerpolynoms und ermittelt gleichzeitig in
+Abh\"angigkeit von $f_s$  die Anzahl $N$ zu berechnender  Punkte, deren Anzahl
+stets eine  Potenz von  2 ist. Daher  wird an dieser  Stellt nicht  weiter auf
+diesen Schritt  eingegangen; das  Matlab-File kann  in Anhang~\ref{app:fftgut}
+gefunden werden.
+
+
+% --------------------------------------------------------------------------- %
+\subsubsection*{Diskreten Frequenzgang berechnen}
+% --------------------------------------------------------------------------- %
+
+Nun  werden  f\"ur  $s$  genau $\frac{N}{2}$  Werte  eingesetzt,  welche  sich
+geichm\"assig zwischen 0  und $f_s \cdot \pi$  verteilen. Dadurch entsteht ein
+diskreter Frequenzgang $H_g[k]$ mit $\frac{N}{2}$ Werten.
+
+\begin{equation*}
+    H_g[k] = H_g(s) ~|~ s=j \cdot \frac{f_s \cdot \pi}{\frac{N}{2} - 1} \cdot k, 0 \leq k < \frac{N}{2}
+\end{equation*}
+
+
+% --------------------------------------------------------------------------- %
+\subsubsection*{Frequenzgang f\"ur die inverse Fourier-Transformation vorbereiten}
+% --------------------------------------------------------------------------- %
+Damit nach der Transformation in den Zeitbereich ein reelles Resultat vorliegt
+muss der diskrete Frequenzgang $H_g[k]$ folgende Symmetriebedingung erf\"ullen
+($L$ ist die L\"ange des Arrays $H_g$):
+
+\begin{equation*}
+    H_g[L-k]=H_g^*[k]  ~|~ 0 \leq k \leq L
+\end{equation*}
+
+Deshalb  wird $H_g[\frac{N}{2}]  = 0$  gesetzt  und zweite  Teil von  $H_g[k]$
+jeweils durch die entsprechende Konjugiert-Komplexe $H^*[k]$ erg\"anzt.
+
+% --------------------------------------------------------------------------- %
+\subsubsection*{Frequenzgang r\"ucktransformieren}
+% --------------------------------------------------------------------------- %
+Die  diskrete inverse  Fourier-transformation wird  gem\"ass folgender  Formel
+durchgef\"uhrt:
+
+\begin{equation*}
+    \vec{h}=\text{ifft}(\vec{H})
+\end{equation*}
+\todo{Formel}
+
+Die  in diesem  Projekt verwendetete  inverse schnelle  Fourier-Transformation
+ist   ein  verbessertes   Verfahren  der   oben  erkl\"akrten   IFFT.   Dieses
+erm\"oglicht eine schnellere Berechnung durch  das Zerlegen der Punkte in ihre
+Primfaktoren. Eine genauere Erl\"auterung wird an dieser Stelle nicht gemacht,
+da dieses Verfahren  in Matlab sowie in Java als  fertige Funktion verf\"ugbar
+ist.
+
+
+% --------------------------------------------------------------------------- %
+\subsubsection*{Schrittantwort aus der Impulsantwort bilden}
+% --------------------------------------------------------------------------- %
+Aus  der  Impulsantwort $h[k]$  kann  nun  in  einem einfachen  Verfahren  die
+Schrittantwort  $y[k]$ gebildet  werden.  Dabei  entspricht jedes  Element der
+Schrittantwort  $y[k]$ der  Summe der  Elemente der  Impulsantwort $h[k]$  vom
+ersten  bis zum  k-ten Element.   Zus\"atzlich  wird die  zweite H\"alfte  der
+Impulsantwort  weggeschnitten,  um  die  zuvor  als  konjugert-komplexe  Werte
+hinzugef\"ugten \"Uberbleibsel zu eliminieren.
+
+\begin{equation*}
+    y[k]= \sum_{n=0}^k h[n] ~|~ 0 \leq k < \frac{L}{2}
+\end{equation*}

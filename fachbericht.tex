@@ -16,6 +16,7 @@
 
 
 % **************************************************************************** %
+\thispagestyle{empty}
 \section*{Abstract}
 \label{sec:abstract}
 % **************************************************************************** %
@@ -24,6 +25,7 @@
 
 % **************************************************************************** %
 \clearpage
+\thispagestyle{empty}
 % \section*{Aufgabenstellung}
 % \label{sec:aufgabenstellung}
 % **************************************************************************** %
@@ -32,17 +34,21 @@
 
 
 % **************************************************************************** %
-\tableofcontents
+\pagestyle{empty}
+{
+    \renewcommand{\thispagestyle}[1]{}
+    \tableofcontents
+    \vspace{30mm}
+    \subsection*{Versionsgeschichte}
+    \begin{itemize}
+        \item[]
+            \emph{10.06.2015:} \texttt{Version 1}
+    \end{itemize}
+}
 
-\vspace{40mm}
-\subsection*{Versionsgeschichte}
-\begin{itemize}
-    \item[]
-        \emph{04.05.2015:} \texttt{Version 0.01}
-    \item[]
-        \emph{06.05.2015:} \texttt{Version 0.02}
-\end{itemize}
 \clearpage
+\setcounter{page}{1}
+\pagestyle{headings}
 % **************************************************************************** %
 
 

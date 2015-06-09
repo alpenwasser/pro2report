@@ -1,39 +1,69 @@
 private void overShootOptimization() {
-    double max = yt[0][Calc.max(yt[0])];
     PhaseResponseMethod phaseResponseMethod = (PhaseResponseMethod) controller;
-    double Krk = phaseResponseMethod.getControllerValues()[PhaseResponseMethod.KrkPOS];
+    double max = yt[0][Calc.max(yt[0])];
 
-    // Grobskalierung mit dem Faktor 1.15
-    if (max - 0.1 > controller.overShoot / 100.0 + 1.0) {
-        while (max > controller.overShoot / 100.0 + 1.0) {
-            Krk = phaseResponseMethod.getControllerValues()[PhaseResponseMethod.KrkPOS];
-            phaseResponseMethod.setKrk(Krk / 1.15);
+    // Grobskalierung
+    int order = path.getT().length;
+    double maxSoll = controller.overShoot / 100 + 1.0;
+    double KrkNew;
+    double Krk = phaseResponseMethod.getControllerValues()[PhaseResponseMethod.KrkPOS];
+    int count = 0;
+    // Falls max kleiner Soll
+    if (maxSoll - max > 0.08) {
+        while (maxSoll - max > 0.08 & count < 10) {
+            count++;
+            KrkNew = Krk * maxSoll / max * (8.0 / order);
+            phaseResponseMethod.setKrk(KrkNew);
             calculateStepResponse();
-            max = yt[0][Calc.max(yt[0])];
+            double maxNew = yt[0][Calc.max(yt[0])];
+
+            // Kontrolle ob erfolgreich vergroessert sonst Abbruch
+            if (maxNew > max) {
+                max = maxNew;
+                Krk = phaseResponseMethod.getControllerValues()[PhaseResponseMethod.KrkPOS];
+            } else {
+                count = 100;
+            }
         }
-    } else {
-        while (max + 0.1 < controller.overShoot / 100.0 + 1.0 & Krk < 1000) {
-            Krk = phaseResponseMethod.getControllerValues()[PhaseResponseMethod.KrkPOS];
-            phaseResponseMethod.setKrk(Krk * 1.15);
+        // Falls max groesser Soll
+    } else if (maxSoll - max < -0.08) {
+        while (maxSoll - max < -0.08 & count < 5) {
+            count++;
+            KrkNew = Krk * maxSoll / max * (order / 8.0);
+            phaseResponseMethod.setKrk(KrkNew);
             calculateStepResponse();
-            max = yt[0][Calc.max(yt[0])];
+            double maxNew = yt[0][Calc.max(yt[0])];
+
+            // Kontrolle ob erfolgreich verkleinert sonst Abbruch
+            if (maxNew < max) {
+                max = maxNew;
+                Krk = phaseResponseMethod.getControllerValues()[PhaseResponseMethod.KrkPOS];
+            } else {
+                count = 100;
+            }
         }
     }
 
+    int countMax = 100;
+    if (pointnumber < 8193)
+        countMax = 200;
     // Feinskalierung mit dem Faktor 1.05
-    if (max > controller.overShoot / 100.0 + 1.0) {
-        while (max > controller.overShoot / 100.0 + 1.0) {
-            Krk = phaseResponseMethod.getControllerValues()[PhaseResponseMethod.KrkPOS];
+    count = 0;
+    if (max > maxSoll) {
+        while (max > maxSoll & Krk > 1e-19 & count < countMax) {
+            count++;
             phaseResponseMethod.setKrk(Krk / 1.05);
             calculateStepResponse();
             max = yt[0][Calc.max(yt[0])];
+            Krk = phaseResponseMethod.getControllerValues()[PhaseResponseMethod.KrkPOS];
         }
     } else {
-        while (max < controller.overShoot / 100.0 + 1.0 & Krk < 1000) {
-            Krk = phaseResponseMethod.getControllerValues()[PhaseResponseMethod.KrkPOS];
+        while (max < maxSoll & Krk < 1e16 & count < countMax) {
+            count++;
             phaseResponseMethod.setKrk(Krk * 1.05);
             calculateStepResponse();
             max = yt[0][Calc.max(yt[0])];
+            Krk = phaseResponseMethod.getControllerValues()[PhaseResponseMethod.KrkPOS];
         }
     }
 }

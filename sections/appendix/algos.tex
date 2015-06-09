@@ -26,7 +26,8 @@
     \item
         Bestimmt die Ordnung der Regelstrecke.
     \item
-        Spline f\"ur $r$ und $\omega$ \todo{Ja aber was heisst das nun?}
+        Interpolation  f\"ur $r$  und  $\omega$  wird mittels  \code{spline()}
+        ausgef\"uhrt.
     \item
         $T(n)$ wird aus $\omega \cdot T_g$ berechnet.
     \item
@@ -490,6 +491,7 @@ zwei Arrays) an einem bestimmten Array-Index.
         Array-Elementen).
 \end{enumerate}
 
+\clearpage
 \subsubsection*{Java-Code}
 \lstinputlisting[style=java]{java/schrittIfft.java}
 
@@ -538,6 +540,7 @@ generierten Reglers.
     \end{enumerate}
 \end{enumerate}
 
+\clearpage
 \subsubsection*{Java-Code}
 \lstinputlisting[style=java]{java/overshootoptimisation.java}
 
@@ -570,7 +573,7 @@ Anhang~\ref{app:algo:slope} beschriebene Methode \code{diskDiff()} benutzt.
             Bestimmen der Steigung der Strecke bei Frequenz $\omega_{pid}$
         \item
             Unteren  Wert   f\"ur  $\beta$   festlegen: $10^{-12}$. Wert  muss
-            gr\"sser  als null,  aber  sehr  klein sein,  damit  der Rest  des
+            gr\"osser  als null,  aber sehr  klein  sein, damit  der Rest  des
             Algorithmus funktioniert.
         \item
             Obere Grenze f\"ur $\beta$ auf 1 legen.

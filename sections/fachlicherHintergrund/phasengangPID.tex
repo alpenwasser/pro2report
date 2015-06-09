@@ -150,19 +150,30 @@ kann in Anhang~\ref{app:beta} gefunden werden.
 \begin{gather} \label{eq:pid:phi_r_first_iteration}
     \begin{split}
         \varphi_r (j\omega)                                            & = arg(H_{rpid}(j\omega))        \\
-        \frac{d\varphi_r}{d\omega} \biggr \rvert_{\omega=\omega_{pid}} & = \SI{1.1920}{\second}
+        \frac{d\varphi_r}{d\omega} \biggr \rvert_{\omega=\omega_{pid}} & = 1.1920
+       % \frac{d\varphi_r}{d\omega} \biggr \rvert_{\omega=\omega_{pid}} & = \SI{1.1920}{\second}
     \end{split}
 \end{gather}
 
 
 Setzt man dies in Gleichung \ref{eq:pid:phi_sum} ein, erh\"alt man:
+%\begin{gather} \label{eq:pid:phi_sum_result_iteration_one}
+%    \begin{split}
+%    \frac{d\varphi_o}{d\omega}       \biggr \rvert_{\omega=\omega_{pid}, \beta=0.5}
+%        & = \frac{d\varphi_s}{d\omega} \biggr \rvert_{\omega=\omega_{pid}}
+%        + \frac{d\varphi_r}{d\omega} \biggr \rvert_{\omega=\omega_{pid}, \beta=0.5} \\
+%        & = \SI{-1.5124}{\second} + \SI{1.1920}{\second} \\
+%        & = \SI{-0.3204}{\second} \\
+%        & > -\frac{1}{2}
+%    \end{split}
+%\end{gather}
 \begin{gather} \label{eq:pid:phi_sum_result_iteration_one}
     \begin{split}
     \frac{d\varphi_o}{d\omega}       \biggr \rvert_{\omega=\omega_{pid}, \beta=0.5}
         & = \frac{d\varphi_s}{d\omega} \biggr \rvert_{\omega=\omega_{pid}}
         + \frac{d\varphi_r}{d\omega} \biggr \rvert_{\omega=\omega_{pid}, \beta=0.5} \\
-        & = \SI{-1.5124}{\second} + \SI{1.1920}{\second} \\
-        & = \SI{-0.3204}{\second} \\
+        & = -1.5124 + 1.1920 \\
+        & = -0.3204 \\
         & > -\frac{1}{2}
     \end{split}
 \end{gather}
@@ -190,9 +201,8 @@ Diese Werte sind ebenfalls in Abbildung~\ref{fig:pid:complete} eingetragen.
 Sollte  man  f\"ur  $\beta$  einen komplexen  Wert  erhalten,  wird  $\beta=1$
 gesetzt.
 
-Die zur  Berechnung von $\beta$,  $T_{vk}$ und $T_{nk}$  benutzten Algorithmen
-sind    in     Anhang~\ref{app:algo:slope}    respektive~\ref{app:algo:tnktvk}
-dokumentiert.
+Die zur Berechnung von $\beta$, $T_{vk}$ und $T_{nk}$ benutzten Verfahren sind
+in Anhang~\ref{app:algo:slope} respektive~\ref{app:algo:tnktvk} dokumentiert.
 
 
 % ---------------------------------------------------------------------------- %

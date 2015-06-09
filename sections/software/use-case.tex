@@ -4,7 +4,7 @@ k\"onnen   auch   gut   im   Klassendiagramm   (Anhang~\ref{app:classdiagram})
 betrachtet werden.
 
 Beim   Programmstart   werden   durch  das   Model   drei   \code{closedLoops}
-(geschlossenen Regelkreise)  f\"ur die  Phasengang-Methode sowie  vier weitere
+(geschlossener  Regelkreis) f\"ur  die Phasengang-Methode  sowie vier  weitere
 f\"ur  die Faustformeln  erzeugt. Jeder \code{closedLoops}  ist von  Beginn an
 einem  Berechnungstyp  (Phasengang-Methode,  Faustformel)  zugewiesen. Er  ist
 bereit, Daten aufzunehmen und zu verarbeiten.
@@ -17,15 +17,15 @@ nicht,  wird eine  Benachrichtigung mit  Hinweis auf  den Fehler  oberhalb des
 Buttons ausgegeben und die Berechnung nicht ausgel\"ost.
 
 Haben  die   Eingaben  die  \"Uberpr\"ufung  durch   den  \code{GUIController}
-bestanden, fragt dieser zus\"atzlich die aktuellen Werte/Zust\"ande der Slider
-f\"ur \"Uberschwingen und  Optimierung sowie den Reglertyp auf dem  GUI ab und
-leitet  alle  Daten  mittels  \code{setData()}  an  das  Model  weiter. Dieses
-erzeugt einen  Path (Strecke) aus  den Eingabewerten. Das Model  errechnet den
-Optimierungs-Offset und weist die  Daten den entsprechenden \code{closedLoops}
-der  Phasengang-Methode  sowie  der Faustformeln  mittels  der\code{setData()}
-Methode  zu. Jeder \code{ClosedLoop}  leitet  die Daten  an den  zugeh\"origen
-Controller weiter, der die Reglerwerte berechnet. Zu Beginn betrachten wir den
-Regler nach Oppelt genauer.
+bestanden,  fragt  dieser  zus\"atzlich  die  aktuellen  Werte/Zust\"ande  der
+Slider  f\"ur \"Uberschwingen  und  Optimierung sowie  den  Reglertyp auf  dem
+GUI  ab  und   leitet  alle  Daten  mittels  \code{setData()}   an  das  Model
+weiter. Dieses erzeugt  einen Path (Strecke) aus  den Eingabewerten. Das Model
+errechnet  den  Optimierungs-Offset und  weist  die  Daten den  entsprechenden
+\code{closedLoops} der  Phasengang-Methode sowie der Faustformeln  mittels der
+Methode \code{setData()}  zu. Jeder \code{ClosedLoop} leitet die  Daten an den
+zugeh\"origen  Controller weiter,  der  die  Reglerwerte berechnet. Zu  Beginn
+betrachten wir den Regler nach Oppelt genauer.
 
 Die  Klasse \code{Oppelt}  erbt  von der  abstrakten Klasse  \code{Controller}
 und  besitzt  somit  alle  Setter-  und  Getter-Methoden  der  Oberklasse. Als
@@ -84,10 +84,10 @@ Der Benutzer  hat nun die  M\"oglichkeit, die Resultate  der Phasengangmethode
 weiter  zu  optimieren. \"Uber  das   Panel  \code{Optimierungen}  stehen  die
 Slider  \emph{\"Uberschwingen} sowie  \emph{Optimierung} zur  Verf\"ugung. Das
 \"Uberschwingen  kann  in  vorgegebenen   Schritten  in  Prozenten  festgelegt
-werden. Die Optimierung  schiebt den Phasenrand bzw.  den Regler-Knickpunkt in
-die positive sowie negative Richtung zugleich, und wird mittels zwei separaten
-Plots dargestellt. Weiter k\"onnen die  Werte f\"ur $T_p$ nachtr\"aglich f\"ur
-jede der drei Kurven individuell angepasst werden.
+werden. Die  Optimierung schiebt  $\varphi_r$ in  die positive  sowie negative
+Richtung zugleich   und wird mittels zwei  separaten Plots dargestellt. Weiter
+k\"onnen  die Werte  f\"ur $T_p$  nachtr\"aglich  f\"ur jede  der drei  Kurven
+individuell angepasst werden.
 
 Sobald  einer   der  drei  Parameter  (\"Uberschwingen,   Optimierung,  $T_p$)
 ver\"andert  wird,   wird  \"uber   den  \code{GUIController}   die  jeweilige

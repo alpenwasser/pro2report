@@ -269,61 +269,6 @@
 
 \clearpage
 % ---------------------------------------------------------------------------- %
-\subsection{Faustformel Ziegler}
-\label{app:algo:ziegler}
-% ---------------------------------------------------------------------------- %
-
-\subsubsection*{Input}
-
-\begin{tabular}{p{40mm}l}
-    $ T_p $        & Verzugszeit \\
-    $ T_u $        & Anstiegszeit \\
-    $ K_s $        & Verst\"arkung der Strecke \\
-      Reglertyp   & Reglertyp (PI, PID)
-\end{tabular}
-
-\subsubsection*{Output}
-\begin{tabular}{p{40mm}l}
-    Array & \parbox[t][4em][s]{0.7\textwidth}{Array mit Proportionalit\"atsfaktor $ K_p $, Nachstellzeit $ T_n $ und Vorhaltezeit $ T_v $}
-\end{tabular}
-
-\subsubsection*{Algorithmus}
-\begin{enumerate}
-    \item
-        W\"ahlt je nach Reglertyp die korrekten Formeln.
-    \item
-        F\"ur PI:
-        \begin{equation*}
-            K_p= \frac{0.9}{K_s} \cdot \frac{T_g}{T_u}
-        \end{equation*}
-
-        \begin{equation*}
-            T_n=3.33 \cdot T_u
-        \end{equation*}
-
-        \begin{equation*}
-            T_v=0
-        \end{equation*}
-    \item
-        F\"ur PID:
-        \begin{equation*}
-            K_p = \frac{1.2}{K_s} \cdot \frac{T_g}{T_u}
-        \end{equation*}
-
-        \begin{equation*}
-            T_n=2 \cdot T_u
-        \end{equation*}
-
-        \begin{equation*}
-            T_v = 0.5 \cdot T_u
-        \end{equation*}
-\end{enumerate}
-
-%\subsubsection*{Matlab-Code}
-%\lstinputlisting[style=Matlab-editor-2]{mfiles/p2Ffziegler.m}
-
-\clearpage
-% ---------------------------------------------------------------------------- %
 \subsection{Faustformel Chien}
 \label{app:algo:chien}
 % ---------------------------------------------------------------------------- %
@@ -365,11 +310,11 @@
         F\"ur PI, 20\% \"Uberschwingen:
 
         \begin{equation*}
-            K_p= \frac{0.7 \cdot T_g}{K_s \cdot T_u}
+            K_p= \frac{0.6 \cdot T_g}{K_s \cdot T_u}
         \end{equation*}
 
         \begin{equation*}
-            T_n=3 \cdot T_u
+            T_n=T_g
         \end{equation*}
 
         \begin{equation*}
@@ -379,15 +324,15 @@
         F\"ur PID, ohne \"Uberschwingen:
 
         \begin{equation*}
-            K_p = \frac{0.9 \cdot Tg}{Ks \cdot Tu}
+            K_p = \frac{0.6 \cdot Tg}{Ks \cdot Tu}
         \end{equation*}
 
         \begin{equation*}
-            T_n=2.4 \cdot T_u
+            T_n=T_g
         \end{equation*}
 
         \begin{equation*}
-            T_v=0.42 cdot T_u;
+            T_v=0.5 cdot T_u;
         \end{equation*}
     \item
         F\"ur PID, 20\% \"Uberschwingen:
@@ -397,11 +342,11 @@
         \end{equation*}
 
         \begin{equation*}
-            T_n=2 \cdot T_u
+            T_n=1.35 \cdot T_u
         \end{equation*}
 
         \begin{equation*}
-            T_v=0.42 \cdot T_u;
+            T_v=0.47 \cdot T_u;
         \end{equation*}
 \end{enumerate}
 
@@ -454,7 +399,7 @@ zwei Arrays) an einem bestimmten Array-Index.
 
 \clearpage
 % ---------------------------------------------------------------------------- %
-\subsection{Inverse Fast Fourier Transform}
+\subsection{Schrittantwort mittels Inverser Fast Fourier Transform}
 \label{app:algo:ifft}
 % ---------------------------------------------------------------------------- %
 

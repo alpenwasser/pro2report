@@ -56,12 +56,13 @@ der Frequenzachse  ausgewertet. \code{calculateTnk()}  wird ausgel\"ost. Diese
 Methode  berechnet   $T_nk$  und  $T_vk$  unter   Zuhilfenahme  der  diskreten
 Werte   nach  dem   Prinzip  der   Phasengangmethode. Daraus  resultiert   die
 \"Ubertragungsfunktion  des   Reglers. Falls  $T_p   =  0$  aus   der  Eingabe
-\"ubergeben   wurde,  wird   an   dieser   Stelle  $T_p$   berechnet. $K_{rk}$
-wird    gem\"ass   der    Phasengangmethode   mittels    \code{calculateKrk()}
-berechnet. Zudem    beinhaltet   die    Methode   \code{calculateKrk()}    den
-Aufruf     von    \code{calculateControllerConf()}     und    \code{setUTF()}.
-\code{calculateControllerConf()} transformiert die Werte in die reglerkonforme
-Darstellung. \code{setUTF()} setzt die \"Ubertragungs-Funktion des Reglers.
+\"ubergeben   wurde,  wird   an  dieser   Stelle  $T_p   =  \frac{T_{vk}}{10}$
+gesetzt. $K_{rk}$    wird     gem\"ass    der     Phasengangmethode    mittels
+\code{calculateKrk()}     berechnet. Zudem      beinhaltet     die     Methode
+\code{calculateKrk()}   den    Aufruf   von   \code{calculateControllerConf()}
+und   \code{setUTF()}.   \code{calculateControllerConf()}  transformiert   die
+Werte   in  die   reglerkonforme   Darstellung.   \code{setUTF()}  setzt   die
+\"Ubertragungs-Funktion des Reglers.
 
 Im    \code{ClosedLoop}    wird    nun    die    Methode    \code{calculate()}
 ausgef\"uhrt,  welche   mittels  der   Methode  \code{calculateStepResponse()}

@@ -1,8 +1,8 @@
 Die Model-Klassen  beheimaten alle Daten  sowie den Grossteil  der Algorithmen
 (zus\"atzliche Algorithmen,  die von den Model-Klassen  verwendet werden, sind
-in  der  Klasse  \code{Calc}  des  Package  \code{Utilities}  zu  finden). Das
-\code{Model}  ist   observable,  um  das  Aktualisieren   der  \code{View}  zu
-erm\"oglichen.
+in den Klassen \code{Calc}  und \code{SplineNAK} des Packages \code{Utilities}
+sowie in  der Apache-Library zu  finden). Das \code{Model} ist  observable, um
+das Aktualisieren der \code{View} zu erm\"oglichen.
 
 \subsubsection*{\code{Model}}
 Wie  im  Klassendiagramm  (siehe  Anhang~\ref{app:classdiagram})  ersichtlich,
@@ -34,7 +34,7 @@ Der  \code{Controller}  bildet  die  Oberklasse  aller  Faustformeln  und  der
 Phasengangmethode. Er  beinhaltet  die   abstrakte  Klasse  \code{calculate()}
 sowie  alle  n\"otigen  Setter-  und   Getter-Methoden  um  Werte  zu  setzten
 und  auszulesen.  Die  Methode  \code{utfController()},  deren Algorithmus  in
-Anhang~\ref{app:algo:utfcontroller}  beschrieben  ist,  wird via  die  Methode
+Anhang~\ref{app:algo:utfcontroller}  beschrieben ist,  wird durch  die Methode
 \code{setUTFPoly()} hier ausgel\"ost.
 
 

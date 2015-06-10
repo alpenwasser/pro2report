@@ -1,4 +1,4 @@
-In  diesem  Projekt ist  im  speziellen  die Schrittantwort  de  geschlossenen
+In  diesem Projekt  ist  im speziellen  die  Schrittantwort des  geschlossenen
 Regelkreises von  Bedeutung. Um auf die  Schrittantwort zu gelangen  wurde der
 Weg \"uber die IFFT (Englisch:  \emph{Inverse Fast Fourier Transform}, inverse
 schnelle Fourier-Transformation)  gew\"ahlt, da diese relativ  einfach in Java
@@ -39,7 +39,7 @@ Z\"ahlerpolynom zum Nennerpolynom addiert werden.
     \end{split}
 \end{gather}
 
-wobei die Z\"ahler- und Nennerpolynome folgende Form haben:
+Die Z\"ahler- und Nennerpolynome haben dabei folgende Form:
 
 \begin{align*}
     ZAH_{Regler}  & = b_{R_1} s^n  + b_{R_2} s^{n-1}  + \dotsb  + b_{R_{n-1}}     ~\biggr \rvert~ n \in  \mathbb{N} \\
@@ -52,13 +52,14 @@ wobei die Z\"ahler- und Nennerpolynome folgende Form haben:
  --------------------------------------------------------------------------- %
 \subsubsection*{Bestimmen der Abtastrate fs sowie der Anzahl zu berechnender Punkte.}
 % --------------------------------------------------------------------------- %
+
 F\"ur die Berechnung von $f_s$ durften  wir eine Methode verwenden, welche uns
 von  Prof. Dr. Richard Gut  zur  Verf\"ugung  gestellt wurde. Diese  berechnet
 $f_s$ anhand der Nullstellen des  Nennerpolynoms und ermittelt gleichzeitig in
-Abh\"angigkeit von $f_s$  die Anzahl $N$ zu berechnender  Punkte, deren Anzahl
-stets eine  Potenz von  2 ist. Daher  wird an dieser  Stellt nicht  weiter auf
-diesen Schritt  eingegangen; das  Matlab-File kann  in Anhang~\ref{app:fftgut}
-gefunden werden.
+Abh\"angigkeit von $f_s$  die Anzahl $N$ zu  berechnender Punkte. Deren Anzahl
+ist stets  eine Potenz von  2. An dieser Stelle  wird nicht weiter  auf diesen
+Schritt eingegangen; das Matlab-File  kann in Anhang~\ref{app:fftgut} gefunden
+werden.
 
 
 % --------------------------------------------------------------------------- %
@@ -69,9 +70,9 @@ Nun  werden  f\"ur  $s$  genau $\frac{N}{2}$  Werte  eingesetzt,  welche  sich
 geichm\"assig zwischen 0  und $f_s \cdot \pi$  verteilen. Dadurch entsteht ein
 diskreter Frequenzgang $H_g[k]$ mit $\frac{N}{2}$ Werten.
 
-\begin{equation*}
+\begin{equation}
     H_g[k] = H_g(s) ~\biggr \rvert~ s=j \cdot \frac{f_s \cdot \pi}{\frac{N}{2} - 1} \cdot k \land 0 \leq k < \frac{N}{2} \land k \in \mathbb{N}_0
-\end{equation*}
+\end{equation}
 
 
 % --------------------------------------------------------------------------- %
@@ -81,11 +82,11 @@ Damit nach der Transformation in den Zeitbereich ein reelles Resultat vorliegt
 muss der diskrete Frequenzgang $H_g[k]$ folgende Symmetriebedingung erf\"ullen
 ($L$ ist die L\"ange des Arrays $H_g$):
 
-\begin{equation*}
+\begin{equation}
     H_g[L-k]=H_g^*[k]  ~\biggr \rvert~ 0 \leq k \leq L \land k \in \mathbb{N}_0
-\end{equation*}
+\end{equation}
 
-Deshalb  wird $H_g[\frac{N}{2}]  = 0$  gesetzt  und zweite  Teil von  $H_g[k]$
+Deshalb wird $H_g[\frac{N}{2}]  = 0$ gesetzt und der zweite  Teil von $H_g[k]$
 jeweils durch die entsprechende Konjugiert-Komplexe $H^*[k]$ erg\"anzt.
 
 % --------------------------------------------------------------------------- %
@@ -94,17 +95,17 @@ jeweils durch die entsprechende Konjugiert-Komplexe $H^*[k]$ erg\"anzt.
 Die  diskrete inverse  Fourier-transformation wird  gem\"ass folgender  Formel
 durchgef\"uhrt:
 
-\begin{equation*}
+\begin{equation}
     h[k]  = \frac{1}{N}  \cdot \displaystyle\sum_{n=0}^{N-1}  H[n] \cdot
     e^{j 2\pi \cdot \frac{n \cdot k}{N}} \biggr \rvert 0 \leq k < N \land k \in \mathbb{N}_0
-\end{equation*}
+\end{equation}
 
 Die in diesem Projekt verwendetete inverse schnelle Fourier-Transformation ist
 ein  verbessertes Verfahren  der oben  erkl\"arten IFFT.   Dieses erm\"oglicht
 eine   schnellere  Berechnung   durch  das   Zerlegen  der   Punkte  in   ihre
 Primfaktoren. Eine genauere Erl\"auterung wird an dieser Stelle nicht gemacht,
-da dieses Verfahren  in Matlab sowie in Java als  fertige Funktion verf\"ugbar
-ist.
+da  dieses  Verfahren  in  Matlab  sowie in  Java  als  lauff\"ahige  Funktion
+verf\"ugbar ist.
 
 
 % --------------------------------------------------------------------------- %
@@ -117,6 +118,6 @@ ersten  bis zum  k-ten Element.   Zus\"atzlich  wird die  zweite H\"alfte  der
 Impulsantwort  weggeschnitten,  um  die  zuvor  als  konjugert-komplexe  Werte
 hinzugef\"ugten \"Uberbleibsel zu eliminieren.
 
-\begin{equation*}
+\begin{equation}
     y[k]= \sum_{n=0}^k h[n] ~\biggr \rvert~ 0 \leq k < \frac{L}{2} \land k \in \mathbb{N}_0
-\end{equation*}
+\end{equation}

@@ -1,7 +1,7 @@
 % ---------------------------------------------------------------------------- %
 \subsubsection*{Ziel}
 % ---------------------------------------------------------------------------- %
-Das  Ziel  dieses  Abschnittes  ist die  Bestimmung  der  Parameter  $K_{rk}$,
+Das Ziel  dieses Abschnittes ist  die Dimensionierung der  Parameter $K_{rk}$,
 $T_{nk}$ und $T_{vk}$ in der \"Ubertragungsfunktion des Reglers:
 
 \begin{equation} \label{eq:pid:target}
@@ -73,7 +73,7 @@ Da die Ableitung eine lineare Funktion ist, gilt somit auch:
     \frac{d\varphi_o}{d\omega} = \frac{d\varphi_s}{d\omega} + \frac{d\varphi_r}{d\omega}
 \end{equation}
 
-Diese  Beziehungen  k\"onnen   auch  gut  in  Abbildung~\ref{fig:pid:complete}
+Diese     Beziehungen     k\"onnen     in     Abbildung~\ref{fig:pid:complete}
 (Seite~\pageref{fig:pid:complete}) von Hand \"uberpr\"uft werden.
 
 Es soll nun gelten:
@@ -97,10 +97,10 @@ Dazu f\"uhrt man den Hilfsparameter $\beta$ ein, f\"ur den gilt:
     \end{split}
 \end{gather}
 
-Wie in  Abbildung~\ref{fig:pid:complete} gesehen  werden kann\footnotemark[8],
-liegen  die   beiden  Frequenzen  $\frac{1}{T_{vk}}$   und  $\frac{1}{T_{nk}}$
-symmetrisch um  den Faktor $\beta$ respektive  $\frac{1}{\beta}$ oberhalb bzw.
-unterhalb der Frequenz $\omega_{pid}$.
+Wie  in  Abbildung~\ref{fig:pid:complete} ersichtlich\footnotemark[8],  liegen
+die beiden Frequenzen $\frac{1}{T_{vk}}$ und $\frac{1}{T_{nk}}$ symmetrisch um
+den Faktor  $\beta$ respektive  $\frac{1}{\beta}$ oberhalb bzw.  unterhalb der
+Frequenz $\omega_{pid}$.
 
 \footnotetext[8]{%
     Man  beachte  dabei,  dass  der Plot  logarithmisch  skaliert  ist.   Eine
@@ -142,7 +142,7 @@ weiterrechnen zu k\"onnen.
     \end{split}
 \end{gather}
 
-Von dieser Gleichung bestimmt man nun  den Phasengang und wertet danach dessen
+Von  dieser  Gleichung bestimmt  man  nun  den  Phasengang und  wertet  dessen
 Ableitung an der Stelle $\omega = \omega_{pid}$ aus. Die zugeh\"orige Rechnung
 kann in Anhang~\ref{app:beta} gefunden werden.
 
@@ -177,8 +177,8 @@ Setzt man dies in Gleichung \ref{eq:pid:phi_sum} ein, erh\"alt man:
     \end{split}
 \end{gather}
 
-Mit  $\beta  = 0.5$  erh\"alt  man  also eine  zu  hohe  Steigung des  offenen
-Regelkreises   an    der   Stelle  $\omega_{pid}$,   folglich   muss   $\beta$
+Mit  $\beta   =  0.5$   erh\"alt  man   somit  eine   zu  hohe   Steigung  des
+offenen  Regelkreises  an der  Stelle  $\omega_{pid}$,  folglich muss  $\beta$
 \emph{verkleinert} werden.   Diese Berechnungen  werden nun mit  jeweils neuen
 Werten  f\"ur  $\beta$  solange  wiederholt,  bis  die  Steigung  des  offenen
 Regelkreises die gew\"unschte N\"ahe zu $-\frac{1}{2}$ aufweist.
@@ -213,8 +213,8 @@ PI-Regler ist zum Finden  der Verst\"arkung die Durchtrittsfrequenz $\omega_d$
 zu bestimmen, um anschliessend mit deren Hilfe $K_{rk}$ auszurechnen.
 
 Die    Resultate    aus     Gleichung~\ref{eq:pid:beta_result}    werden    in
-Gleichung~\ref{eq:pid:target} eingesetzt. $K_{rk}$  ist immer  noch unbekannt,
-und wird daher vorerst bei 1 belassen.
+Gleichung~\ref{eq:pid:target}   eingesetzt. $K_{rk}$   ist  auch   hier   noch
+unbekannt, und wird daher vorerst bei 1 belassen.
 
 \begin{gather} \label{eq:pid:h_rpid_beta_result}
     \begin{split}
@@ -311,8 +311,8 @@ Somit   ist  der   Regler   vollst\"andig  dimensioniert   und  hat   folgende
     H_{rpid}(s) = 1.83084 \cdot \biggl[ \frac{(1 + s \cdot \SI{5.3656}{\second} ) \cdot (1 + s \cdot \SI{0.4134}{\second} ) }{ s \cdot \SI{5.3656}{\second} } \biggr]
 \end{equation}
 
-Zusammenfassend sind in Abbildung~\ref{fig:pid:complete} die verschiedenen
-Frequenzg\"ange und Frequenzen eingetragen.
+Zusammenfassend  sind  in Abbildung~\ref{fig:pid:complete}  die  verschiedenen
+Amplitudeng\"ange, Frequenzg\"ange und markanten Kreisfrequenzen eingetragen.
 
 \begin{figure}[h! width=\pagewidth]
     \includegraphics[width=\textwidth]{images/pidCompletePlot.png}

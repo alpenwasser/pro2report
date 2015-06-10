@@ -5,12 +5,12 @@ die wichtigsten Grundbegriffe erl\"autert.
 \subsection{Die Steuerung}
 % ---------------------------------------------------------------------------- %
 
-Unter  einer   Steuerung  versteht  man   eine  offen  Wirkungskette   wie  in
+Unter  einer   Steuerung  versteht  man   eine  offene Wirkungskette   wie  in
 Abbildung~\ref{fig:Steuerung}, das heisst die Wirkglieder sind ketten\"ahnlich
 aufgereiht und besitzen keine R\"uckkopplung. Die Steuerkette wird genau f\"ur
 eine Steuerung ausgelegt und kann  nur auf Steuergr\"ossen reagieren. Ohne die
 R\"uckkopplung wird das Ausgangsignal  nicht mit dem Eingangssignal verglichen
-und es k\"onnen keine Korrekturen vorgenommen werden.
+und es k\"onnen Abweichungen korrigiert werden.
 
 \begin{figure}[!h!, width=\pagewidth]
     \centering
@@ -29,10 +29,10 @@ Die          Aufgabe         eines          geschlossenen         Regelkreises
 Sollwert  zu   erreichen  und   diesen  auch   bei  St\"orungen   aufrecht  zu
 erhalten. Dabei   sollen  die   unten   genannten  dynamischen   Anforderungen
 eingehalten  werden,  damit  die   Stabilit\"at  des  Regelsystems  garantiert
-ist. Daraus folgt auch  die wichtigste Bedienung f\"ur  die Schrittantwort ein
-geschlossenen Regelkreis heisst, dass  der Regelfehler, die Differenz zwischen
-Ist-  und Sollwert,  m\"oglichst schnell  gleich Null  oder m\"oglichst  klein
-ist. Die einzelnen Elemente werden in der Aufz\"ahlung weiter unten erkl\"art.
+ist. Daraus  folgt  auch die  wichtigste  Bedingung  f\"ur die  Schrittantwort
+eines geschlossenen  Regelkreises: Der Regelfehler,  das heisst  die Differenz
+zwischen Ist- und Sollwert, soll m\"oglichst schnell ausgeglichen werden.  Die
+einzelnen Elemente werden in der Aufz\"ahlung weiter unten erkl\"art.
 
 
 \begin{figure}[!h!, width=\pagewidth]
@@ -45,25 +45,25 @@ ist. Die einzelnen Elemente werden in der Aufz\"ahlung weiter unten erkl\"art.
 %Name Bild Struktur eines allgemeinen Regelkreises
 \begin{itemize}
     \item
-        $y_{soll}$ bezeichnet den Sollwert der Regelgr\"osse
+        $y_{soll}$: Sollwert der Regelgr\"osse
     \item
-        $e$ Regelabweichung (Regelfehler)
+        $e$: Regelabweichung (Regelfehler)
     \item
-        $u$ Steuergr\"osse
+        $u$: Steuergr\"osse
     \item
-        $x$ Stellgr\"osse
+        $x$: Stellgr\"osse
     \item
-        $y$ Regelgr\"osse
+        $y$: Regelgr\"osse
     \item
-        $z$ St\"orgr\"ossen werden in diesem Projekt nicht ber\"ucksichtigt
+        $z$: St\"orgr\"ossen (werden in diesem Projekt nicht ber\"ucksichtigt)
     \item
-        $y_{ist}$ ist  der Ist-Wert  der Regelgr\"osse und  wird auch  als die
-        Schrittantwort des Regelkreises bezeichnet.
+        $y_{ist}$: Ist-Wert  der Regelgr\"osse (wird auch  als die
+        Schrittantwort des Regelkreises bezeichnet)
 \end{itemize}
 
 
 Grunds\"atzlich  k\"onnen  f\"unf   Anforderungen  f\"ur  einen  geschlossenen
-Regelkreis und seinen Schrittantworten zusammengefasst werden:
+Regelkreis und seine Schrittantwort zusammengefasst werden:
 \begin{enumerate}
     \item
         Der Regelkreis muss stabil  sein: F\"ur das Regelsystem heisst stabil,
@@ -99,12 +99,12 @@ Regelkreis und seinen Schrittantworten zusammengefasst werden:
     \end{center}
 \end{figure}
 
-Als Schrittantwort eines geschlossenen Regelkreises wird der zeitliche Verlauf
-des Ausgangssignals  $y(t)$ bezeichnet,  welches entsteht wenn  $y_{soll}$ von
-$0$  auf  $1$  springt. In der  Abbildung~\ref{fig:stepresponse}  werden  drei
-verschiedene Schrittantworten gezeigt.  Im  Zusammenhang mit den Anforderungen
-an  den  geschlossenen  Regelkreis,  werden  an  die  Schrittantwort  folgende
-Forderungen gestellt:
+Als  Schrittantwort  eines  geschlossenen   Regelkreises  wird  der  zeitliche
+Verlauf  des   Ausgangssignals  $y(t)$  bezeichnet,  welches   entsteht,  wenn
+$y_{soll}$   zum   Zeitpunkt  $t=0$   von   $0$   auf  $1$   springt. In   der
+Abbildung~\ref{fig:stepresponse}  werden  drei  verschiedene  Schrittantworten
+gezeigt.   Im   Zusammenhang  mit  den  Anforderungen   an  den  geschlossenen
+Regelkreis, werden an die Schrittantwort folgende Forderungen gestellt:
 
 \begin{enumerate}
     \item
@@ -115,7 +115,7 @@ Forderungen gestellt:
         eingeschwungene  Zustand m\"oglichst  rasch erreicht  wird ohne,  dass
         das  \"Uberschwingen des  Systems zu  stark wird. Die  pinke Kurve  in
         Abbildung~\ref{fig:stepresponse} zeigt eine Schrittantwort, welche vor
-        dem Erreichen des eingeschwungenen Zustands \"uberschwingt.
+        dem Erreichen des eingeschwungenen stark Zustands \"uberschwingt.
     \item
         Die   Schrittantwort  muss   f\"ur  ein   $t\rightarrow\infty$  gleich
         $y_{soll}$ sein.
@@ -142,7 +142,7 @@ bezeichnet. Die  zu   regelnde  Strecke   ist  zum  Beispiel   die  Temperatur
 im  Raum  oder  die  Luftfeuchtigkeit  in  der  Sauna. Die  Regelstrecke  wird
 durch  ihr   Zeitverhalten  charakterisiert,  welches  den   Aufwand  und  die
 G\"ute   der   Regelung   bestimmt. Um  das   Zeitverhalten   zu   beschreiben
-verwendet  man die  Sprungantwort,  welche zeigt,  wie  die Regelgr\"osse  auf
+verwendet  man die  Schrittantwort,  welche zeigt,  wie  die Regelgr\"osse auf
 Stellgr\"ossen\"anderung reagiert. Mit  der entstehenden  Regelgr\"osse werden
 verschiedene Regelstrecken unterschieden:
 
@@ -157,8 +157,8 @@ verschiedene Regelstrecken unterschieden:
         Strecken mit Energiespeicher
 \end{itemize}
 
-Dieses  Projekt   besch\"aftigt  sich   mit  den  PTn-Strecken,   welche  eine
-Kombination  aus einer  Strecke  mit proportionalen  Verhalten  und einer  mit
+Dieses  Projekt  besch\"aftigt  sich   mit  den  PT$n$-Strecken,  welche  eine
+Kombination  aus einer  Strecke  mit proportionalem  Verhalten  und einer  mit
 Totzeit ist. Die Ordnung der Strecke wird durch die Variable $n$ angegeben.
 
 
@@ -188,16 +188,16 @@ $K_p<1$ wirkt $K_p$ nicht mehr verst\"arkend sondern abschw\"achend.
 Strecke  mit Totzeit  erst  nach  einer gewissen  Zeit  auf die  Regelgr\"osse
 aus. Mit $T_t$  wird das  Mass der Totzeit  gekennzeichnet. Im Blockschaltbild
 (Abbildung~\ref{fig:TotZeit})  wird die  Totzeit durch  eine Verz\"ogerung  am
-Anfang gekennzeichnet.
+Anfang dargestellt.
 
 Totzeiten     verursachen    schnelle     Schwingungen,     da    sich     die
-Stellgr\"ossen\"anderung zeitverz\"ogert  auf die  Regelgr\"osse auswirkt. Die
+Stellgr\"ossen\"anderung zeitverz\"ogert auf die Regelgr\"osse auswirkt. Diese
 Schwingungen  entstehen  wenn sich  die  Stellgr\"osse  und die  Regelgr\"osse
 periodisch \"andern.
 
 \begin{figure}[h!, width=\pagewidth]
     \centering
-    \includegraphics[width=0.2\textwidth]{images/TotZeit}
+    \includegraphics[width=0.2\textwidth]{images/Totzeit}
     \caption{Blockschaltbild von Strecke mit Totzeit}
     \label{fig:TotZeit}
 \end{figure}
@@ -208,11 +208,11 @@ periodisch \"andern.
 % ---------------------------------------------------------------------------- %
 
 Die  I-Regelstrecke  antwortet  auf eine  Stellgr\"ossen\"anderung  mit  einer
-stetigen \"Anderung in steigende oder fallende Richtung. Die Begrenzung dieses
-Vorganges  ist mit  den systembedingten  Schranken gegeben. Die  Integrierzeit
-$T_i$  ist  ein  Mass  f\"ur  die  Anstiegsgeschwindigkeit  der  Regelgr\"osse
-und  das Blockschaltbild  (Abbildung~\ref{fig:IStrecke})  zeigt das  Verhalten
-sinnbildlich.
+stetigen  \"Anderung in  steigender  oder  fallender Richtung. Die  Begrenzung
+dieses   Vorganges  ist   mit  den   systembedingten  Schranken   gegeben. Die
+Integrierzeit  $T_i$  ist  ein  Mass  f\"ur  die  Anstiegsgeschwindigkeit  der
+Regelgr\"osse und das Blockschaltbild (Abbildung~\ref{fig:IStrecke}) zeigt das
+Verhalten sinnbildlich.
 
 \begin{figure}[h!, width=\pagewidth]
     \centering
@@ -241,7 +241,7 @@ genannten Regler sind, behandelt.
 % ---------------------------------------------------------------------------- %
 \subsubsection*{P-Regler}
 % ---------------------------------------------------------------------------- %
-Der  P-Regler regelt  der  Stellgr\"osse $x$  proportional zur  Regeldifferenz
+Der  P-Regler regelt  die  Stellgr\"osse $x$  proportional zur  Regeldifferenz
 $e$. Aus  diesem  Grund reagiert  der  P-Regler  ohne Verz\"ogerung  auf  eine
 Ausgangs\"anderung. Das  Proportionale Verhalten  ist in  seinem Blockdiagramm
 (Abbildung~\ref{fig:PRegler}) dargestellt.
@@ -256,12 +256,12 @@ Ausgangs\"anderung. Das  Proportionale Verhalten  ist in  seinem Blockdiagramm
 % ---------------------------------------------------------------------------- %
 \subsubsection*{I-Regler}
 % ---------------------------------------------------------------------------- %
-Der  I-Regler  ist  ein  integrierender  Regler,  welcher  Regelabweichungunen
-zu  jedem   Betriebspunkt  ausregelt. Die   Steigung  des   I-Reglers  h\"angt
-von  der  Reglerabweichung  und   der  Integrationszeit  $T_i$  ab. Hier  gilt
-die  Regel: Je  gr\"osser  die  Integrationszeit ist,  umso  langsamer  steigt
-die  Kurve. Das   Verhalten  des  I-Reglers  ist   in  seinem  Blockschaltbild
-(Abbildung~\ref{fig:IRegler}) dargestellt.
+Der  I-Regler ist  ein integrierender  Regler, welcher  Regelabweichungunen zu
+jedem  Betriebspunkt ausregelt. Die  Steigung  des I-Reglers  h\"angt von  der
+Reglerabweichung und  der Integrationszeit  $T_i$ ab. Hier gilt  die Regel: Je
+gr\"osser  die  Integrationszeit ist,  umso  langsamer  steigt die  Kurve. Das
+Verhalten des I-Reglers ist  im Blockschaltbild in Abbildung~\ref{fig:IRegler}
+ersichtlich.
 
 \begin{figure}[h!, width=\pagewidth]
     \centering
@@ -274,10 +274,10 @@ die  Kurve. Das   Verhalten  des  I-Reglers  ist   in  seinem  Blockschaltbild
 \subsubsection*{D-Regler}
 % ---------------------------------------------------------------------------- %
 Der Differentialregler bildet seine  Stellgr\"osse $x$ aus der Geschwindigkeit
-der  \"Anderung  der Regeldifferenz. Aus  diesem  Grund  erzeugt der  D-Regler
-auch  bei  kleiner Reglerdifferenz  eine  grosse  Stellamplitude und  reagiert
-schneller als  der P-Regler. Dieses  Verhalten wird in  seinem Blockschaltbild
-(Abbildung~\ref{fig:DRegler}) symbolisch dargestellt.
+der \"Anderung der Regeldifferenz. Aus diesem  Grund erzeugt der D-Regler auch
+bei kleiner Reglerdifferenz  f\"ir eine kurze Zeit  eine grosse Stellamplitude
+und  reagiert dadurch  schneller als  der P-Regler. Dieses  Verhalten wird  in
+seinem Blockschaltbild (Abbildung~\ref{fig:DRegler}) symbolisch dargestellt.
 
 \begin{figure}[h!, width=\pagewidth]
     \centering
@@ -290,7 +290,7 @@ schneller als  der P-Regler. Dieses  Verhalten wird in  seinem Blockschaltbild
 \subsubsection*{PI-Regler}
 % ---------------------------------------------------------------------------- %
 Der  PI-Regler  besteht  aus  einer   Parallelschaltung  eines  P-  und  eines
-I-Reglers   (Abbildung~\ref{fig:PIRegler}). Durch  diese   Kombination  werden
+I-Reglers  (Abbildung~\ref{fig:PIRegler1}). Durch   diese  Kombination  werden
 die   Nachteile  beider   Regler  kompensiert   und  die   Vorteile  (schnell,
 stabil)  hervorgehoben. Sein Verhalten  wird  bildlich  im Blockschaltbild  in
 Abbildung~\ref{fig:PIRegler2} dargestellt.

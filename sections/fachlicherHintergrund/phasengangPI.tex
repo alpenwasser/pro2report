@@ -108,7 +108,7 @@ der  offene  Regelkreis  Gleichung~\ref{eq:phi_o} erf\"ullt. Dabei  ist  f\"ur
 $\varphi_s$, abh\"angig vom gew\"unschten \"Uberschwingverhalten, ein Wert aus
 Tabelle~\ref{tab:phi_s} auszuw\"ahlen\footnotemark[6].  Nach dem Festlegen der
 Durchtrittsfrequenz (in  unserem Beispiel werden wir  $16.3\%$ anstreben) wird
-dann im n\"achsten Abschnitt die Verst\"arkung des Reglers noch angepasst.
+im n\"achsten Abschnitt die Verst\"arkung des Reglers noch angepasst.
 
 \footnotetext[6]{%
     Die  Werte f\"ur  $\varphi_s$  aus  Tabelle~\ref{tab:phi_s} stellen  keine
@@ -119,7 +119,7 @@ dann im n\"achsten Abschnitt die Verst\"arkung des Reglers noch angepasst.
 }
 
 \begin{equation} \label{eq:phi_o}
-    \varphi_o(\omega_d)=\varphi_s.
+    \varphi_o(\omega_d)=\varphi_u.
 \end{equation}
 
 \clearpage
@@ -133,10 +133,10 @@ dann im n\"achsten Abschnitt die Verst\"arkung des Reglers noch angepasst.
     % CONTENT HERE ---------------------------------------------------------- %
 
     \"Uberschwingen & 0\%              & 16.3\%           & 23.3\% \\
-    $\varphi_s$        & $-103.7 \degree$ & $-128.5 \degree$ & $-135 \degree$ \\
+    $\varphi_u$        & $-103.7 \degree$ & $-128.5 \degree$ & $-135 \degree$ \\
 
     \bottomrule
-    \caption{Werte f\"ur $\varphi_s$}
+    \caption{Werte f\"ur $\varphi_u$}
     \label{tab:phi_s}
 \end{longtable}
 
@@ -216,11 +216,11 @@ Dies ergibt f\"ur die Durchtrittsfrequenz:
 \subsubsection{Bestimmung der Reglerverst\"arkung $\mathbf{K_{rk}}$}
 % ---------------------------------------------------------------------------- %
 
-Im  letzten  Schritt  muss  nun, wie im  vorherigen  Abschnitt  erw\"ahnt, die
-Verst\"arkung  $K_{rk}$   des  Reglers   noch  angepasst  werden,   damit  der
+Im  letzten  Schritt   muss  nun,  wie  im   vorherigen  Abschnitt  erw\"ahnt,
+die   Verst\"arkung  $K_{rk}$   des  Reglers   angepasst  werden,   damit  der
 offene   Regelkreis  bei   der  angestrebten   Durchtrittsfrequenz  $\omega_d$
-auch  effektiv  eine Verst\"arkung  von  1  aufweist.  Dazu  wird  $j\omega_d$
-in  Gleichung~\ref{eq:pi:h_open}  f\"ur  den   Parameter  $s$  eingesetzt  und
+effektiv  eine  Verst\"arkung  von  1  aufweist.   Dazu  wird  $j\omega_d$  in
+Gleichung~\ref{eq:pi:h_open}   f\"ur   den   Parameter  $s$   eingesetzt   und
 $|H_o(j\omega_d)| = 1$ gesetzt.
 
 \begin{gather} \label{eq:pi:A_o_set_to_one}
@@ -254,11 +254,11 @@ Mit den Werten
     \end{split}
 \end{equation}
 
-l\"ost  man Gleichung  \ref{eq:pi:A_o_set_to_one}  nun nach  $K_{rk}$ auf  und
-erh\"alt:
+l\"ost  man Gleichung  \ref{eq:pi:A_o_set_to_one}  nach  $K_{rk}$ auf  und
+erh\"alt
 
 \begin{equation} \label{eq:pi:k_rk_result}
-    K_{rk} = 0.517577
+    K_{rk} = 0.517577.
 \end{equation}
 
 
@@ -267,7 +267,7 @@ erh\"alt:
 \subsubsection{Resultat}
 % ---------------------------------------------------------------------------- %
 
-Somit ist der PI-Regler vollst\"andig bestimmt und hat folgende Form:
+Somit ist der PI-Regler vollst\"andig dimensioniert und hat folgende Form:
 
 \begin{equation} \label{eq:pi:result}
     H_{rpi} = 0.518 \cdot \biggl[ 1 + \frac{1}{s \cdot \SI{3.29}{\second}} \biggr]

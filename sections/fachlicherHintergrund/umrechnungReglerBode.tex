@@ -17,7 +17,8 @@ Bei der  bodekonformen Darstellung wie  in Gleichungen~\ref{eq:pi:bodekonform}
 und~\ref{eq:pid:bodekonform}   ist   die  \"Ubertragungsfunktion   leicht   zu
 interpretieren,  was ihren  Amplitduden- und  Frequenzgang betrifft.   Deshalb
 wird  die  bodekonforme  Darstellung  \"uberall dort  verwendet,  wo  mit  den
-Reglerwerten Berechnungen ausgef\"uhrt werden.
+Reglerwerten Berechnungen in Bezug auf Amplituden- und Phasengang ausgef\"uhrt
+werden.
 
 \begin{equation} \label{eq:pi:bodekonform}
     H_{rpi} = K_{rk} \cdot \biggl[ \frac{1 + s \cdot T_{nk}}{s \cdot T_{nk}} \biggr]
@@ -42,10 +43,12 @@ zur Verf\"ugung zu stellen.
     H_{rpid} = K_{r} \cdot \biggl[ 1 + \frac{1}{s \cdot T_n} + \frac{s \cdot T_v}{s \cdot T_p} \biggr]
 \end{equation}
 
-Zudem   liegt   das   Ergebnis   der    Faustformeln   auch   immer   in   der
-reglerkonformen  Darstellung  vor. F\"ur  die  Umrechnung  zwischen  den  zwei
-Darstellungsarten ergeben sich durch  einen Koeffizientenvergleich die Formeln
-in  Tabelle~\ref{tab:bode_regler_konform}.  F\"ur  die Berechnungen  in diesem
+Die  Ergebnisse der  Faustformeln liegen  stets direkt  in der  regelkonformen
+Darstellung vor.
+
+F\"ur     die    Umrechnung     zwischen     den    zwei     Darstellungsarten
+ergeben   sich    durch   einen   Koeffizientenvergleich   die    Formeln   in
+Tabelle~\ref{tab:bode_regler_konform}.   F\"ur  die   Berechnungen  in  diesem
 Projekt wird,  wenn nicht anders  angegeben, mit $T_p=\frac{1}{10}  \cdot T_v$
 gerechnet.
 
@@ -106,8 +109,6 @@ Anhang~\ref{app:algo:regbode} und \ref{app:algo:boderegler} zu finden.
     \multicolumn{2}{l}{wobei $\epsilon^2 = 1-(4 \cdot T_n \cdot \frac{T_v-T_p}{(T_n+T_p)^2})$}
     \\
     \bottomrule
-    \caption{Formeln zur Umrechung zwischen bode- zu reglerkonformer Darstellung \cite{regelungstechnik:zellweger}, \cite{regelungstechnik:schumleon}}
+    \caption{Formeln zur Umrechung zwischen bode- und reglerkonformer Darstellung \cite{regelungstechnik:zellweger}, \cite{regelungstechnik:schumleon}}
     \label{tab:bode_regler_konform}
 \end{longtable}
-
-

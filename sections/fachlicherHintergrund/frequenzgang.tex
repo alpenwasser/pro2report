@@ -41,8 +41,7 @@ Da  die  Reglerdimensionierung  mit  der  Phasengangmethode  vom  Frequenzgang
 einer  Strecke  ausgeht und  nicht  von  deren  Schrittantwort, wird  aus  den
 obigen Werten  nun der Frequenzgang  der Strecke bestimmt.  Dies  erledigt die
 Methode  \code{p\_sani()}\footnotemark[3],  welche  uns die  Werte  f\"ur  die
-\"Ubertragungsfunktion  der  Strecke liefert.   In  unserem  Fall ergibt  dies
-folgendes Polynom:
+\"Ubertragungsfunktion  der  Strecke liefert.
 
 \footnotetext[3]{%
     Die  Methode  \code{p\_sani()} wurde  zu  Beginn  des Projektes  in  einer
@@ -61,6 +60,9 @@ folgendes Polynom:
     Anhang~\ref{app:sani} zu entnehmen.
 }
 
+\clearpage
+In unserem Fall ergibt dies folgendes Polynom:
+
 \begin{gather} \label{eq:transfer:plant}
     \begin{split}
         H_s (s) & = K_s
@@ -74,7 +76,7 @@ folgendes Polynom:
     \end{split}
 \end{gather}
 
-Mit   einem  geeigneten   Tool  kann   man  sich   den  dazugeh\"origen   Plot
+Mit einem geeigneten Tool (z.B. Matlab) kann man sich den dazugeh\"origen Plot
 (Abbildung~\ref{fig:plant_freq}) erstellen lassen.
 
 \begin{figure}[h! width=\pagewidth]

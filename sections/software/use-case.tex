@@ -4,9 +4,9 @@ k\"onnen   auch   gut   im   Klassendiagramm   (Anhang~\ref{app:classdiagram})
 betrachtet werden.
 
 Beim   Programmstart   werden   durch  das   Model   drei   \code{closedLoops}
-(geschlossener  Regelkreis) f\"ur  die Phasengang-Methode  sowie vier  weitere
+(geschlossener  Regelkreis) f\"ur  die Phasengangmethode  sowie vier  weitere
 f\"ur  die Faustformeln  erzeugt. Jeder \code{closedLoops}  ist von  Beginn an
-einem  Berechnungstyp  (Phasengang-Methode,  Faustformel)  zugewiesen. Er  ist
+einem  Berechnungstyp  (Phasengangmethode,  Faustformel)  zugewiesen. Er  ist
 bereit, Daten aufzunehmen und zu verarbeiten.
 
 \"Uber die  drei Eingabefelder  $K_s$, $T_u$  und $T_g$  werden die  Werte der
@@ -22,7 +22,7 @@ Slider  f\"ur \"Uberschwingen  und  Optimierung sowie  den  Reglertyp auf  dem
 GUI  ab  und   leitet  alle  Daten  mittels  \code{setData()}   an  das  Model
 weiter. Dieses erzeugt  einen Path (Strecke) aus  den Eingabewerten. Das Model
 errechnet  den  Optimierungs-Offset und  weist  die  Daten den  entsprechenden
-\code{closedLoops} der  Phasengang-Methode sowie der Faustformeln  mittels der
+\code{closedLoops} der  Phasengangmethode sowie der Faustformeln  mittels der
 Methode \code{setData()}  zu. Jeder \code{ClosedLoop} leitet die  Daten an den
 zugeh\"origen  Controller weiter,  der  die  Reglerwerte berechnet. Zu  Beginn
 betrachten wir den Regler nach Oppelt genauer.
@@ -40,7 +40,7 @@ Chien/Hrones/Reswick (aperiod.) funktionieren analog dem Berechnungstyp Oppelt
 und werden nicht weiter ausgef\"uhrt.
 
 Ein   spezielles  Augenmerk   richten   wir  nun   auf   die  Berechnung   der
-Phasengang-Methode. Auch  die   Klasse  \code{PhaseResponseMethod}   erbt  von
+Phasengangmethode. Auch  die   Klasse  \code{PhaseResponseMethod}   erbt  von
 der  Klasse  \code{Controller}  und  bringt die  bereits  erw\"ahnten  Setter-
 und   Getter-Methoden  mit. Die   Input-Werte  sind   analog  derjenigen   der
 Faustformeln. Zus\"atzlich  werden  die   Informationen  zum  \"Uberschwingen,
@@ -67,7 +67,7 @@ Werte   in  die   reglerkonforme   Darstellung.   \code{setUTF()}  setzt   die
 Im    \code{ClosedLoop}    wird    nun    die    Methode    \code{calculate()}
 ausgef\"uhrt,  welche   mittels  der   Methode  \code{calculateStepResponse()}
 die   Schrittanwort  des   geschlossenen   Regelkreises  berechnet. Falls   es
-sich  bei  der  Berechnungsmethode   des  Reglers  um  die  Phasengang-Methode
+sich  bei  der  Berechnungsmethode   des  Reglers  um  die  Phasengangmethode
 handelt,  wird  zus\"atzlich \code{overShootOptimization()}  (dokumentiert  in
 Anhang~\ref{app:algo:oversh}) aufgerufen. Diese Methode  \"andert den Wert von
 $K_{rk}$ so lange, bis das gew\"unschte \"Uberschwingen erreicht wird.
@@ -85,16 +85,16 @@ Der Benutzer  hat nun die  M\"oglichkeit, die Resultate  der Phasengangmethode
 weiter  zu  optimieren. \"Uber  das   Panel  \code{Optimierungen}  stehen  die
 Slider  \emph{\"Uberschwingen} sowie  \emph{Optimierung} zur  Verf\"ugung. Das
 \"Uberschwingen  kann  in  vorgegebenen   Schritten  in  Prozenten  festgelegt
-werden. Die  Optimierung schiebt  $\varphi_r$ in  die positive  sowie negative
-Richtung zugleich   und wird mittels zwei  separaten Plots dargestellt. Weiter
-k\"onnen  die Werte  f\"ur $T_p$  nachtr\"aglich  f\"ur jede  der drei  Kurven
-individuell angepasst werden.
+werden. Die  Optimierung  schiebt  $\varphi_{start}$  in  die  positive  sowie
+negative   Richtung   zugleich  und   wird   mittels   zwei  separaten   Plots
+dargestellt. Weiter k\"onnen  die Werte f\"ur $T_p$  nachtr\"aglich f\"ur jede
+der drei Kurven individuell angepasst werden.
 
 Sobald  einer   der  drei  Parameter  (\"Uberschwingen,   Optimierung,  $T_p$)
 ver\"andert  wird,   wird  \"uber   den  \code{GUIController}   die  jeweilige
 Setter-Methode im \code{Model} aufgerufen. Das  \code{Model} gibt die Daten an
 den jeweiligen \code{ClosedLoop}  weiter, der diese wiederum  den Methoden der
-Phasengang-Methode  weiterleitet. Sobald die  neu berechneten  Werte vorliegen
+Phasengangmethode  weiterleitet. Sobald die  neu berechneten  Werte vorliegen
 wird \code{notifyObservers()} aufgerufen und die \code{View} aktualisiert.
 
 Die  Plots  sowie die  Optimierungs-Schaltfl\"achen  sind  nur dann  sichtbar,

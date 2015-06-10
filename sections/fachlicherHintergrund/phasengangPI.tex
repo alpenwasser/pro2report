@@ -47,19 +47,20 @@ $T_{nk}$ in der \"Ubertragungsfunktion des Reglers:
 % ---------------------------------------------------------------------------- %
 
 Zuerst  wird im  Phasengang der  Strecke gem\"ass  Gleichung~\ref{eq:pi:phi_s}
-die     Frequenz     $\omega_{pi}$      bestimmt,     f\"ur     welche     die
-Phase     der    Strecke     $-90\degree$     betr\"agt,    ersichtlich     in
+die   Frequenz   $\omega_{pi}$   bestimmt,   f\"ur  welche   die   Phase   der
+Strecke   $\varphi_{start}    =   -90\degree$   betr\"agt,    ersichtlich   in
 Abbildung~\ref{fig:pi:omega_pi}\footnotemark[4].
 
 \begin{equation} \label{eq:pi:phi_s}
-    \varphi_s(\omega_{pi}) = -90 \degree
+    \varphi_s(\omega_{pi}) = \varphi_{start} = -90 \degree
 \end{equation}
 
 \footnotetext[4]{%
-    Der  Winkel  stellt  keinen   endg\"ultigen  Wert  dar. Dieser  wurde  von
-    Jakob  Zellweger  fixiert, um  eine  graphische  Evaluation \"uberhaupt  zu
-    erm\"oglichen. Durch Anpassung dieses Wertes kann je nach Regelstrecke das
-    Regelverhalten weiter optimiert werden.
+    Der Winkel  $\varphi_{start} = -90  \degree $ stellt  keinen endg\"ultigen
+    Wert dar. Dieser  wurde von  Jakob Zellweger  fixiert, um  eine graphische
+    Evaluation  \"uberhaupt zu  erm\"oglichen. Durch  Anpassung dieses  Wertes
+    kann je  nach Regelstrecke das Regelverhalten  weiter optimiert werden. In
+    unserem Tool ist dies mittels des Sliders \emph{Optimierung} m\"oglich.
 }
 
 \begin{figure}[h! width=\pagewidth]
@@ -105,17 +106,17 @@ Die   Durchtrittsfrequenz  ist   die   Frequenz,  bei   der  die   betrachtete
 \"Ubertragungsfunktion $H(j\omega)$ eine Verst\"arkung von $\SI{0}{\decibel} =
 1$  aufweist. In der  Phasengangmethode soll  sie so  festgelegt werden,  dass
 der  offene  Regelkreis  Gleichung~\ref{eq:phi_o} erf\"ullt. Dabei  ist  f\"ur
-$\varphi_s$, abh\"angig vom gew\"unschten \"Uberschwingverhalten, ein Wert aus
+$\varphi_u$, abh\"angig vom gew\"unschten \"Uberschwingverhalten, ein Wert aus
 Tabelle~\ref{tab:phi_s} auszuw\"ahlen\footnotemark[6].  Nach dem Festlegen der
 Durchtrittsfrequenz (in  unserem Beispiel werden wir  $16.3\%$ anstreben) wird
 im n\"achsten Abschnitt die Verst\"arkung des Reglers noch angepasst.
 
 \footnotetext[6]{%
-    Die  Werte f\"ur  $\varphi_s$  aus  Tabelle~\ref{tab:phi_s} stellen  keine
+    Die  Werte f\"ur  $\varphi_u$  aus  Tabelle~\ref{tab:phi_s} stellen  keine
     abschliessende  Auflistung dar  und  sind lediglich  als Anhaltspunkte  zu
     betrachten. Weicht das Verhalten des geschlossenen Regelkreises am Schluss
     zu stark  vom gew\"unschten  Ergebnis ab, besteht  durch die  Wahl anderer
-    Werte f\"ur $\varphi_s$ die M\"oglichkeit weiterer Optimierung.
+    Werte f\"ur $\varphi_u$ die M\"oglichkeit weiterer Optimierung.
 }
 
 \begin{equation} \label{eq:phi_o}

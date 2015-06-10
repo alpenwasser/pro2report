@@ -15,17 +15,17 @@ $T_{nk}$ und $T_{vk}$ in der \"Ubertragungsfunktion des Reglers:
 
 Analog  zum PI-Regler  wird  zuerst  im Phasengang  der  Strecke die  Frequenz
 $\omega_{pid}$  bestimmt,  f\"ur  welche  die  Phase  einen  definierten  Wert
-aufweist,  aber   im  Unterschied   zum  PI-Regler  wird   hier  $-135\degree$
-benutzt\footnotemark[7]:
+$\varphi_{start}$  aufweist,  aber  im  Unterschied zum  PI-Regler  wird  hier
+$\varphi_{start} = -135\degree$ benutzt\footnotemark[7]:
 
 \begin{equation} \label{eq:pid:phi_s}
-    \varphi_s(\omega_{pid}) = -135 \degree
+    \varphi_s(\omega_{pid}) = \varphi_{start} = -135 \degree
 \end{equation}
 
 \footnotetext[7]{%
-    Wie   auch  beim   PI-Regler   stellt  diese   Frequenz  lediglich   einen
-    Ausgangspunkt dar  und kann  zur weiteren  Optimierung des  Resultats noch
-    angepasst werden.
+    Wie  auch  beim  PI-Regler  stellt  dieser  Wert  f\"ur  $\varphi_{start}$
+    lediglich einen  Ausgangspunkt dar und  kann zur weiteren  Optimierung des
+    Resultats noch angepasst werden.
 }
 
 In unserem Beispiel ergibt dies:
@@ -200,8 +200,9 @@ Diese Werte sind ebenfalls in Abbildung~\ref{fig:pid:complete} eingetragen.
 Sollte  man  f\"ur  $\beta$  einen komplexen  Wert  erhalten,  wird  $\beta=1$
 gesetzt.
 
-Die zur Berechnung von $\beta$, $T_{vk}$ und $T_{nk}$ benutzten Verfahren sind
-in Anhang~\ref{app:algo:slope} respektive~\ref{app:algo:tnktvk} dokumentiert.
+Die zur  Berechnung von $\beta$,  $T_{vk}$ und $T_{nk}$  benutzten Algorithmen
+sind    in     Anhang~\ref{app:algo:slope}    respektive~\ref{app:algo:tnktvk}
+dokumentiert.
 
 
 % ---------------------------------------------------------------------------- %
@@ -240,7 +241,7 @@ auch  beim  PI-Regler  werden  wir   hier  ein  \"Uberschwingen  von  $16.3\%$
 anstreben, womit gem\"ass Tabelle \ref{tab:phi_s} gilt:
 
 \begin{equation} \label{eq:pid:omega_d_target}
-    \varphi_s(\omega_d) = \varphi_s = -128.5\degree
+    \varphi_s(\omega_d) = \varphi_u = -128.5\degree
 \end{equation}
 
 Dieser   Wert   wird   analog   zum   PI-Regler   aus   dem   Phasengang   des

@@ -10,7 +10,7 @@ F\"ur diese Berechnung sind folgende Schritte notwendig:
     \item
         \"Ubertragungsfunktion des geschlossenen Regelkreises bilden
     \item
-        bestimmen der Abstastfrequenz $f_s$ sowie der Anzahl zu berechnender Punkte.
+        Definition der Abstastfrequenz $f_s$ sowie der Anzahl zu berechnender Punkte
     \item
         diskreten Frequenzgang berechnen
     \item
@@ -41,12 +41,14 @@ Z\"ahlerpolynom zum Nennerpolynom addiert werden.
 
 Die Z\"ahler- und Nennerpolynome haben dabei folgende Form:
 
-\begin{align*}
-    ZAH_{Regler}  & = b_{R_1} s^n  + b_{R_2} s^{n-1}  + \dotsb  + b_{R_{n-1}}     ~\biggr \rvert~ n \in  \mathbb{N} \\
-    ZAH_{Strecke} & = b_{S_1} s^k  + b_{S_2} s^{k-1}  + \dotsb  + b_{S_{k-1}}     ~\biggr \rvert~ k \in  \mathbb{N}  \\
-    NEN_{Regler}  & = a_{R_1} s^m  + a_{R_2} s^{m-1}  + \dotsb  + a_{R_{m-1}}     ~\biggr \rvert~ m \in  \mathbb{N}  \\
-    NEN_{Strecke} & = a_{S_1} s^l  + a_{S_2} s^{l-1}  + \dotsb  + a_{S_{l-1}}     ~\biggr \rvert~ l \in  \mathbb{N}
-\end{align*}
+\begin{gather*}
+    \begin{split}
+        ZAH_{Regler}  & = b_{R_1} s^n  + b_{R_2} s^{n-1}  + \dotsb  + b_{R_{n-1}}     ~\biggr \rvert~ n \in  \mathbb{N} \\
+        ZAH_{Strecke} & = b_{S_1} s^k  + b_{S_2} s^{k-1}  + \dotsb  + b_{S_{k-1}}     ~\biggr \rvert~ k \in  \mathbb{N}  \\
+        NEN_{Regler}  & = a_{R_1} s^m  + a_{R_2} s^{m-1}  + \dotsb  + a_{R_{m-1}}     ~\biggr \rvert~ m \in  \mathbb{N}  \\
+        NEN_{Strecke} & = a_{S_1} s^l  + a_{S_2} s^{l-1}  + \dotsb  + a_{S_{l-1}}     ~\biggr \rvert~ l \in  \mathbb{N}
+    \end{split}
+\end{gather*}
 
 
  --------------------------------------------------------------------------- %
@@ -78,9 +80,9 @@ diskreter Frequenzgang $H_g[k]$ mit $\frac{N}{2}$ Werten.
 % --------------------------------------------------------------------------- %
 \subsubsection*{Frequenzgang f\"ur die inverse Fourier-Transformation vorbereiten}
 % --------------------------------------------------------------------------- %
-Damit nach der Transformation in den Zeitbereich ein reelles Resultat vorliegt
-muss der diskrete Frequenzgang $H_g[k]$ folgende Symmetriebedingung erf\"ullen
-($L$ ist die L\"ange des Arrays $H_g$):
+Damit  nach  der  Transformation  in  den  Zeitbereich  ein  reelles  Resultat
+vorliegt, muss der diskrete  Frequenzgang $H_g[k]$ folgende Symmetriebedingung
+erf\"ullen ($L$ ist die L\"ange des Arrays $H_g$):
 
 \begin{equation}
     H_g[L-k]=H_g^*[k]  ~\biggr \rvert~ 0 \leq k \leq L \land k \in \mathbb{N}_0
@@ -92,7 +94,7 @@ jeweils durch die entsprechende Konjugiert-Komplexe $H^*[k]$ erg\"anzt.
 % --------------------------------------------------------------------------- %
 \subsubsection*{Frequenzgang r\"ucktransformieren}
 % --------------------------------------------------------------------------- %
-Die  diskrete inverse  Fourier-transformation wird  gem\"ass folgender  Formel
+Die  diskrete inverse  Fourier-Transformation wird  gem\"ass folgender  Formel
 durchgef\"uhrt:
 
 \begin{equation}
